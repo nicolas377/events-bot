@@ -19,6 +19,7 @@
   "homepage": "https://github.com/nicolas377/events-bot#readme",
   "dependencies": {
     "@replit/database": "^2.0.0",
+    "crypto-js": "^4.0.0",
     "discord.js": "^12.5.1"
   }
 }

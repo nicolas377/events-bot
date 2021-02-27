@@ -2,6 +2,8 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const Database = require("@replit/database")
 const db = new Database()
+const CryptoJS = require('crypto-js')
+const fs = require('fs');
 var users = []
 var codes = []
 
@@ -12,6 +14,32 @@ function randomString(length = 64) {
     result += String.fromCharCode(num)
   }
   return result
+}
+
+function saveJSON() {
+	var saving = {users: [], codes: []}
+	users.forEach(function (item) {
+		var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
+		saving.users.push(encrypted.toString())
+	})
+	codes.forEach(function (item) {
+		var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
+		saving.codes.push(encrypted.toString())
+	})
+	fs.writeFileSync('data.json', JSON.stringify(saving))
+}
+
+function readJSON() {
+	var data = fs.readFileSync('data.json')
+	data = JSON.parse(data)
+	data.users.forEach(function (item) {
+		var decrypted = CryptoJS.AES.decrypt(item, process.env.ENCRYPTION_KEY)
+		users.push(decrypted.toString(CryptoJS.enc.Utf8))
+	})
+	data.codes.forEach(function (item) {
+		var decrypted = CryptoJS.AES.decrypt(item, process.env.ENCRYPTION_KEY)
+		codes.push(decrypted.toString(CryptoJS.enc.Utf8))
+	})
 }
 
 function createEmbed(person, code) {
@@ -26,6 +54,14 @@ function createEmbed(person, code) {
 }
 
 client.on('message', msg => {
+	if (msg.content === '$av') {
+		const user = msg.mentions.users.first() || msg.author;
+		const avatarEmbed = new Discord.MessageEmbed()
+    avatarEmbed.setColor(0x333333)
+    avatarEmbed.setAuthor(user.username)
+    avatarEmbed.setImage(user.displayAvatarURL());
+		msg.channel.send(avatarEmbed);
+	}
   if (msg.content === '$code') {
     if (msg.member.roles.cache.find(r => r.name === "Election Boi")) {
       if (users.includes(msg.author.id)) {
@@ -39,9 +75,12 @@ client.on('message', msg => {
       createEmbed(msg.author, str)
       codes.push(str)
       users.push(msg.author.id)
+			saveJSON()
     }
   }
 });
+
+readJSON()
 
 client.login(process.env.CLIENT_TOKEN);
 
