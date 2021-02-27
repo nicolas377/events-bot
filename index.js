@@ -54,15 +54,24 @@ function createEmbed(person, code) {
 }
 
 client.on('message', msg => {
-	if (msg.content === '$av') {
-		const user = msg.mentions.users.first() || msg.author;
-		const avatarEmbed = new Discord.MessageEmbed()
-    avatarEmbed.setColor(0x333333)
-    avatarEmbed.setAuthor(user.username)
-    avatarEmbed.setImage(user.displayAvatarURL());
-		msg.channel.send(avatarEmbed);
+	if (msg.content.startsWith('$av')) {
+		let guild = client.guilds.cache.get('553718744233541656')
+		if (msg.mentions.users.first() == undefined) {
+			var user = msg.author
+		}	else {
+			var user = msg.mentions.users.first()
+		}
+		if (guild.member(user)) {
+			const avatarEmbed = new Discord.MessageEmbed()
+    	avatarEmbed.setColor(0x333333)
+    	avatarEmbed.setAuthor(user.username)
+    	avatarEmbed.setImage(user.displayAvatarURL());
+			msg.channel.send(avatarEmbed);
+		} else {
+			msg.channel.send(`<@${msg.author.id}>, that user isn't in this server!`)
+		}
 	}
-  if (msg.content === '$code') {
+  if (msg.content.startsWith('$code')) {
     if (msg.member.roles.cache.find(r => r.name === "Election Boi")) {
       if (users.includes(msg.author.id)) {
         return
