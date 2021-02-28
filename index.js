@@ -107,19 +107,20 @@ client.on('message', msg => {
 	if (msg.content.startsWith('$av')) {
 		let guild = client.guilds.cache.get('553718744233541656')
 		if (msg.mentions.users.first() == undefined) {
-			const user = msg.author
+			user = msg.author
 		}	else {
-			const user = msg.mentions.users.first()
+			user = msg.mentions.users.first()
 		}
 		if (guild.member(user)) {
 			const avatarEmbed = new Discord.MessageEmbed()
     	avatarEmbed.setColor(0x333333)
-    	avatarEmbed.setAuthor(user.username)
+    	avatarEmbed.setAuthor(user.tag)
     	avatarEmbed.setImage(user.displayAvatarURL());
 			msg.channel.send(avatarEmbed);
 		} else {
 			msg.channel.send(`<@${msg.author.id}>, that user isn't in this server!`)
 		}
+		delete(user)
 		return
 	}
   if (msg.content.startsWith('$code')) {

@@ -1,0 +1,4 @@
+ins and outs (user age too)
+waiting room
+message in #general
+on bot ping, say hello and encourage user to run $help
