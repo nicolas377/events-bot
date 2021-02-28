@@ -6,7 +6,14 @@ const CryptoJS = require('crypto-js')
 const fs = require('fs');
 var users = []
 var codes = []
-var pics = ['https://cdn.discordapp.com/attachments/553718744657035274/815039884849840128/unknown.png', 'https://cdn.discordapp.com/attachments/553718744657035274/815040081282203668/unknown.png', 'https://cdn.discordapp.com/attachments/553718744657035274/815040311205691412/unknown.png', 'https://cdn.discordapp.com/attachments/553718744657035274/815040405044723732/unknown.png', 'https://cdn.discordapp.com/attachments/553718744657035274/815040713234055229/unknown.png', 'https://cdn.discordapp.com/attachments/553718744657035274/815040980545175582/unknown.png', 'https://cdn.discordapp.com/attachments/553760187383808021/815397327913091112/B0N4r3AyFdnqAAAAAElFTkSuQmCC.png']
+
+function readImages() {
+	var raw = fs.readFileSync('images.json')
+	var pics = JSON.parse(raw).images
+	return pics
+}
+
+var pics = readImages()
 
 function randomString(length = 64) {
   var result = '';
