@@ -19,15 +19,11 @@ function avatar(msg) {
   } else {
     user = msg.mentions.users.first()
   }
-  if (guild.member(user)) {
-    const avatarEmbed = new Discord.msgEmbed()
-    avatarEmbed.setColor(0x333333)
-    avatarEmbed.setAuthor(user.tag)
-    avatarEmbed.setImage(user.displayAvatarURL());
-    msg.channel.send(avatarEmbed);
-  } else {
-    msg.channel.send(`<@${msg.author.id}>, that user isn't in this server!`)
-  }
+  const avatarEmbed = new Discord.MessageEmbed()
+  avatarEmbed.setColor(0x333333)
+  avatarEmbed.setAuthor(user.tag)
+  avatarEmbed.setImage(user.displayAvatarURL());
+  msg.channel.send(avatarEmbed);
   delete(user)
   return
 }
@@ -55,7 +51,7 @@ function help(msg) {
 	embed.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
 	embed.setAuthor(msg.author.tag)
 	embed.addFields(
-		{ name: '\n$ping', value: 'Gets the latency from msg sending to msg repsonse' },
+		{ name: '\n$ping', value: 'Gets the latency from message sending to message repsonse' },
 		{ name: '$av', value: "Gets the avatar of the mentioned user if they're in the server. Defaults to the person sending the msg." },
 		{ name: '$help', value: 'This command' }
 	)
@@ -64,7 +60,7 @@ function help(msg) {
 	}
 	if (msg.member.roles.cache.some(role => role.name === 'Bot mod')) {
 		embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
-		embed.addField('$questioning', "Gives a user the questioning role, logs all the roles of the user, then overwrites the user's roles with the questioning role.\nNOTE: THIS COMMAND IS IN TESTING AND PROBABLY DOESNT WORK")
+		embed.addField('$questioning', "Gives a user the questioning role, logs all the roles of the user, then overwrites the user's roles with the questioning role.")
 	}
 	embed.setImage(pics[Math.floor(Math.random() * pics.length)])
 	embed.setTimestamp()
@@ -133,13 +129,15 @@ client.on('ready', () => {
 })
 
 client.on('guildMemberAdd', member => {
+	// it seems this doesnt trigger as of now
+
 	console.log('member joined')
-	/*existed = Date.now() - member.user.createdAt
+	existed = Date.now() - member.user.createdAt
 	var role = guild.roles.find(role => role.name === "new")
 	member.addRole(role)
 	var role = guild.roles.find(role => role.name === "Security Check")
 	member.addRole(role)
-	client.channels.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)*/
+	client.channels.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 })
 
 client.on('message', (msg) => {
@@ -196,6 +194,29 @@ client.on('message', (msg) => {
 				return msg.channel.send('User approved sucessfully')
 			}
 			return msg.channel.send("That didn't work.")
+		}
+		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
+	}
+	if (msg.content.startsWith('$questioning')) {
+		if (msg.member.roles.cache.has("766386531681435678")) {
+			if (msg.mentions.members.first() == undefined) {
+				return msg.channel.send(`<@${msg.author.id}>, you have to mention someone!`)
+			}
+			let member = msg.mentions.members.first()
+			if (member.roles.cache.has("766386531681435678")) {
+				return msg.channel.send("That user can't be sent to the questioning room!")
+			}	else {
+				let rolenames = []
+				let roles = member.roles.member._roles
+				roles.forEach(function (item) {
+					let role = msg.guild.roles.cache.get(item)
+					rolenames.push(role.name)
+				})
+				client.channels.cache.get('760831152109649940').send(`<@${member.id}> had roles ${rolenames.join(', ')}`)
+				member.roles.set(['762663566531624980'])
+				return msg.channel.send(`<@${member.id}> has been sent to the questioning room`)
+			}
+			return msg.channel.send("That didn't work")
 		}
 		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
 	}
