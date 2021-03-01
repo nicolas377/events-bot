@@ -49,7 +49,7 @@ function createCodeMsg(msg)	{
 }
 
 function help(msg) {
-	const embed = new Discord.msgEmbed()
+	const embed = new Discord.MessageEmbed()
 	embed.setColor('#0099ff')
 	embed.setTitle('Events Bot Help')
 	embed.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
@@ -57,9 +57,15 @@ function help(msg) {
 	embed.addFields(
 		{ name: '\n$ping', value: 'Gets the latency from msg sending to msg repsonse' },
 		{ name: '$av', value: "Gets the avatar of the mentioned user if they're in the server. Defaults to the person sending the msg." },
-		{ name: '$code', value: "Election command. DM's the user the election code, along with the instructions for to vote. Only runs on the Election Boi role as of now."},
 		{ name: '$help', value: 'This command' }
 	)
+	if (msg.member.roles.cache.some(role => role.name === 'Election Boi')) {
+		embed.addField('$code',"Election command. DM's the user the election code, along with the instructions for to vote.")
+	}
+	if (msg.member.roles.cache.some(role => role.name === 'Bot mod')) {
+		embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
+		embed.addField('$questioning', "Gives a user the questioning role, logs all the roles of the user, then overwrites the user's roles with the questioning role.\nNOTE: THIS COMMAND IS IN TESTING AND PROBABLY DOESNT WORK")
+	}
 	embed.setImage(pics[Math.floor(Math.random() * pics.length)])
 	embed.setTimestamp()
 	msg.channel.send(embed)
@@ -110,6 +116,15 @@ function saveJSON() {
 	fs.writeFileSync('json/main.json', JSON.stringify(saving))
 }
 
+function getMemberNumber() {
+	const list = client.guilds.cache.get("553718744233541656");
+	i = 0
+	list.members.cache.forEach(member => {
+		i++
+	});
+	return i
+}
+
 // done
 
 client.on('ready', () => {
@@ -118,17 +133,22 @@ client.on('ready', () => {
 })
 
 client.on('guildMemberAdd', member => {
-	existed = Date.now() - member.user.createdAt
+	console.log('member joined')
+	/*existed = Date.now() - member.user.createdAt
 	var role = guild.roles.find(role => role.name === "new")
 	member.addRole(role)
 	var role = guild.roles.find(role => role.name === "Security Check")
 	member.addRole(role)
-	client.channels.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	client.channels.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)*/
 })
 
 client.on('message', (msg) => {
+	/*if (typeof msg.mentions.members !== undefined) {
+		if (msg.mentions.members.members.first().id === 780458120605990954) {
+			console.log("yes")
+		}
+	}*/
 	if (!msg.content.startsWith('$'))	{
-		// Only keep running if the msg starts with $
 		return
 	}
 	// Can the user vote?
@@ -164,19 +184,26 @@ client.on('message', (msg) => {
 		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
 	}
 	if (msg.content.startsWith('$approve')) {
-		if (msg.member.roles.cache.has("760665499330936922")) {
+		if (msg.member.roles.cache.has("766386531681435678")) {
 			if (msg.mentions.members.first() == undefined) {
 				return msg.channel.send(`<@${msg.author.id}>, you have to mention someone!`)
 			}
 			let member = msg.mentions.members.first()
-			member.setRoles([msg.guild.roles.cache.get("553723642568114187")])
-			return
+			if (member.roles.cache.some(role => role.name === 'Security Check')) {
+				member.roles.set(['553723642568114187'])
+				var message = `Welcome to GeoFS Events <@${member.id}>!\nWe hope you enjoy your stay!\nPlease make sure you have read <#553929583397961740> and <#553720929063141379>.\nWe organize and host events every day, so make sure to check <#756937922904850442> to keep up on events hosted for that day.\nThere are currently ${getMemberNumber()} people in this server.\nIf you need any help or advice, contact the Elite Crew.\nUse <#717777238979903566> to put your event ideas in and we will do it as soon as possible!\n\nCheck out and subscribe to our channel here: <https://www.youtube.com/channel/UCZhJvrv8C6mb0FXENg6uh2w>`
+				client.channels.cache.get('553718744657035274').send(message)
+				return msg.channel.send('User approved sucessfully')
+			}
+			return msg.channel.send("That didn't work.")
 		}
 		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
 	}
-
 	delete(canvote)
 })
+
+client.on("error", (e) => console.error(e))
+client.on("warn", (e) => console.warn(e))
 
 readJSON()
 
