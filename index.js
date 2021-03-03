@@ -5,6 +5,7 @@ const fs = require('fs');
 var users = []
 var codes = []
 var pics = null
+var removing = null
 
 // define the functions
 
@@ -91,12 +92,15 @@ function randomString(length = 64) {
   return result
 }
 
-function ping(msg) {
-	message.channel.send('Loading...').then((msg) => {
-		var newmsg = `:ping_pong: Latency is ${msg.createdTimestamp - message.createdTimestamp}ms.\nAPI Latency is ${Math.round(client.ws.ping)}ms`
-    msg.edit(newmsg)
-  })
-	// msg.channel.send(`:ping_pong: Latency is ${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
+async function ping(msg) {
+	let sent = await msg.channel.send('Loading...')
+	
+	var newmsg = `:ping_pong: Latency is ${sent.createdTimestamp - msg.createdTimestamp}ms.\nAPI Latency is ${Math.round(client.ws.ping)} ms`
+	sent.edit(newmsg)
+}
+
+async function filter(msg) {
+	var message = msg.toLowerCase()
 }
 
 function readJSON() {
@@ -111,6 +115,7 @@ function readJSON() {
 		codes.push(decrypted.toString(CryptoJS.enc.Utf8))
 	})
 	pics = data.images
+	removing = data.filterlist
 }
 
 function saveJSON() {
