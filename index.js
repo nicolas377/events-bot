@@ -5,9 +5,28 @@ const fs = require('fs');
 var users = []
 var codes = []
 var pics = null
-const guild = client.guilds.cache.get('553718744233541656')
 
 // define the functions
+
+function dhm(t){
+    var cd = 24 * 60 * 60 * 1000,
+        ch = 60 * 60 * 1000,
+        d = Math.floor(t / cd),
+        h = Math.floor( (t - d * cd) / ch),
+        m = Math.round( (t - d * cd - h * ch) / 60000),
+        pad = function(n){ return n < 10 ? '0' + n : n; };
+  if( m === 60 ){
+    h++;
+    m = 0;
+  }
+  if( h === 24 ){
+    d++;
+    h = 0;
+  }
+
+	string = `Days: ${d}, Hours: ${h}, Minutes: ${m}`
+  return string
+}
 
 function readCodes() {
 	console.log(codes)
@@ -113,36 +132,39 @@ function saveJSON() {
 }
 
 function getMemberNumber() {
-	const list = client.guilds.cache.get("553718744233541656");
-	i = 0
-	list.members.cache.forEach(member => {
-		i++
-	});
-	return i
+	const guild = client.guilds.cache.get("553718744233541656");
+	return guild.memberCount
 }
 
 // done
 
 client.on('ready', () => {
 	// Set the status
-	client.user.setActivity('the GeoFS Events server', { type: 'WATCHING'})
+	client.user.setActivity('$help | Watching the GeoFS Events server', { type: 'Playing'})
 })
 
-client.on('guildMemberAdd', member => {
-	// it seems this doesnt trigger as of now
+/*client.on('guildMemberRemove', member => {
+	console.log(member.roles.member.guild._roles)
+})*/
 
-	console.log('member joined')
+client.on('guildMemberAdd', member => {
 	existed = Date.now() - member.user.createdAt
-	var role = guild.roles.find(role => role.name === "new")
-	member.addRole(role)
-	var role = guild.roles.find(role => role.name === "Security Check")
-	member.addRole(role)
-	client.channels.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	existed = dhm(existed)
+	member.roles.set(['752701923399958610', '553723645265182720'])
+	ageembed = new Discord.MessageEmbed()
+	ageembed.setColor('#0099ff')
+	ageembed.setAuthor('Member Joined')
+	ageembed.setDescription(`<@${member.id}> ${member.user.tag}`)
+	ageembed.addField('**Account Age**', `${existed}`)
+	ageembed.setFooter(`ID: ${member.id}`)
+	ageembed.setTimestamp()
+	client.channels.cache.get('753568398440398969').send(ageembed)
+	client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 })
 
 client.on('message', (msg) => {
-	/*if (typeof msg.mentions.members !== undefined) {
-		if (msg.mentions.members.members.first().id === 780458120605990954) {
+	/*if (msg.mentions.members.first()) {
+		if (msg.mentions.members.members.first().id === '780458120605990954') {
 			console.log("yes")
 		}
 	}*/
@@ -225,6 +247,7 @@ client.on('message', (msg) => {
 
 client.on("error", (e) => console.error(e))
 client.on("warn", (e) => console.warn(e))
+client.on("debug", (e) => console.info(e))
 
 readJSON()
 
@@ -236,3 +259,6 @@ const server = http.createServer((req, res) => {
   res.end('ok');
 });
 server.listen(3000);
+setTimeout(function () {
+	console.clear()
+}, 2000)

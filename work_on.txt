@@ -1,6 +1,2 @@
-ins and outs (user age too)
-waiting room
-message in #general
-on bot ping, say hello and encourage user to run $help
-
-Security check and new
+on bot ping, say hello, send prefix and $help
+swearing filters
