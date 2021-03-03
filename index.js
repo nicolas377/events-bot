@@ -15,6 +15,7 @@ function dhm(t){
         d = Math.floor(t / cd),
         h = Math.floor( (t - d * cd) / ch),
         m = Math.round( (t - d * cd - h * ch) / 60000),
+				y = 0
         pad = function(n){ return n < 10 ? '0' + n : n; };
   if( m === 60 ){
     h++;
