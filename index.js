@@ -28,10 +28,6 @@ function dhm(t){
   return string
 }
 
-function readCodes() {
-	console.log(codes)
-}
-
 function avatar(msg) {
   if (msg.mentions.users.first() == undefined) {
     user = msg.author
@@ -100,7 +96,11 @@ function msgSender(msg, dest) {
 }
 
 function ping(msg) {
-	msg.channel.send(`:ping_pong: Latency is ${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
+	message.channel.send('Loading...').then((msg) => {
+		var newmsg = `:ping_pong: Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`
+    msg.edit(newmsg)
+  })
+	// msg.channel.send(`:ping_pong: Latency is ${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
 }
 
 function readJSON() {
@@ -144,7 +144,12 @@ client.on('ready', () => {
 })
 
 /*client.on('guildMemberRemove', member => {
-	console.log(member.roles.member.guild._roles)
+	try {
+		console.log(member.roles.member.guild._roles)
+	}
+	catch (e) {
+		console.warn(e)
+	}
 })*/
 
 client.on('guildMemberAdd', member => {
@@ -162,8 +167,12 @@ client.on('guildMemberAdd', member => {
 	client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events <@${member.id}>! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 })
 
+client.on('disconnect', () => {
+	process.exit()
+})
+
 client.on('message', (msg) => {
-	/*if (msg.mentions.members.first()) {
+	/*if (msg.mentions.members.first() !== undefined) {
 		if (msg.mentions.members.members.first().id === '780458120605990954') {
 			console.log("yes")
 		}
@@ -250,6 +259,8 @@ client.on("warn", (e) => console.warn(e))
 client.on("debug", (e) => console.info(e))
 
 readJSON()
+
+// console.log(codes)
 
 client.login(process.env.CLIENT_TOKEN);
 
