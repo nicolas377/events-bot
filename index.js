@@ -91,13 +91,9 @@ function randomString(length = 64) {
   return result
 }
 
-function msgSender(msg, dest) {
-	dest.send(msg)
-}
-
 function ping(msg) {
 	message.channel.send('Loading...').then((msg) => {
-		var newmsg = `:ping_pong: Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`
+		var newmsg = `:ping_pong: Latency is ${msg.createdTimestamp - message.createdTimestamp}ms.\nAPI Latency is ${Math.round(client.ws.ping)}ms`
     msg.edit(newmsg)
   })
 	// msg.channel.send(`:ping_pong: Latency is ${Date.now() - msg.createdTimestamp}ms. API Latency is ${Math.round(client.ws.ping)}ms`)
