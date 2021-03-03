@@ -75,7 +75,7 @@ function help(msg) {
 	}
 	if (msg.member.roles.cache.some(role => role.name === 'Bot mod')) {
 		embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
-		embed.addField('$questioning', "Gives a user the questioning role, logs all the roles of the user, then overwrites the user's roles with the questioning role.")
+		embed.addField('$questioning', "Logs all the roles of the user, then overwrites the user's roles with the questioning role.")
 	}
 	embed.setImage(pics[Math.floor(Math.random() * pics.length)])
 	embed.setTimestamp()
