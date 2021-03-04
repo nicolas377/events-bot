@@ -41,7 +41,7 @@ function avatar(msg) {
   const avatarEmbed = new Discord.MessageEmbed()
   avatarEmbed.setColor(0x333333)
   avatarEmbed.setAuthor(user.tag)
-  avatarEmbed.setImage(user.displayAvatarURL());
+  avatarEmbed.setImage(user.displayAvatarURL({format: 'png', dynamic: true, size: 2048}));
   msg.channel.send(avatarEmbed);
   return
 }
@@ -101,20 +101,8 @@ function randomString(length = 64) {
 async function ping(msg) {
   let sent = await msg.channel.send('Loading...')
 
-  var newmsg = `:ping_pong: Latency is ${sent.createdTimestamp - msg.createdTimestamp}ms.\nAPI Latency is ${Math.round(client.ws.ping)} ms`
+  var newmsg = `:ping_pong: Pong!\nLatency is ${sent.createdTimestamp - msg.createdTimestamp}ms.\nAPI Latency is ${Math.round(client.ws.ping)} ms`
   sent.edit(newmsg)
-}
-
-async function filter(msg) {
-  msg.content.split(' ').forEach(async (value, msg) => {
-    var word = value.replace(/([^a-zA-z0-9]+)/g, s0 => '').toLowerCase()
-    word = word.toLowerCase()
-    if (removing.includes(word)) {
-      warning = await msg.channel.send(`<@${msg.author.id}>, that word is blacklisted!`)
-      msg.delete()
-      warning.delete(5000)
-    }
-  })
 }
 
 function readJSON() {
@@ -138,9 +126,11 @@ function saveJSON() {
       users: [],
       codes: []
     },
-    images: []
+    images: [],
+		filterlist: []
   }
   saving.images = pics
+	saving.filterlist = removing
   users.forEach(function(item) {
     var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
     saving.election.users.push(encrypted.toString())
@@ -192,7 +182,15 @@ client.on('disconnect', () => {
 })
 
 client.on('message', async (msg) => {
-  await filter(msg)
+	words = msg.content.split(' ')
+  words.forEach((value) => {
+    var words = value.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
+
+		if (removing.includes(words)) {
+			msg.delete()
+			msg.channel.send(`<@${msg.author.id}>, that word is blacklisted!`)
+		}
+  })
 
   try {
     if (typeof msg.mentions.members.first() !== undefined) {
