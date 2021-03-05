@@ -137,7 +137,7 @@ function filter(msg) {
 
     if (removing.includes(words)) {
       msg.delete()
-      var newmsg = msg.channel.send(`<@${msg.author.id}>, watch your language!`)
+      return msg.channel.send(`<@${msg.author.id}>, watch your language!`)
     }
   })
 }
@@ -155,6 +155,7 @@ function readJSON() {
   })
   pics = data.images
   removing = data.filterlist
+	return 'JSON file read'
 }
 
 function saveJSON() {
@@ -181,7 +182,7 @@ function saveJSON() {
 
 function getMemberNumber() {
   const guild = client.guilds.cache.get("553718744233541656");
-  return guild.memberCount - 8
+  return guild.memberCount - 7
 }
 
 // done
@@ -313,6 +314,7 @@ client.on('message', async (msg) => {
         })
         client.channels.cache.get('760831152109649940').send(`${member} had roles ${rolenames.join(', ')}`)
         member.roles.set(['762663566531624980'])
+				client.channels.cache.get('767050317362757741').send(`<@${member.id}>, you've been sent to the questioning room.`)
         return msg.channel.send(`${member} has been sent to the questioning room`)
       }
       return msg.channel.send("That didn't work")
@@ -325,11 +327,11 @@ client.on("error", (e) => console.error(e))
 client.on("warn", (e) => console.warn(e))
 client.on("debug", (e) => console.info(e))
 
-readJSON()
+console.log(readJSON())
 
 // console.log(codes)
 
-client.login(process.env.CLIENT_TOKEN);
+client.login(process.env.TOKEN);
 
 const http = require('http');
 const server = http.createServer((req, res) => {
@@ -337,3 +339,7 @@ const server = http.createServer((req, res) => {
   res.end('ok');
 });
 server.listen(3000);
+
+setTimeout(function() {
+	console.clear()
+}, 5000)
