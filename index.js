@@ -9,13 +9,22 @@ var removing = null
 
 // define the functions
 
+function toyears(d) {
+	var y = 0
+	if (d >= 365) {
+		y++;
+		d = d-365
+		toyears(d)
+	}
+	return y
+}
+
 function dhm(t) {
-  var cd = 24 * 60 * 60 * 1000,
-    ch = 60 * 60 * 1000,
-    d = Math.floor(t / cd),
-    h = Math.floor((t - d * cd) / ch),
-    m = Math.round((t - d * cd - h * ch) / 60000),
-    y = 0
+  var cd = 24 * 60 * 60 * 1000
+  var ch = 60 * 60 * 1000
+  var d = Math.floor(t / cd)
+  var h = Math.floor((t - d * cd) / ch)
+  var m = Math.round((t - d * cd - h * ch) / 60000)
 
   if (m === 60) {
     h++;
@@ -25,14 +34,11 @@ function dhm(t) {
     d++;
     h = 0;
   }
-	if (d === 365) {
-		y++;
-		d = 0
-	}
+	y = toyears(d)
 
 	// return the strings
 	if (y > 0) {
-		return `Years: ${y} Days: ${d}, Hours: ${h}, Minutes: ${m}`
+		return `Years: ${y}, Days: ${d}, Hours: ${h}, Minutes: ${m}`
 	}
 	if (d > 0) {
 		return `Days: ${d}, Hours: ${h}, Minutes: ${m}`
@@ -114,6 +120,22 @@ async function ping(msg) {
   sent.edit(newmsg)
 }
 
+function filter(msg) {
+	if (msg.channel.id == '760831152109649940') {
+		return
+	}
+
+	words = msg.content.split(' ')
+  words.forEach((value) => {
+    var words = value.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
+
+		if (removing.includes(words)) {
+			msg.delete()
+			var newmsg = msg.channel.send(`<@${msg.author.id}>, watch your language!`)
+		}
+  })
+}
+
 function readJSON() {
   var data = fs.readFileSync('json/main.json')
   data = JSON.parse(data)
@@ -166,7 +188,13 @@ client.on('ready', () => {
 })
 
 client.on('guildMemberRemove', member => {
-  console.log(member.roles.member.guild._roles)
+  var embed = new Discord.MessageEmbed()
+	embed.setColor('#0099ff')
+	embed.setAuthor('Member Left')
+	embed.setDescription(`${member} ${member.user.tag}`)
+	embed.setFooter(`ID: ${member.id}`)
+	embed.setTimestamp()
+	client.channels.cache.get('753568398440398969').send(embed)
 })
 
 client.on('guildMemberAdd', member => {
@@ -188,23 +216,9 @@ client.on('disconnect', () => {
   process.exit()
 })
 
-function filter(msg) {
-	if (msg.channel.id == '760831152109649940') {
-		return
-	}
-
-	words = msg.content.split(' ')
-  words.forEach((value) => {
-    var words = value.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
-
-		if (removing.includes(words)) {
-			msg.delete()
-			var newmsg = msg.channel.send(`<@${msg.author.id}>, watch your language!`)
-		}
-  })
-}
-
 client.on('message', async (msg) => {
+	if(msg.author.bot) {return}
+
 	await filter(msg)
 
 	try {

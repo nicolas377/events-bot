@@ -1,2 +1,0 @@
-on bot ping, say hello, send prefix and $help
-swearing filters (i flag, /[a-z]+/gi, string.match(matcher), join the string.match by '')
