@@ -10,14 +10,14 @@ var removing = null
 // define the functions
 
 function toyears(d) {
-	var y = 0
-	days = d
-	if (days >= 365) {
-		y++;
-		days = days-365
-		toyears(days)
-	}
-	return y
+  var y = 0
+  days = d
+  if (days >= 365) {
+    y++;
+    days = days - 365
+    toyears(days)
+  }
+  return y, d
 }
 
 function dhm(t) {
@@ -35,15 +35,15 @@ function dhm(t) {
     d++;
     h = 0;
   }
-	y = toyears(d)
+  y, d = toyears(d)
 
-	// return the strings
-	if (y > 0) {
-		return `Years: ${y}, Days: ${d}, Hours: ${h}, Minutes: ${m}`
-	}
-	if (d > 0) {
-		return `Days: ${d}, Hours: ${h}, Minutes: ${m}`
-	}
+  // return the strings
+  if (y > 0) {
+    return `Years: ${y}, Days: ${d}, Hours: ${h}, Minutes: ${m}`
+  }
+  if (d > 0) {
+    return `Days: ${d}, Hours: ${h}, Minutes: ${m}`
+  }
 
   return `Hours: ${h}, Minutes: ${m}`
 }
@@ -57,7 +57,11 @@ function avatar(msg) {
   const avatarEmbed = new Discord.MessageEmbed()
   avatarEmbed.setColor(0x333333)
   avatarEmbed.setAuthor(user.tag)
-  avatarEmbed.setImage(user.displayAvatarURL({format: 'png', dynamic: true, size: 2048}));
+  avatarEmbed.setImage(user.displayAvatarURL({
+    format: 'png',
+    dynamic: true,
+    size: 2048
+  }));
   msg.channel.send(avatarEmbed);
   return
 }
@@ -71,13 +75,13 @@ function codeMsg(msg) {
   var sendcode = '```' + code + '```'
   msg1 = "**ELECTION INSTRUCTIONS**"
   msg2 = `Step 1: Copy this ${sendcode}\nStep 2: Go to this link. <https://docs.google.com/forms/d/e/1FAIpQLSfG3-Hoa0cydMMPNS3i62k_WSDiVfmnLs5jnKDfNCjcJ5_eAA/viewform>\n\nStep 3: Follow the prompts in the form`
-  msgSender(msg1, msg.author)
-  msgSender(msg2, msg.author)
-  msgSender(sendPic, msg.author)
+  msg.author.send(msg1)
+  msg.author.send(msg2)
+  msg.author.send(sendPic)
   return code
 }
 
-function help(msg) {
+function help(msg, canvote) {
   const embed = new Discord.MessageEmbed()
   embed.setColor('#0099ff')
   embed.setTitle('Events Bot Help')
@@ -90,19 +94,17 @@ function help(msg) {
     name: '$av',
     value: "Gets the avatar of the mentioned user if they're in the server. Defaults to the person sending the msg."
   }, {
-		name: '$membercount',
-		value: 'Replies with the number of members in the server.'
-	}, {
-    name: '$help',
-    value: 'This command'
+    name: '$membercount',
+    value: 'Replies with the number of members in the server.'
   })
-  if (msg.member.roles.cache.some(role => role.name === 'Election Boi')) {
+  if (canvote) {
     embed.addField('$code', "Election command. DM's the user the election code, along with the instructions for to vote.")
   }
   if (msg.member.roles.cache.some(role => role.name === 'Bot mod')) {
     embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
     embed.addField('$questioning', "Logs all the roles of the user, then overwrites the user's roles with the questioning role.")
   }
+	embed.addField('$help', 'This command.')
   embed.setImage(pics[Math.floor(Math.random() * pics.length)])
   embed.setTimestamp()
   msg.channel.send(embed)
@@ -125,18 +127,18 @@ async function ping(msg) {
 }
 
 function filter(msg) {
-	if (msg.channel.id == '760831152109649940') {
-		return
-	}
+  if (msg.channel.id == '760831152109649940') {
+    return
+  }
 
-	words = msg.content.split(' ')
+  words = msg.content.split(' ')
   words.forEach((value) => {
     var words = value.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
 
-		if (removing.includes(words)) {
-			msg.delete()
-			var newmsg = msg.channel.send(`<@${msg.author.id}>, watch your language!`)
-		}
+    if (removing.includes(words)) {
+      msg.delete()
+      var newmsg = msg.channel.send(`<@${msg.author.id}>, watch your language!`)
+    }
   })
 }
 
@@ -162,10 +164,10 @@ function saveJSON() {
       codes: []
     },
     images: [],
-		filterlist: []
+    filterlist: []
   }
   saving.images = pics
-	saving.filterlist = removing
+  saving.filterlist = removing
   users.forEach(function(item) {
     var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
     saving.election.users.push(encrypted.toString())
@@ -193,12 +195,12 @@ client.on('ready', () => {
 
 client.on('guildMemberRemove', member => {
   var embed = new Discord.MessageEmbed()
-	embed.setColor('#0099ff')
-	embed.setAuthor('Member Left')
-	embed.setDescription(`${member} ${member.user.tag}`)
-	embed.setFooter(`ID: ${member.id}`)
-	embed.setTimestamp()
-	client.channels.cache.get('753568398440398969').send(embed)
+  embed.setColor('#0099ff')
+  embed.setAuthor('Member Left')
+  embed.setDescription(`${member} ${member.user.tag}`)
+  embed.setFooter(`ID: ${member.id}`)
+  embed.setTimestamp()
+  client.channels.cache.get('753568398440398969').send(embed)
 })
 
 client.on('guildMemberAdd', member => {
@@ -217,11 +219,13 @@ client.on('guildMemberAdd', member => {
 })
 
 client.on('message', async (msg) => {
-	if(msg.author.bot) {return}
+  if (msg.author.bot) {
+    return
+  }
 
-	await filter(msg)
+  await filter(msg)
 
-	try {
+  try {
     if (typeof msg.mentions.members.first() !== undefined) {
       if (msg.mentions.members.first().user.id === '780458120605990954') {
         newmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of commands you can run `$help`'
@@ -240,13 +244,13 @@ client.on('message', async (msg) => {
     var canvote = false
   }
 
-	if (msg.content.startsWith('$restart')) {
-		if (msg.author.id == '550456900861427733') {
-			msg.channel.send('Restarting. See you soon!')
-			process.exit()
-		}
-		return msg.channel.send(`<@${msg.author.id}>, you can't restart me!`)
-	}
+  if (msg.content.startsWith('$restart') || msg.content.startsWith('$reload')) {
+    if (msg.author.id == '550456900861427733') {
+      await msg.channel.send('Restarting. See you soon!')
+      process.exit()
+    }
+    return msg.channel.send(`<@${msg.author.id}>, you can't restart me!`)
+  }
 
   if (msg.content.startsWith('$ping')) {
     ping(msg)
@@ -257,12 +261,12 @@ client.on('message', async (msg) => {
     return
   }
   if (msg.content.startsWith('$help')) {
-    help(msg)
+    help(msg, canvote)
     return
   }
-	if (msg.content.startsWith('$membercount')) {
-		msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
-	}
+  if (msg.content.startsWith('$membercount')) {
+    msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
+  }
   if (msg.content.startsWith('$code')) {
     if (canvote) {
       if (users.includes(msg.author.id)) {
@@ -333,8 +337,3 @@ const server = http.createServer((req, res) => {
   res.end('ok');
 });
 server.listen(3000);
-
-setInterval(function() {
-	console.clear()
-	process.exit()
-}, 5400000)
