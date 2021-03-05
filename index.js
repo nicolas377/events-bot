@@ -11,10 +11,11 @@ var removing = null
 
 function toyears(d) {
 	var y = 0
-	if (d >= 365) {
+	days = d
+	if (days >= 365) {
 		y++;
-		d = d-365
-		toyears(d)
+		days = days-365
+		toyears(days)
 	}
 	return y
 }
@@ -215,10 +216,6 @@ client.on('guildMemberAdd', member => {
   client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 })
 
-client.on('disconnect', () => {
-  process.exit()
-})
-
 client.on('message', async (msg) => {
 	if(msg.author.bot) {return}
 
@@ -245,7 +242,7 @@ client.on('message', async (msg) => {
 
 	if (msg.content.startsWith('$restart')) {
 		if (msg.author.id == '550456900861427733') {
-			return msg.channel.send('Restarting. See you soon!')
+			msg.channel.send('Restarting. See you soon!')
 			process.exit()
 		}
 		return msg.channel.send(`<@${msg.author.id}>, you can't restart me!`)
@@ -336,6 +333,8 @@ const server = http.createServer((req, res) => {
   res.end('ok');
 });
 server.listen(3000);
-setTimeout(function() {
-  console.clear()
-}, 2000)
+
+setInterval(function() {
+	console.clear()
+	process.exit()
+}, 5400000)
