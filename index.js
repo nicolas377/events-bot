@@ -243,6 +243,14 @@ client.on('message', async (msg) => {
     var canvote = false
   }
 
+	if (msg.content.startsWith('$restart')) {
+		if (msg.author.id == '550456900861427733') {
+			return msg.channel.send('Restarting. See you soon!')
+			process.exit()
+		}
+		return msg.channel.send(`<@${msg.author.id}>, you can't restart me!`)
+	}
+
   if (msg.content.startsWith('$ping')) {
     ping(msg)
     return
