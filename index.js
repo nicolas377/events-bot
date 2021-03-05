@@ -16,9 +16,7 @@ function dhm(t) {
     h = Math.floor((t - d * cd) / ch),
     m = Math.round((t - d * cd - h * ch) / 60000),
     y = 0
-  pad = function(n) {
-    return n < 10 ? '0' + n : n;
-  };
+
   if (m === 60) {
     h++;
     m = 0;
@@ -27,9 +25,20 @@ function dhm(t) {
     d++;
     h = 0;
   }
+	if (d === 365) {
+		y++;
+		d = 0
+	}
 
-  string = `Days: ${d}, Hours: ${h}, Minutes: ${m}`
-  return string
+	// return the strings
+	if (y > 0) {
+		return `Years: ${y} Days: ${d}, Hours: ${h}, Minutes: ${m}`
+	}
+	if (d > 0) {
+		return `Days: ${d}, Hours: ${h}, Minutes: ${m}`
+	}
+
+  return `Hours: ${h}, Minutes: ${m}`
 }
 
 function avatar(msg) {
@@ -157,9 +166,7 @@ client.on('ready', () => {
 })
 
 client.on('guildMemberRemove', member => {
-  try {
-    console.log(member.roles.member.guild._roles)
-  } catch (e) {}
+  console.log(member.roles.member.guild._roles)
 })
 
 client.on('guildMemberAdd', member => {
@@ -181,18 +188,26 @@ client.on('disconnect', () => {
   process.exit()
 })
 
-client.on('message', async (msg) => {
+function filter(msg) {
+	if (msg.channel.id == '760831152109649940') {
+		return
+	}
+
 	words = msg.content.split(' ')
   words.forEach((value) => {
     var words = value.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
 
 		if (removing.includes(words)) {
 			msg.delete()
-			msg.channel.send(`<@${msg.author.id}>, that word is blacklisted!`)
+			var newmsg = msg.channel.send(`<@${msg.author.id}>, watch your language!`)
 		}
   })
+}
 
-  try {
+client.on('message', async (msg) => {
+	await filter(msg)
+
+	try {
     if (typeof msg.mentions.members.first() !== undefined) {
       if (msg.mentions.members.first().user.id === '780458120605990954') {
         newmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of commands you can run `$help`'
@@ -200,6 +215,7 @@ client.on('message', async (msg) => {
       }
     }
   } catch (e) {}
+
   if (!msg.content.startsWith('$')) {
     return
   }
