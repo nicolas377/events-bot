@@ -89,6 +89,9 @@ function help(msg) {
     name: '$av',
     value: "Gets the avatar of the mentioned user if they're in the server. Defaults to the person sending the msg."
   }, {
+		name: '$membercount',
+		value: 'Replies with the number of members in the server.'
+	}, {
     name: '$help',
     value: 'This command'
   })
@@ -175,7 +178,7 @@ function saveJSON() {
 
 function getMemberNumber() {
   const guild = client.guilds.cache.get("553718744233541656");
-  return guild.memberCount
+  return guild.memberCount - 8
 }
 
 // done
@@ -252,6 +255,9 @@ client.on('message', async (msg) => {
     help(msg)
     return
   }
+	if (msg.content.startsWith('$membercount')) {
+		msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
+	}
   if (msg.content.startsWith('$code')) {
     if (canvote) {
       if (users.includes(msg.author.id)) {
