@@ -183,8 +183,6 @@ function getMemberNumber() {
   return guild.memberCount - 7
 }
 
-// done
-
 client.on('ready', () => {
   // Set the status
   client.user.setActivity('$help | Vote or else', {
