@@ -187,7 +187,7 @@ function getMemberNumber() {
 
 client.on('ready', () => {
   // Set the status
-  client.user.setActivity('$help | Watching the GeoFS Events server', {
+  client.user.setActivity('$help | Vote or else', {
     type: 'PLAYING'
   })
 })
