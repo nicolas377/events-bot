@@ -326,7 +326,8 @@ client.on("debug", (e) => console.info(e))
 
 console.log(readJSON())
 
-// console.log(codes)
+console.log(codes)
+console.log(users)
 
 client.login(process.env.TOKEN);
 
@@ -336,7 +337,3 @@ const server = http.createServer((req, res) => {
   res.end('ok');
 });
 server.listen(3000);
-
-setTimeout(function() {
-	console.clear()
-}, 5000)
