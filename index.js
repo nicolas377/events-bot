@@ -73,10 +73,8 @@ function codeMsg(msg) {
   }
   const sendPic = pics[Math.floor(Math.random() * pics.length)];
   var sendcode = '```' + code + '```'
-  msg1 = "**ELECTION INSTRUCTIONS**"
-  msg2 = `Step 1: Copy this ${sendcode}\nStep 2: Go to this link. <https://docs.google.com/forms/d/e/1FAIpQLSfG3-Hoa0cydMMPNS3i62k_WSDiVfmnLs5jnKDfNCjcJ5_eAA/viewform>\n\nStep 3: Follow the prompts in the form`
+  msg1 = `**ELECTION INSTRUCTIONS**\nStep 1: Copy this ${sendcode}\nStep 2: Go to this link. <https://docs.google.com/forms/d/e/1FAIpQLSfG3-Hoa0cydMMPNS3i62k_WSDiVfmnLs5jnKDfNCjcJ5_eAA/viewform>\n\nStep 3: Follow the prompts in the form`
   msg.author.send(msg1)
-  msg.author.send(msg2)
   msg.author.send(sendPic)
   return code
 }
@@ -239,10 +237,10 @@ client.on('message', async (msg) => {
     return
   }
   // Can the user vote?
-  if (msg.member.roles.cache.some(role => role.name === 'Election Boi')) {
-    var canvote = true
-  } else {
+  if (msg.member.roles.cache.some(role => role.name === 'Junior Pilot')) {
     var canvote = false
+  } else {
+    var canvote = true
   }
 
   if (msg.content.startsWith('$restart') || msg.content.startsWith('$reload')) {
@@ -279,7 +277,7 @@ client.on('message', async (msg) => {
       saveJSON()
       return msg.channel.send(`<@${msg.author.id}>, check your dm's for instructions!`)
     }
-    return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
+    return msg.channel.send(`<@${msg.author.id}>, you can't vote right now!`)
   }
   if (msg.content.startsWith('$approve')) {
     if (msg.member.roles.cache.has("766386531681435678")) {
