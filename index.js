@@ -26,6 +26,7 @@ function dhm(t) {
   var d = Math.floor(t / cd)
   var h = Math.floor((t - d * cd) / ch)
   var m = Math.round((t - d * cd - h * ch) / 60000)
+	var y = 0
 
   if (m === 60) {
     h++;
