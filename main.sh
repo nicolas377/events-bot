@@ -1,3 +1,3 @@
 while [ true ]; do
-node index.min.js
+node runner.js
 done
