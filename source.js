@@ -371,7 +371,7 @@ client.on('message', async (msg) => {
         client.channels.cache.get('767050317362757741').send(`<@${member.id}>, you've been sent to the questioning room.`)
         return msg.channel.send(`${member} has been sent to the questioning room`)
       }
-      return msg.channel.send("That didn't work")
+      return msg.channel.send("That didn't work.")
     }
     return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
   }
