@@ -17,36 +17,38 @@ function toyears(d) {
     days = days - 365
     toyears(days)
   }
-  return y, d
+
+  console.log(y + (days / 365))
+
+  return y, days
 }
 
-function dhm(t) {
-  var cd = 24 * 60 * 60 * 1000
-  var ch = 60 * 60 * 1000
-  var d = Math.floor(t / cd)
-  var h = Math.floor((t - d * cd) / ch)
-  var m = Math.round((t - d * cd - h * ch) / 60000)
-	var y = 0
+function convertMiliseconds(miliseconds, format) {
+  var days, hours, minutes, seconds, total_hours, total_minutes, total_seconds;
 
-  if (m === 60) {
-    h++;
-    m = 0;
-  }
-  if (h === 24) {
-    d++;
-    h = 0;
-  }
-  y, d = toyears(d)
+  total_seconds = parseInt(Math.floor(miliseconds / 1000));
+  total_minutes = parseInt(Math.floor(total_seconds / 60));
+  total_hours = parseInt(Math.floor(total_minutes / 60));
+  days = parseInt(Math.floor(total_hours / 24));
 
-  // return the strings
-  if (y > 0) {
-    return `Years: ${y}, Days: ${d}, Hours: ${h}, Minutes: ${m}`
-  }
-  if (d > 0) {
-    return `Days: ${d}, Hours: ${h}, Minutes: ${m}`
-  }
+  seconds = parseInt(total_seconds % 60);
+  minutes = parseInt(total_minutes % 60);
+  hours = parseInt(total_hours % 24);
 
-  return `Hours: ${h}, Minutes: ${m}`
+  switch (format) {
+    case 's':
+      return total_seconds;
+    case 'm':
+      return total_minutes;
+    case 'h':
+      return total_hours;
+    case 'd':
+      return days;
+    default:
+      return {
+        d: days, h: hours, m: minutes, s: seconds
+      };
+  }
 }
 
 function avatar(msg) {
@@ -103,7 +105,7 @@ function help(msg, canvote) {
     embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
     embed.addField('$questioning', "Logs all the roles of the user, then overwrites the user's roles with the questioning role.")
   }
-	embed.addField('$help', 'This command.')
+  embed.addField('$help', 'This command.')
   embed.setImage(pics[Math.floor(Math.random() * pics.length)])
   embed.setTimestamp()
   msg.channel.send(embed)
@@ -154,7 +156,7 @@ function readJSON() {
   })
   pics = data.images
   removing = data.filterlist
-	return 'JSON file read'
+  return 'JSON file read'
 }
 
 function saveJSON() {
@@ -201,9 +203,70 @@ client.on('guildMemberRemove', member => {
   client.channels.cache.get('753568398440398969').send(embed)
 })
 
+function getDateObject(existed) {
+  data = convertMiliseconds(existed)
+  const calculateTimimg = e => {
+    let s = 0,
+      t = 0,
+      a = 0,
+      r = 0;
+    for (; e;) e >= 365 ? (t++, e -= 365) : e >= 30 ? (s++, e -= 30) : e >= 7 ? (r++, e -= 7) : (a++, e--);
+    return {
+      y: t,
+      m: s,
+      w: r,
+      d: a
+    }
+  }
+
+  var returning = {
+    y: null,
+    m: null,
+    w: null,
+    d: null,
+    h: null,
+    mi: null,
+    s: null
+  }
+
+  returning.s = data.s
+  returning.mi = data.m
+  returning.h = data.h
+
+  data = calculateTimimg(data.d)
+
+  returning.d = data.d
+  returning.w = data.w
+  returning.m = data.m
+  returning.y = data.y
+
+  return returning
+}
+
+function timeHandler(existed) {
+  dataobj = getDateObject(existed)
+
+  if (dataobj.y > 0) {
+    return `Years: ${dataobj.y}, Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.m > 0) {
+    return `Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.w > 0) {
+    return `Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.d > 0) {
+    return `Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.h > 0) {
+    return `Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  return `Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+}
+
 client.on('guildMemberAdd', member => {
   existed = Date.now() - member.user.createdAt
-  existed = dhm(existed)
+  existed = timeHandler(existed)
   member.roles.set(['752701923399958610', '553723645265182720'])
   ageembed = new Discord.MessageEmbed()
   ageembed.setColor('#0099ff')
@@ -311,7 +374,7 @@ client.on('message', async (msg) => {
         })
         client.channels.cache.get('760831152109649940').send(`${member} had roles ${rolenames.join(', ')}`)
         member.roles.set(['762663566531624980'])
-				client.channels.cache.get('767050317362757741').send(`<@${member.id}>, you've been sent to the questioning room.`)
+        client.channels.cache.get('767050317362757741').send(`<@${member.id}>, you've been sent to the questioning room.`)
         return msg.channel.send(`${member} has been sent to the questioning room`)
       }
       return msg.channel.send("That didn't work")
@@ -325,9 +388,6 @@ client.on("warn", (e) => console.warn(e))
 client.on("debug", (e) => console.info(e))
 
 console.log(readJSON())
-
-console.log(codes)
-console.log(users)
 
 client.login(process.env.TOKEN);
 
