@@ -68,6 +68,67 @@ function codeMsg(msg) {
   return code
 }
 
+function getDateObject(existed) {
+  data = convertMiliseconds(existed)
+  const calculateTimimg = e => {
+    let s = 0,
+      t = 0,
+      a = 0,
+      r = 0;
+    for (; e;) e >= 365 ? (t++, e -= 365) : e >= 30 ? (s++, e -= 30) : e >= 7 ? (r++, e -= 7) : (a++, e--);
+    return {
+      y: t,
+      m: s,
+      w: r,
+      d: a
+    }
+  }
+
+  var returning = {
+    y: null,
+    m: null,
+    w: null,
+    d: null,
+    h: null,
+    mi: null,
+    s: null
+  }
+
+  returning.s = data.s
+  returning.mi = data.m
+  returning.h = data.h
+
+  data = calculateTimimg(data.d)
+
+  returning.d = data.d
+  returning.w = data.w
+  returning.m = data.m
+  returning.y = data.y
+
+  return returning
+}
+
+function timeHandler(existed) {
+  dataobj = getDateObject(existed)
+
+  if (dataobj.y > 0) {
+    return `Years: ${dataobj.y}, Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.m > 0) {
+    return `Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.w > 0) {
+    return `Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.d > 0) {
+    return `Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  if (dataobj.h > 0) {
+    return `Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+  }
+  return `Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+}
+
 function help(msg, canvote) {
   const embed = new Discord.MessageEmbed()
   embed.setColor('#0099ff')
@@ -96,6 +157,11 @@ function help(msg, canvote) {
   embed.setImage(pics[Math.floor(Math.random() * pics.length)])
   embed.setTimestamp()
   msg.channel.send(embed)
+}
+
+function addImage(link) {
+  pics.push(link)
+  saveJSON()
 }
 
 function randomString(length = 64) {
@@ -175,7 +241,7 @@ function getMemberNumber() {
 
 client.on('ready', () => {
   // Set the status
-  client.user.setActivity('$help | Vote or else', {
+  client.user.setActivity('$help | Watching the GeoFS Events Server', {
     type: 'PLAYING'
   })
 })
@@ -189,67 +255,6 @@ client.on('guildMemberRemove', member => {
   embed.setTimestamp()
   client.channels.cache.get('753568398440398969').send(embed)
 })
-
-function getDateObject(existed) {
-  data = convertMiliseconds(existed)
-  const calculateTimimg = e => {
-    let s = 0,
-      t = 0,
-      a = 0,
-      r = 0;
-    for (; e;) e >= 365 ? (t++, e -= 365) : e >= 30 ? (s++, e -= 30) : e >= 7 ? (r++, e -= 7) : (a++, e--);
-    return {
-      y: t,
-      m: s,
-      w: r,
-      d: a
-    }
-  }
-
-  var returning = {
-    y: null,
-    m: null,
-    w: null,
-    d: null,
-    h: null,
-    mi: null,
-    s: null
-  }
-
-  returning.s = data.s
-  returning.mi = data.m
-  returning.h = data.h
-
-  data = calculateTimimg(data.d)
-
-  returning.d = data.d
-  returning.w = data.w
-  returning.m = data.m
-  returning.y = data.y
-
-  return returning
-}
-
-function timeHandler(existed) {
-  dataobj = getDateObject(existed)
-
-  if (dataobj.y > 0) {
-    return `Years: ${dataobj.y}, Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
-  }
-  if (dataobj.m > 0) {
-    return `Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
-  }
-  if (dataobj.w > 0) {
-    return `Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
-  }
-  if (dataobj.d > 0) {
-    return `Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
-  }
-  if (dataobj.h > 0) {
-    return `Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
-  }
-  return `Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
-}
 
 client.on('guildMemberAdd', member => {
   existed = Date.now() - member.user.createdAt
@@ -292,12 +297,18 @@ client.on('message', async (msg) => {
     var canvote = true
   }
 
-  /* if (msg.content.startsWith('$addimage')) {
-  	if (msg.member.roles.cache.has("766386531681435678")) {
-  		var Attachment = (msg.attachments).array()
-  	}
-  	return msg.channel.send(`${msg.author}, you can't run that command!`)
-  } */
+  if (msg.content.startsWith('$addimage')) {
+    if (msg.member.roles.cache.has("766386531681435678")) {
+      if (msg.attachments.size > 0) {
+        var Attachment = (msg.attachments).array()
+        addImage(Attachment[0].url)
+        await msg.channel.send('Image added. Restarting.')
+        process.exit()
+      }
+      return msg.channel.send(`${msg.author}, you need to attatch an image!`)
+    }
+    return msg.channel.send(`${msg.author}, you can't run that command!`)
+  }
 
   if (msg.content.startsWith('$restart') || msg.content.startsWith('$reload')) {
     if (msg.author.id == '550456900861427733') {
