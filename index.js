@@ -9,20 +9,6 @@ var removing = null
 
 // define the functions
 
-function toyears(d) {
-  var y = 0
-  days = d
-  if (days >= 365) {
-    y++;
-    days = days - 365
-    toyears(days)
-  }
-
-  console.log(y + (days / 365))
-
-  return y, days
-}
-
 function convertMiliseconds(miliseconds, format) {
   var days, hours, minutes, seconds, total_hours, total_minutes, total_seconds;
 
@@ -104,6 +90,7 @@ function help(msg, canvote) {
   if (msg.member.roles.cache.some(role => role.name === 'Bot mod')) {
     embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
     embed.addField('$questioning', "Logs all the roles of the user, then overwrites the user's roles with the questioning role.")
+		embed.addField('$addimage', "Adds a new image to the bot's reserves. Requires a file attachment.")
   }
   embed.addField('$help', 'This command.')
   embed.setImage(pics[Math.floor(Math.random() * pics.length)])
@@ -304,6 +291,13 @@ client.on('message', async (msg) => {
   } else {
     var canvote = true
   }
+
+	/* if (msg.content.startsWith('$addimage')) {
+		if (msg.member.roles.cache.has("766386531681435678")) {
+			var Attachment = (msg.attachments).array()
+		}
+		return msg.channel.send(`${msg.author}, you can't run that command!`)
+	} */
 
   if (msg.content.startsWith('$restart') || msg.content.startsWith('$reload')) {
     if (msg.author.id == '550456900861427733') {
