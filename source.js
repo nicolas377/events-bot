@@ -70,17 +70,31 @@ function codeMsg(msg) {
 
 function getDateObject(existed) {
   data = convertMiliseconds(existed)
-  const calculateTimimg = e => {
-    let s = 0,
-      t = 0,
-      a = 0,
-      r = 0;
-    for (; e;) e >= 365 ? (t++, e -= 365) : e >= 30 ? (s++, e -= 30) : e >= 7 ? (r++, e -= 7) : (a++, e--);
+  const calculateTimimg = d => {
+    let months = 0,
+      years = 0,
+      days = 0,
+      weeks = 0
+    while (d) {
+      if (d >= 365) {
+        years++
+        d -= 365
+      } else if (d >= 30) {
+        months++
+        d -= 30
+      } else if (d >= 7) {
+        weeks++
+        d -= 7
+      } else {
+        days++
+        d--
+      }
+    };
     return {
-      y: t,
-      m: s,
-      w: r,
-      d: a
+      y,
+      m,
+      e,
+      d
     }
   }
 
