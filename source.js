@@ -304,12 +304,7 @@ client.on('message', async (msg) => {
   if (!msg.content.startsWith('$')) {
     return
   }
-  // Can the user vote?
-  if (msg.member.roles.cache.some(role => role.name === 'Junior Pilot')) {
-    var canvote = false
-  } else {
-    var canvote = true
-  }
+  var canvote = false
 
   if (msg.content.startsWith('$addimage')) {
     if (msg.member.roles.cache.has("766386531681435678")) {
@@ -348,6 +343,8 @@ client.on('message', async (msg) => {
     msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
   }
   if (msg.content.startsWith('$code')) {
+		return msg.channel.send(`${msg.author}, there is no running election!`)
+
     if (canvote) {
       if (users.includes(msg.author.id)) {
         return msg.channel.send(`<@${msg.author.id}>, you've already gotten a code!`)
@@ -356,9 +353,9 @@ client.on('message', async (msg) => {
       codes.push(code)
       users.push(msg.author.id)
       saveJSON()
-      return msg.channel.send(`<@${msg.author.id}>, check your dm's for instructions!`)
+      return msg.channel.send(`${msg.author},  check your dm's!`)
     }
-    return msg.channel.send(`<@${msg.author.id}>, you can't vote right now!`)
+    return msg.channel.send(`${msg.author}, you can't vote right now!`)
   }
   if (msg.content.startsWith('$approve')) {
     if (msg.member.roles.cache.has("766386531681435678")) {
