@@ -409,3 +409,7 @@ const server = http.createServer((req, res) => {
 	res.end('ok');
 });
 server.listen(3000);
+
+setInterval(() => {
+	console.log('Still working')
+}, 60000)
