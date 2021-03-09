@@ -148,6 +148,9 @@ function help(msg, canvote) {
 	}, {
 		name: '$membercount',
 		value: 'Replies with the number of members in the server.'
+	}, {
+		name: '$electioninfo',
+		value: '**EXPERIMENTAL**\nThis command is not ready for public use yet.'
 	})
 	if (canvote) {
 		embed.addField('$code', "Election command. DM's the user the election code, along with the instructions for to vote.")
