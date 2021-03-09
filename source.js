@@ -9,7 +9,7 @@ var removing = null
 
 // define the functions
 
-function convertMiliseconds(miliseconds, format) {
+function convertMiliseconds(miliseconds) {
 	var days, hours, minutes, seconds, total_hours, total_minutes, total_seconds;
 
 	total_seconds = parseInt(Math.floor(miliseconds / 1000));
@@ -21,20 +21,10 @@ function convertMiliseconds(miliseconds, format) {
 	minutes = parseInt(total_minutes % 60);
 	hours = parseInt(total_hours % 24);
 
-	switch (format) {
-		case 's':
-			return total_seconds;
-		case 'm':
-			return total_minutes;
-		case 'h':
-			return total_hours;
-		case 'd':
-			return days;
-		default:
-			return {
-				d: days, h: hours, m: minutes, s: seconds
-			};
-	}
+	
+	return {
+		d: days, h: hours, m: minutes, s: seconds
+	};
 }
 
 function avatar(msg) {
@@ -64,7 +54,7 @@ function codeMsg(msg) {
 	var sendcode = '```' + code + '```'
 	msg1 = `https://www.youtube.com/watch?v=dQw4w9WgXcQ`
 	msg.author.send(msg1)
-	// msg.author.send(sendPic)
+	msg.author.send(sendPic)
 	return code
 }
 
@@ -340,7 +330,7 @@ client.on('message', async (msg) => {
 		return
 	}
 	if (msg.content.startsWith('$membercount')) {
-		msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
+		return msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
 	}
 	if (msg.content.startsWith('$code')) {
 		return msg.channel.send(`${msg.author}, there is no running election!`)
@@ -397,6 +387,7 @@ client.on('message', async (msg) => {
 		}
 		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
 	}
+	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
 client.on("error", (e) => console.error(e))
