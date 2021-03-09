@@ -113,24 +113,24 @@ function getDateObject(existed) {
 }
 
 function timeHandler(existed) {
-	dataobj = getDateObject(existed)
+	dateobj = getDateObject(existed)
 
-	if (dataobj.y > 0) {
-		return `Years: ${dataobj.y}, Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+	if (dateobj.y > 0) {
+		return `Years: ${dateobj.y}, Months: ${dateobj.m}, Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
 	}
-	if (dataobj.m > 0) {
-		return `Months: ${dataobj.m}, Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+	if (dateobj.m > 0) {
+		return `Months: ${dateobj.m}, Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
 	}
-	if (dataobj.w > 0) {
-		return `Weeks: ${dataobj.w}, Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+	if (dateobj.w > 0) {
+		return `Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
 	}
-	if (dataobj.d > 0) {
-		return `Days: ${dataobj.d}, Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+	if (dateobj.d > 0) {
+		return `Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
 	}
-	if (dataobj.h > 0) {
-		return `Hours: ${dataobj.h}, Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+	if (dateobj.h > 0) {
+		return `Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
 	}
-	return `Minutes: ${dataobj.mi}, Seconds: ${dataobj.s}`
+	return `Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
 }
 
 function help(msg, canvote) {
@@ -395,7 +395,7 @@ client.on('message', async (msg) => {
 
 client.on("error", (e) => console.error(e))
 client.on("warn", (e) => console.warn(e))
-client.on("debug", (e) => console.info(e))
+// client.on("debug", (e) => console.info(e))
 
 console.log(readJSON())
 
