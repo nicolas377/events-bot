@@ -393,6 +393,8 @@ client.on('message', async (msg) => {
 	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
+console.log('Running minified code.')
+
 client.on("error", (e) => console.error(e))
 client.on("warn", (e) => console.warn(e))
 // client.on("debug", (e) => console.info(e))
