@@ -241,8 +241,8 @@ function saveJSON() {
 	fs.writeFileSync('json/main.json', JSON.stringify(saving))
 }
 
-function getMemberNumber() {
-	const guild = client.guilds.cache.get("553718744233541656");
+function getMemberNumber(msg) {
+	const guild = msg.guild
 	return guild.memberCount - 7
 }
 
@@ -333,7 +333,7 @@ client.on('message', async (msg) => {
 		return
 	}
 	if (msg.content.startsWith('$membercount')) {
-		return msg.channel.send(`There are ${getMemberNumber()} members in the server.`)
+		return msg.channel.send(`There are ${getMemberNumber(msg)} members in the server.`)
 	}
 	if (msg.content.startsWith('$code')) {
 		return msg.channel.send(`${msg.author}, there is no running election!`)
@@ -358,7 +358,7 @@ client.on('message', async (msg) => {
 			let member = msg.mentions.members.first()
 			if (member.roles.cache.some(role => role.name === 'Security Check')) {
 				member.roles.set(['553723642568114187'])
-				var message = `Welcome to GeoFS Events ${member}!\nWe hope you enjoy your stay!\nPlease make sure you have read <#553929583397961740> and <#553720929063141379>.\nWe organize and host events every day, so make sure to check <#756937922904850442> to keep up on events hosted for that day.\nThere are currently ${getMemberNumber()} people in this server.\nIf you need any help or advice, contact the Elite Crew.\nUse <#717777238979903566> to put your event ideas in and we will do it as soon as possible!\n\nCheck out and subscribe to our channel here: <https://www.youtube.com/channel/UCZhJvrv8C6mb0FXENg6uh2w>`
+				var message = `Welcome to GeoFS Events ${member}!\nWe hope you enjoy your stay!\nPlease make sure you have read <#553929583397961740> and <#553720929063141379>.\nWe organize and host events every day, so make sure to check <#756937922904850442> to keep up on events hosted for that day.\nThere are currently ${getMemberNumber(msg)} people in this server.\nIf you need any help or advice, contact the Elite Crew.\nUse <#717777238979903566> to put your event ideas in and we will do it as soon as possible!\n\nCheck out and subscribe to our channel here: <https://www.youtube.com/channel/UCZhJvrv8C6mb0FXENg6uh2w>`
 				client.channels.cache.get('553718744657035274').send(message)
 				return msg.channel.send('User approved sucessfully')
 			}
