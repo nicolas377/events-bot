@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
+const Discord = require('discord.js')
 const CryptoJS = require('crypto-js')
-const fs = require('fs');
+const fs = require('fs')
+const client = new Discord.Client()
 var users = []
 var codes = []
 var pics = null
@@ -116,16 +116,16 @@ function timeHandler(existed) {
 	dateobj = getDateObject(existed)
 
 	if (dateobj.y > 0) {
-		return `Years: ${dateobj.y}, Months: ${dateobj.m}, Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
+		return `Years: ${dateobj.y}, Months: ${dateobj.m}, Weeks: ${dateobj.w}, Days: ${dateobj.d}`
 	}
 	if (dateobj.m > 0) {
-		return `Months: ${dateobj.m}, Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
+		return `Months: ${dateobj.m}, Weeks: ${dateobj.w}, Days: ${dateobj.d}`
 	}
 	if (dateobj.w > 0) {
-		return `Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
+		return `Weeks: ${dateobj.w}, Days: ${dateobj.d}, Hours: ${dateobj.h}`
 	}
 	if (dateobj.d > 0) {
-		return `Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
+		return `Days: ${dateobj.d}, Hours: ${dateobj.h}, Minutes: ${dateobj.mi}`
 	}
 	if (dateobj.h > 0) {
 		return `Hours: ${dateobj.h}, Minutes: ${dateobj.mi}, Seconds: ${dateobj.s}`
@@ -216,7 +216,7 @@ function readJSON() {
 	})
 	pics = data.images
 	removing = data.filterlist
-	return 'JSON file read'
+	return
 }
 
 function saveJSON() {
@@ -393,13 +393,11 @@ client.on('message', async (msg) => {
 	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
-console.log('Running minified code.')
-
 client.on("error", (e) => console.error(e))
 client.on("warn", (e) => console.warn(e))
 // client.on("debug", (e) => console.info(e))
 
-console.log(readJSON())
+readJSON()
 
 client.login(process.env.TOKEN);
 
