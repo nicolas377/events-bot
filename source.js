@@ -166,6 +166,20 @@ function help(msg, canvote) {
 	msg.channel.send(embed)
 }
 
+function electioninfo(msg) {
+	const embed = new Discord.MessageEmbed()
+	embed.setColor('0099ff')
+	embed.setTitle('Election Infomation')
+	embed.setAuthor(msg.author.tag)
+	embed.addFields({
+		name: 'Currently',
+		value: 'There are no current running elections'
+	}, {
+		name: 'Future',
+		value: "There will be a Event Manager election on April 3rd. Get in your flights and you'll be able to vote!"
+	})
+}
+
 function addImage(link) {
 	pics.push(link)
 	saveJSON()
@@ -293,7 +307,7 @@ client.on('message', async (msg) => {
 			var sendingmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of commands you can run `$help`'
 			return msg.channel.send(sendingmsg)
 		}
-	} catch (e) {
+	} catch (error) {
 		//swallow the errors because i dont feel like dealing with them
 	}
 
@@ -301,6 +315,11 @@ client.on('message', async (msg) => {
 		return
 	}
 	var canvote = false
+
+	if (msg.content.startsWith('$electioninfo')) {
+		electioninfo(msg)
+		return
+	}
 
 	if (msg.content.startsWith('$addimage')) {
 		if (msg.member.roles.cache.has("766386531681435678")) {
