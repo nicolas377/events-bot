@@ -21,9 +21,12 @@ function convertMiliseconds(miliseconds) {
 	minutes = parseInt(total_minutes % 60);
 	hours = parseInt(total_hours % 24);
 
-	
+
 	return {
-		d: days, h: hours, m: minutes, s: seconds
+		d: days,
+		h: hours,
+		m: minutes,
+		s: seconds
 	};
 }
 
@@ -178,6 +181,8 @@ function electioninfo(msg) {
 		name: 'Future',
 		value: "There will be a Event Manager election on April 3rd. Get in your flights and you'll be able to vote!"
 	})
+
+	msg.channel.send(embed)
 }
 
 function addImage(link) {
@@ -408,14 +413,16 @@ client.on('message', async (msg) => {
 				client.channels.cache.get('767050317362757741').send(`<@${member.id}>, you've been sent to the questioning room.`)
 				return msg.channel.send(`${member} has been sent to the questioning room`)
 			}
-			return msg.channel.send("That didn't work.")
 		}
 		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
 	}
 	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
-client.on("error", (e) => console.error(e))
+client.on("error", async (e) => {
+	await client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. ${e}`)
+	process.exit(1)
+})
 client.on("warn", (e) => console.warn(e))
 // client.on("debug", (e) => console.info(e))
 
