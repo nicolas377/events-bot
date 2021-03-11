@@ -150,7 +150,7 @@ function help(msg, canvote) {
 		value: 'Replies with the number of members in the server.'
 	}, {
 		name: '$electioninfo',
-		value: '**EXPERIMENTAL**\nThis command is not ready for public use yet.'
+		value: "**EXPERIMENTAL**\nThis literally doesn't exist right now."
 	})
 	if (canvote) {
 		embed.addField('$code', "Election command. DM's the user the election code, along with the instructions for to vote.")
@@ -244,6 +244,9 @@ function saveJSON() {
 function getMemberNumber(msg) {
 	const guild = msg.guild
 	return guild.memberCount - 7
+
+	// the -7 removes the bots from the tally
+
 }
 
 client.on('ready', () => {
@@ -286,13 +289,13 @@ client.on('message', async (msg) => {
 	await filter(msg)
 
 	try {
-		if (typeof msg.mentions.members.first() !== undefined) {
-			if (msg.mentions.members.first().user.id === '780458120605990954') {
-				newmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of commands you can run `$help`'
-				msg.channel.send(newmsg)
-			}
+		if (msg.content == '<@780458120605990954>') {
+			var sendingmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of commands you can run `$help`'
+			return msg.channel.send(sendingmsg)
 		}
-	} catch (e) {}
+	} catch (e) {
+		//swallow the errors because i dont feel like dealing with them
+	}
 
 	if (!msg.content.startsWith('$')) {
 		return
@@ -411,3 +414,6 @@ server.listen(3000);
 setInterval(() => {
 	console.log('Still working')
 }, 60000)
+
+// since you've made it this far, you've been distracted.
+// now go do whatever it is you were doing before
