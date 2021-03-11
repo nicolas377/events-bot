@@ -185,6 +185,12 @@ function electioninfo(msg) {
 	msg.channel.send(embed)
 }
 
+function logger(txt) {
+	var date = new Date(Date.now()).toUTCString()
+	appendtext = `${date}: ${txt}`
+	fs.appendFileSync('log.txt', appendtext)
+}
+
 function addImage(link) {
 	pics.push(link)
 	saveJSON()
@@ -207,19 +213,29 @@ async function ping(msg) {
 }
 
 function filter(msg) {
+
 	if (msg.channel.id == '760831152109649940') {
-		return
+		return false
 	}
 
 	words = msg.content.split(' ')
-	words.forEach((value) => {
-		var words = value.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
 
-		if (removing.includes(words)) {
-			msg.delete()
-			return msg.channel.send(`<@${msg.author.id}>, watch your language!`)
+	for (var i = 0; i < words.length; i++) {
+		word = words[i]
+		word = word.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
+		words[i] = word
+	}
+
+	// check if any of the words are in the filter list
+
+	for (var i = 0; i < words.length; i++) {
+		if (removing.includes(words[i])) {
+			return true
 		}
-	})
+	}
+
+	return false
+
 }
 
 function readJSON() {
@@ -305,7 +321,12 @@ client.on('message', async (msg) => {
 		return
 	}
 
-	await filter(msg)
+	var del = await filter(msg)
+
+	if (del) {
+		msg.delete()
+		msg.channel.send(`${msg.author}, watch your language!`)
+	}
 
 	try {
 		if (msg.content == '<@780458120605990954>') {
@@ -421,10 +442,11 @@ client.on('message', async (msg) => {
 
 client.on("error", async (e) => {
 	await client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. ${e}`)
+	await logger(`ERROR ${e}`)
 	process.exit(1)
 })
-client.on("warn", (e) => console.warn(e))
-// client.on("debug", (e) => console.info(e))
+client.on("warn", (e) => logger(`WARNING: ${e}`))
+// client.on("debug", (e) => logger(`DEBUG: ${e}`)
 
 readJSON()
 

@@ -9,4 +9,4 @@ console.log('Code minified. Getting ready to run.')
 
 require('./index.min.js')
 
-console.log('Running minified code.')	
+console.log('Running minified code.')
