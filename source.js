@@ -142,7 +142,7 @@ function help(msg, canvote) {
 		value: 'Replies with the number of members in the server.'
 	}, {
 		name: '$electioninfo',
-		value: "**EXPERIMENTAL**\nThis literally doesn't exist right now."
+		value: 'Returns an embed with the infomation of all present and upcoming elections.'
 	})
 	if (canvote) {
 		embed.addField('$code', "Election command. DM's the user the election code, along with the instructions for to vote.")
@@ -168,7 +168,7 @@ function electioninfo(msg) {
 		value: 'There are no current running elections'
 	}, {
 		name: 'Future',
-		value: "There will be a Event Manager election on April 3rd. Get in your flights and you'll be able to vote!"
+		value: "There will be a Event Manager election on April 3rd. Get in your flights and you'll be able to run!\nFurther details coming soon."
 	})
 
 	msg.channel.send(embed)
@@ -444,9 +444,9 @@ readJSON()
 client.login(process.env.TOKEN);
 
 const http = require('http');
-const server = http.createServer((req, res) => {
-	res.writeHead(200);
-	res.end('ok');
+const server = http.createServer((request, response) => {
+	response.writeHead(200);
+	response.end('ok');
 });
 server.listen(3000);
 
