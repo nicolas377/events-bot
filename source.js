@@ -91,13 +91,13 @@ function getDateObject(existed) {
 		}
 	}
 
-	data = calculateTimimg(data.d)
+	moredata = calculateTimimg(data.d)
 
 	return {
-		y: data.years,
-		m: data.months,
-		w: data.weeks,
-		d: data.days,
+		y: moredata.years,
+		m: moredata.months,
+		w: moredata.weeks,
+		d: moredata.days,
 		h: data.h,
 		mi: data.m,
 		s: data.s
