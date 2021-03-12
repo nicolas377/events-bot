@@ -174,15 +174,12 @@ function electioninfo(msg) {
 	msg.channel.send(embed)
 }
 
-function logger(txt, newline = true) {
+function logger(txt, log = false) {
 	var date = new Date(Date.now()).toUTCString()
-	if (newline) {
-		appendtext = `\n${date}: ${txt}`
-	} else {
-		appendtext = `${date}: ${txt}`
+	fs.appendFileSync('log.txt', `\n${date}: ${txt}`)
+	if (log) {
+		console.log(txt)
 	}
-	fs.appendFileSync('log.txt', appendtext)
-	console.log(txt)
 }
 
 function addImage(link) {
@@ -436,10 +433,10 @@ client.on('message', async (msg) => {
 
 client.on("error", async (e) => {
 	await client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. ${e}`)
-	await logger(`ERROR ${e}`)
+	await logger(`ERROR ${e}`, true)
 	process.exit(1)
 })
-client.on("warn", (e) => logger(`WARNING: ${e}`))
+client.on("warn", (e) => logger(`WARNING: ${e}`, true))
 // client.on("debug", (e) => logger(`DEBUG: ${e}`)
 
 readJSON()
