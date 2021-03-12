@@ -91,28 +91,17 @@ function getDateObject(existed) {
 		}
 	}
 
-	var returning = {
-		y: null,
-		m: null,
-		w: null,
-		d: null,
-		h: null,
-		mi: null,
-		s: null
-	}
-
-	returning.s = data.s
-	returning.mi = data.m
-	returning.h = data.h
-
 	data = calculateTimimg(data.d)
 
-	returning.d = data.days
-	returning.w = data.weeks
-	returning.m = data.months
-	returning.y = data.years
-
-	return returning
+	return {
+		y: data.years,
+		m: data.months,
+		w: data.weeks,
+		d: data.days,
+		h: data.h,
+		mi: data.m,
+		s: data.s
+	}
 }
 
 function timeHandler(existed) {
@@ -185,10 +174,15 @@ function electioninfo(msg) {
 	msg.channel.send(embed)
 }
 
-function logger(txt) {
+function logger(txt, newline = true) {
 	var date = new Date(Date.now()).toUTCString()
-	appendtext = `${date}: ${txt}`
+	if (newline) {
+		appendtext = `\n${date}: ${txt}`
+	} else {
+		appendtext = `${date}: ${txt}`
+	}
 	fs.appendFileSync('log.txt', appendtext)
+	console.log(txt)
 }
 
 function addImage(link) {
@@ -460,8 +454,8 @@ const server = http.createServer((req, res) => {
 server.listen(3000);
 
 setInterval(() => {
-	console.log('Still working')
-}, 60000)
+	logger('Still working.')
+}, 900000)
 
 // since you've made it this far, you've been distracted.
 // now go do whatever it is you were doing before
