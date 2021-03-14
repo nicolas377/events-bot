@@ -325,7 +325,7 @@ client.on('message', async (msg) => {
 			return msg.channel.send(sendingmsg)
 		}
 	} catch (error) {
-		//swallow the errors because i dont feel like dealing with them
+		logger(`ERROR: ${error}`)
 	}
 
 	if (!msg.content.startsWith('$')) {
