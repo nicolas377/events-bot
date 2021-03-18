@@ -165,7 +165,7 @@ function electioninfo(msg) {
 	embed.setAuthor(msg.author.tag)
 	embed.addFields({
 		name: 'Currently',
-		value: 'There are no current running elections'
+		value: 'There are no current running elections.'
 	}, {
 		name: 'Future',
 		value: "There will be a Event Manager election on April 3rd. Get in your flights and you'll be able to run!\nFurther details coming soon."
@@ -275,6 +275,12 @@ function getMemberNumber(msg) {
 
 }
 
+function userinfo(msg) {
+	return `That command isn't ready yet!`
+	
+	var embed = new Discord.MessageEmbed()
+}
+
 client.on('ready', () => {
 	// Set the status
 	client.user.setActivity('$help | Watching the GeoFS Events Server', {
@@ -284,7 +290,7 @@ client.on('ready', () => {
 
 client.on('guildMemberRemove', member => {
 	var embed = new Discord.MessageEmbed()
-	embed.setColor('#0099ff')
+	embed.setColor('#d94c4c')
 	embed.setAuthor('Member Left')
 	embed.setDescription(`${member} ${member.user.tag}`)
 	embed.setFooter(`ID: ${member.id}`)
@@ -336,6 +342,10 @@ client.on('message', async (msg) => {
 	if (msg.content.startsWith('$electioninfo')) {
 		electioninfo(msg)
 		return
+	}
+
+	if (msg.content.startsWith('$user')) {
+		return msg.channel.send(userinfo(msg))
 	}
 
 	if (msg.content.startsWith('$addimage')) {
