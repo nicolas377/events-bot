@@ -8,7 +8,6 @@ var pics = null
 var removing = null
 
 // define the functions
-// [Object.keys(require('./packages/avatar'))[0]]
 
 function grabPackageFunction(ref) {
 	return require(ref)[Object.keys(require(ref))[0]]
