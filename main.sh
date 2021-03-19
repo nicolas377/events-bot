@@ -1,3 +1,3 @@
 while [ true ]; do
-node runner.js
+node bot.js
 done
