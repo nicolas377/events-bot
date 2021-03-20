@@ -1,38 +1,45 @@
-const Discord = require('discord.js')
-const CryptoJS = require('crypto-js')
-const fs = require('fs')
-const client = new Discord.Client()
-var users = []
-var codes = []
-var pics = null
-var removing = null
-
-// define the functions
+// IIFE to set up variables
+(function() {
+	global.Discord = require('discord.js')
+	global.CryptoJS = require('crypto-js')
+	global.fs = require('fs')
+	global.client = new Discord.Client()
+	global.users = []
+	global.codes = []
+	global.pics = null
+	global.removing = null
+})()
 
 function grabPackageFunction(ref) {
 	return require(ref)[Object.keys(require(ref))[0]]
 }
 
-const avatar = grabPackageFunction('./packages/avatar')
-const codeMsg = grabPackageFunction('./packages/codeMsg')
-const timeHandler = grabPackageFunction('./packages/timehandler')
-const help = grabPackageFunction('./packages/help')
-const electioninfo = grabPackageFunction('./packages/electioninfo')
-const logger = grabPackageFunction('./packages/logger')
-const addImage = grabPackageFunction('./packages/addImage')
-const randomString = grabPackageFunction('./packages/randomString')
-const ping = grabPackageFunction('./packages/ping')
-const filter = grabPackageFunction('./packages/filter')
-const readJSON = grabPackageFunction('./packages/json/readJSON')
-const saveJSON = grabPackageFunction('./packages/json/saveJSON')
-const getMemberNumber = grabPackageFunction('./packages/memberNumber')
-const userinfo = grabPackageFunction('./packages/userinfo')
+// another IIFE to import the functions
+
+(function() {
+	const avatar = grabPackageFunction('./packages/avatar')
+	const codeMsg = grabPackageFunction('./packages/codeMsg')
+	const timeHandler = grabPackageFunction('./packages/timehandler')
+	const help = grabPackageFunction('./packages/help')
+	const electioninfo = grabPackageFunction('./packages/electioninfo')
+	const logger = grabPackageFunction('./packages/logger')
+	const addImage = grabPackageFunction('./packages/addImage')
+	const randomString = grabPackageFunction('./packages/randomString')
+	const ping = grabPackageFunction('./packages/ping')
+	const filter = grabPackageFunction('./packages/filter')
+	const readJSON = grabPackageFunction('./packages/json/readJSON')
+	const saveJSON = grabPackageFunction('./packages/json/saveJSON')
+	const getMemberNumber = grabPackageFunction('./packages/memberNumber')
+	const userinfo = grabPackageFunction('./packages/userinfo')
+	const botping = grabPackageFunction('./packages/botping')
+})()
 
 client.on('ready', () => {
 	// Set the status
 	client.user.setActivity('$help | Watching the GeoFS Events Server', {
 		type: 'PLAYING'
 	})
+	console.log("Ready to work!")
 })
 
 client.on('guildMemberRemove', member => {
@@ -61,34 +68,19 @@ client.on('guildMemberAdd', member => {
 })
 
 client.on('message', async (msg) => {
-	if (msg.author.bot) {
+	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
+	if (msg.author.bot || await filter(msg) || botping(msg)) {
 		return
 	}
 
-	var del = await filter(msg)
-
-	if (del) {
-		msg.delete()
-		msg.channel.send(`${msg.author}, watch your language!`)
-	}
-
-	try {
-		if (msg.content == '<@780458120605990954>') {
-			var sendingmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of commands you can run `$help`'
-			return msg.channel.send(sendingmsg)
-		}
-	} catch (error) {
-		logger(`ERROR: ${error}`)
-	}
-
+	// Save performance by filtering out everything not starting with the prefix
 	if (!msg.content.startsWith('$')) {
 		return
 	}
 	var canvote = false
 
 	if (msg.content.startsWith('$electioninfo')) {
-		electioninfo(msg)
-		return
+		return msg.channel.send(electioninfo(msg))
 	}
 
 	if (msg.content.startsWith('$user')) {
@@ -117,7 +109,7 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('$ping')) {
-		ping(msg)
+		ping(msg, client.ws.ping)
 		return
 	}
 	if (msg.content.startsWith('$av')) {

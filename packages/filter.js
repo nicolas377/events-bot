@@ -1,4 +1,4 @@
-exports.filter = function(msg) {
+function checkdelete(msg) {
 
 	if (msg.channel.id == '760831152109649940') {
 		return false
@@ -21,5 +21,14 @@ exports.filter = function(msg) {
 	}
 
 	return false
+}
 
+exports.filter = function(msg) {
+	var del = checkdelete(msg)
+	if (del) {
+		msg.delete()
+		msg.channel.send(`${msg.author}, watch your language!`)
+		return true
+	}
+	return false
 }
