@@ -8,51 +8,31 @@
 	global.codes = []
 	global.pics = null
 	global.removing = null
-})()
-
-function grabPackageFunction(ref) {
-	return require(ref)[Object.keys(require(ref))[0]]
-}
+})();
 
 // another IIFE to import the functions
 
 (function() {
-	toimport = ['avatar', 'codeMsg', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping']
+	toimport = ['avatar', 'codeMsg', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd']
 	toimport.forEach((item) => {
 		global[item] = require(`./modules/${item}`)[Object.keys(require(`./modules/${item}`))[0]]
 	})
-})()
+})();
 
 client.on('ready', () => {
 	// Set the status
-	client.user.setActivity('$help | Watching the GeoFS Events Server', {
-		type: 'PLAYING'
+	client.user.setActivity('the GeoFS Events Server | $help', {
+		type: 'WATCHING'
 	})
 	console.log("Ready to work!")
 })
 
 client.on('guildMemberRemove', member => {
-	var embed = new Discord.MessageEmbed()
-	embed.setColor('#d94c4c')
-	embed.setAuthor('Member Left')
-	embed.setDescription(`${member} ${member.user.tag}`)
-	embed.setFooter(`ID: ${member.id}`)
-	embed.setTimestamp()
-	client.channels.cache.get('753568398440398969').send(embed)
+	client.channels.cache.get('753568398440398969').send(memberRemove(member))
 })
 
 client.on('guildMemberAdd', member => {
-	existed = Date.now() - member.user.createdAt
-	existed = timeHandler(existed)
-	member.roles.set(['752701923399958610', '553723645265182720'])
-	ageembed = new Discord.MessageEmbed()
-	ageembed.setColor('#0099ff')
-	ageembed.setAuthor('Member Joined')
-	ageembed.setDescription(`${member} ${member.user.tag}`)
-	ageembed.addField('**Account Age**', `${existed}`)
-	ageembed.setFooter(`ID: ${member.id}`)
-	ageembed.setTimestamp()
-	client.channels.cache.get('753568398440398969').send(ageembed)
+	client.channels.cache.get('753568398440398969').send(memberAdd(member))
 	client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 })
 
@@ -67,6 +47,7 @@ client.on('message', async (msg) => {
 		return
 	}
 	var canvote = false
+	msg.content = msg.content.toLowerCase()
 
 	if (msg.content.startsWith('$electioninfo')) {
 		return msg.channel.send(electioninfo(msg))
