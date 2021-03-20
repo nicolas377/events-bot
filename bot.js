@@ -8,7 +8,7 @@
 	global.codes = []
 	global.pics = null
 	global.removing = null
-})();
+})(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
 // another IIFE to import the functions
 
@@ -17,7 +17,7 @@
 	toimport.forEach((item) => {
 		global[item] = require(`./modules/${item}`)[Object.keys(require(`./modules/${item}`))[0]]
 	})
-})();
+})()
 
 client.on('ready', () => {
 	// Set the status
