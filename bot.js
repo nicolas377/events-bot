@@ -17,6 +17,7 @@
 	toimport.forEach((item) => {
 		global[item] = require(`./modules/${item}`)[Object.keys(require(`./modules/${item}`))[0]]
 	})
+	readJSON()
 })()
 
 client.on('ready', () => {
@@ -150,17 +151,21 @@ client.on('message', async (msg) => {
 	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
-client.on("error", async (e) => {
-	await client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. ${e}`)
-	await logger(`ERROR ${e}`, true)
+// handle all errors
+process.on("uncaughtException", (e) => {
+	client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
+	logger(`ERROR ${e}`, true)
 	process.exit(1)
 })
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
-// client.on("debug", (e) => logger(`DEBUG: ${e}`)
 
-readJSON()
+setInterval(() => {
+	logger('Still working.')
+}, 900000)
 
 client.login(process.env.TOKEN);
+
+// HTTP server
 
 const http = require('http');
 const server = http.createServer((request, response) => {
@@ -168,10 +173,6 @@ const server = http.createServer((request, response) => {
 	response.end('ok');
 });
 server.listen(3000);
-
-setInterval(() => {
-	logger('Still working.')
-}, 900000)
 
 // since you've made it this far, you've been distracted.
 // now go do whatever it is you were doing before
