@@ -1,12 +1,11 @@
 const Discord = require('discord.js')
-const CryptoJS = require('crypto-js')
-const fs = require('fs')
 
 exports.help = function(msg, canvote) {
 	const embed = new Discord.MessageEmbed()
 	embed.setColor('#0099ff')
 	embed.setTitle('Events Bot Help')
-	embed.setURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
+	embed.setURL('https://github.com/nicolas377/events-bot')
+	embed.setDescription('Source code can be found by clicking the embed title above.')
 	embed.setAuthor(msg.author.tag)
 	embed.addFields({
 		name: '\n$ping',

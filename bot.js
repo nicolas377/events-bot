@@ -13,7 +13,7 @@
 // another IIFE to import the functions
 
 (function() {
-	toimport = ['avatar', 'codeMsg', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd']
+	toimport = ['avatar', 'codeMsg', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning']
 	toimport.forEach((item) => {
 		global[item] = require(`./modules/${item}`)[Object.keys(require(`./modules/${item}`))[0]]
 	})
@@ -47,7 +47,11 @@ client.on('message', async (msg) => {
 	if (!msg.content.startsWith('$')) {
 		return
 	}
+
+	// elections are not currently open
 	var canvote = false
+
+	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
 
 	if (msg.content.startsWith('$electioninfo')) {
@@ -59,94 +63,29 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('$addimage')) {
-		if (msg.member.roles.cache.has("766386531681435678")) {
-			if (msg.attachments.size > 0) {
-				var Attachment = (msg.attachments).array()
-				addImage(Attachment[0].url)
-				await msg.channel.send('Image added. Restarting.')
-				process.exit()
-			}
-			return msg.channel.send(`${msg.author}, you need to attatch an image!`)
-		}
-		return msg.channel.send(`${msg.author}, you can't run that command!`)
-	}
-
-	if (msg.content.startsWith('$restart') || msg.content.startsWith('$reload')) {
-		if (msg.author.id == '550456900861427733') {
-			await msg.channel.send('Restarting. See you soon!')
-			process.exit()
-		}
-		return msg.channel.send(`<@${msg.author.id}>, you can't restart me!`)
+		return addImage(msg)
 	}
 
 	if (msg.content.startsWith('$ping')) {
-		ping(msg, client.ws.ping)
-		return
+		return ping(msg, client.ws.ping)
 	}
 	if (msg.content.startsWith('$av')) {
-		avatar(msg)
-		return
+		return avatar(msg)
 	}
 	if (msg.content.startsWith('$help')) {
-		help(msg, canvote)
-		return
+		return help(msg, canvote)
 	}
 	if (msg.content.startsWith('$membercount')) {
 		return msg.channel.send(`There are ${memberNumber(msg)} members in the server.`)
 	}
 	if (msg.content.startsWith('$code')) {
 		return msg.channel.send(`${msg.author}, there is no running election!`)
-
-		if (canvote) {
-			if (users.includes(msg.author.id)) {
-				return msg.channel.send(`<@${msg.author.id}>, you've already gotten a code!`)
-			}
-			code = codeMsg(msg)
-			codes.push(code)
-			users.push(msg.author.id)
-			saveJSON()
-			return msg.channel.send(`${msg.author},  check your dm's!`)
-		}
-		return msg.channel.send(`${msg.author}, you can't vote right now!`)
 	}
 	if (msg.content.startsWith('$approve')) {
-		if (msg.member.roles.cache.has("766386531681435678")) {
-			if (msg.mentions.members.first() == undefined) {
-				return msg.channel.send(`<@${msg.author.id}>, you have to mention someone!`)
-			}
-			let member = msg.mentions.members.first()
-			if (member.roles.cache.some(role => role.name === 'Security Check')) {
-				member.roles.set(['553723642568114187'])
-				var message = `Welcome to GeoFS Events ${member}!\nWe hope you enjoy your stay!\nPlease make sure you have read <#553929583397961740> and <#553720929063141379>.\nWe organize and host events every day, so make sure to check <#756937922904850442> to keep up on events hosted for that day.\nThere are currently ${memberNumber(msg)} people in this server.\nIf you need any help or advice, contact the Elite Crew.\nUse <#818115761843339274> to put your event ideas in and we will do it as soon as possible!\n\nCheck out and subscribe to our channel here: <https://www.youtube.com/channel/UCZhJvrv8C6mb0FXENg6uh2w>`
-				client.channels.cache.get('553718744657035274').send(message)
-				return msg.channel.send('User approved sucessfully')
-			}
-			return msg.channel.send("That didn't work.")
-		}
-		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
+		return approve(msg)
 	}
 	if (msg.content.startsWith('$questioning')) {
-		if (msg.member.roles.cache.has("766386531681435678")) {
-			if (msg.mentions.members.first() == undefined) {
-				return msg.channel.send(`<@${msg.author.id}>, you have to mention someone!`)
-			}
-			let member = msg.mentions.members.first()
-			if (member.roles.cache.has("766386531681435678")) {
-				return msg.channel.send("That user can't be sent to the questioning room!")
-			} else {
-				let rolenames = []
-				let roles = member.roles.member._roles
-				roles.forEach(function(item) {
-					let role = msg.guild.roles.cache.get(item)
-					rolenames.push(role.name)
-				})
-				client.channels.cache.get('760831152109649940').send(`${member} had roles ${rolenames.join(', ')}`)
-				member.roles.set(['762663566531624980'])
-				client.channels.cache.get('767050317362757741').send(`<@${member.id}>, you've been sent to the questioning room.`)
-				return msg.channel.send(`${member} has been sent to the questioning room`)
-			}
-		}
-		return msg.channel.send(`<@${msg.author.id}>, you can't run that command!`)
+		return questioning(msg)
 	}
 	return msg.channel.send(`Seems like that isn't a command!`)
 })

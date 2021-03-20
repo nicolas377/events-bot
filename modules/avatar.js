@@ -1,6 +1,4 @@
 const Discord = require('discord.js')
-const CryptoJS = require('crypto-js')
-const fs = require('fs')
 
 exports.avatar = function(msg) {
 	if (msg.mentions.users.first() == undefined) {
