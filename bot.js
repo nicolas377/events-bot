@@ -15,7 +15,8 @@
 (function() {
 	toimport = ['avatar', 'codeMsg', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning']
 	toimport.forEach((item) => {
-		global[item] = require(`./modules/${item}`)[Object.keys(require(`./modules/${item}`))[0]]
+		module = require(`./modules/${item}`)
+		global[item] = module[Object.keys(module)[0]]
 	})
 	readJSON()
 })()
@@ -91,8 +92,7 @@ client.on('message', async (msg) => {
 })
 
 // handle all errors
-process.on("uncaughtException", (e) => {
-	client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
+process.on("uncaughtException", (e) => {	client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
 	logger(`ERROR ${e}`, true)
 	process.exit(1)
 })
@@ -102,16 +102,16 @@ setInterval(() => {
 	logger('Still working.')
 }, 900000)
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN)
 
 // HTTP server
 
-const http = require('http');
+const http = require('http')
 const server = http.createServer((request, response) => {
-	response.writeHead(200);
-	response.end('ok');
-});
-server.listen(3000);
+	response.writeHead(200)
+	response.end('ok')
+})
+server.listen(3000)
 
 // since you've made it this far, you've been distracted.
 // now go do whatever it is you were doing before

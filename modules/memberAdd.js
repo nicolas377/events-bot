@@ -4,7 +4,7 @@ exports.memberAdd = function(member) {
 	existed = Date.now() - member.user.createdAt
 	existed = timeHandler(existed)
 	member.roles.set(['752701923399958610', '553723645265182720'])
-	embed = new Discord.Messageembed()
+	embed = new Discord.MessageEmbed()
 	embed.setColor('#0099ff')
 	embed.setAuthor('Member Joined')
 	embed.setDescription(`${member} ${member.user.tag}`)
