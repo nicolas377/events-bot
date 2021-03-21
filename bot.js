@@ -13,7 +13,7 @@
 // another IIFE to import the functions
 
 (function() {
-	toimport = ['avatar', 'codeMsg', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning']
+	toimport = ['avatar', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning', 'code', 'canvote']
 	toimport.forEach((item) => {
 		module = require(`./modules/${item}`)
 		global[item] = module[Object.keys(module)[0]]
@@ -26,7 +26,7 @@ client.on('ready', () => {
 	client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
 	})
-	console.log("Ready to work!")
+	logger('Ready to work!', true)
 })
 
 client.on('guildMemberRemove', member => {
@@ -49,14 +49,14 @@ client.on('message', async (msg) => {
 		return
 	}
 
-	// elections are not currently open
-	var canvote = false
+	// check if a user can vote
+	canvote = canvote(msg.member)
 
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
 
 	if (msg.content.startsWith('$electioninfo')) {
-		return msg.channel.send(electioninfo(msg))
+		return electioninfo(msg)
 	}
 
 	if (msg.content.startsWith('$user')) {
@@ -70,24 +70,37 @@ client.on('message', async (msg) => {
 	if (msg.content.startsWith('$ping')) {
 		return ping(msg, client.ws.ping)
 	}
+
 	if (msg.content.startsWith('$av')) {
 		return avatar(msg)
 	}
+
 	if (msg.content.startsWith('$help')) {
 		return help(msg, canvote)
 	}
+
 	if (msg.content.startsWith('$membercount')) {
 		return msg.channel.send(`There are ${memberNumber(msg)} members in the server.`)
 	}
+
 	if (msg.content.startsWith('$code')) {
-		return msg.channel.send(`${msg.author}, there is no running election!`)
+		code = code(msg, canvote, users, codes)
+		if (typeof code === "string") {
+			codes.push(code)
+			users.push(msg.author.id)
+			saveJSON()
+		}
+		return
 	}
+	
 	if (msg.content.startsWith('$approve')) {
 		return approve(msg)
 	}
+
 	if (msg.content.startsWith('$questioning')) {
 		return questioning(msg)
 	}
+	
 	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
@@ -98,10 +111,6 @@ process.on("uncaughtException", (e) => {
 	process.exit(1)
 })
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
-
-setInterval(() => {
-	logger('Still working.')
-}, 900000)
 
 client.login(process.env.TOKEN)
 
