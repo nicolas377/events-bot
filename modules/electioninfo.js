@@ -7,10 +7,10 @@ exports.electioninfo = function(msg) {
 	embed.setAuthor(msg.author.tag)
 	embed.addFields({
 		name: 'Currently',
-		value: 'There are no current running elections.'
+		value: 'There are no running elections currently.'
 	}, {
 		name: 'Future',
-		value: "There will be a Event Manager election on April 3rd. Get in your flights and you'll be able to run!\nFurther details coming soon."
+		value: "We will elect 3 Event Managers on April 3rd and 4th. In order to run, you must have 2 flights and 20 flight points in March.\nThe election will be run using STV, with the code system from this bot."
 	})
 
 	return embed

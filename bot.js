@@ -92,7 +92,8 @@ client.on('message', async (msg) => {
 })
 
 // handle all errors
-process.on("uncaughtException", (e) => {	client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
+process.on("uncaughtException", (e) => {
+	client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
 	logger(`ERROR ${e}`, true)
 	process.exit(1)
 })
