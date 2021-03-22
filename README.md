@@ -4,4 +4,4 @@ This project is probably one of the largest undertakings I've gone through. This
 
 ---
 
-I am extremely proud of how this project has gone so far, and I'm excited for its future. As of now, over a thousand lines of code have been written in the span of 18 days.
+I am extremely proud of how this project has gone so far, and I'm excited for its future. According to the Github API, I've written [over 16000 lines of code](https://api.github.com/repos/nicolas377/events-bot/languages) in 27 days.
