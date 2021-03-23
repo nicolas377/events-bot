@@ -1,4 +1,4 @@
-// IIFE to set up variables
+// IIFE (Immediatly Invoked Function Expression) to set up variables
 (function() {
 	global.Discord = require('discord.js')
 	global.CryptoJS = require('crypto-js')
@@ -16,7 +16,7 @@
 	toimport = ['avatar', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning', 'code', 'canvote']
 	toimport.forEach((item) => {
 		module = require(`./modules/${item}`)
-		global[item] = module[Object.keys(module)[0]]
+		global[Object.keys(module)[0]] = module[Object.keys(module)[0]]
 	})
 	readJSON()
 })()
@@ -60,7 +60,7 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('$user')) {
-		return msg.channel.send(userinfo(msg))
+		return userinfo(msg)
 	}
 
 	if (msg.content.startsWith('$addimage')) {
@@ -105,10 +105,12 @@ client.on('message', async (msg) => {
 })
 
 // handle all errors
-process.on("uncaughtException", (e) => {
-	client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
-	logger(`ERROR ${e}`, true)
+process.on("uncaughtException", async (e) => {c
+	client = new Discord.Client()
+	await client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
+	await logger(`ERROR ${e}`, true)
 	process.exit(1)
+	client.login(process.env.TOKEN)
 })
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
 

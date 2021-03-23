@@ -12,7 +12,7 @@ exports.code = function(msg, canvote, users, codes) {
 
 	// the user can vote, so ~~let them eat cake~~ let them have the code
 	code = randomString(64)
-	if (codes.includes(code)) {
+	while (codes.includes(code)) {
 		code = randomString(64)
 	}
 	embed = new Discord.MessageEmbed()

@@ -13,7 +13,6 @@ exports.avatar = function(msg) {
 		format: 'png',
 		dynamic: true,
 		size: 2048
-	}));
-	msg.channel.send(avatarEmbed);
-	return
+	}))
+	return msg.channel.send(avatarEmbed)
 }
