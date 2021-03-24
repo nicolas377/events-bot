@@ -17,6 +17,9 @@ exports.help = function(msg, canvote) {
 		name: '$membercount',
 		value: 'Replies with the number of members in the server.'
 	}, {
+		name: '$userinfo',
+		value: "Gets the user's id, when they joined discord, when they joined the server, their roles, and their avatar. Mention someone to get their userinfo."
+	}, {
 		name: '$electioninfo',
 		value: 'Returns an embed with the infomation of all present and upcoming elections.'
 	})

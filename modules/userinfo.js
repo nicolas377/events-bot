@@ -88,12 +88,22 @@ function timeHandler(existed) {
 function rolegetter(user, msg) {
 	// gets a string that mentions every role a user has
 
+	rolelist = {}
 	str = ''
 	roles = user.roles.member._roles
 	roles.forEach(function(item) {
 		role = msg.guild.roles.cache.get(item)
-		str += `<@&${role.id}> `
+		rolelist[role.position] = role
 	})
+	while (true) {
+		keys = Object.keys(rolelist)
+		keys.sort((a, b) => b - a)
+		keys.forEach((item) => {
+			role = rolelist[item]
+			str += `<@&${role.id}> `
+		})
+		break
+	}
 	return str
 }
 
@@ -106,30 +116,39 @@ function dateStr(date) {
 	return `${year}-${month}-${day}`
 }
 
-exports.userinfo = (msg) => {
+exports.userinfo = (msg, member, author) => {
 	// i want role mentions that dont ping (gotten, needs implement in embed), user age, and avatar
 
-	roles = rolegetter(msg.member, msg)
+	roles = rolegetter(member, msg)
 
-	joinedAtDatestr = dateStr(msg.author.joinedAt)
+	joinedAtDatestr = dateStr(author.joinedAt)
 
 	embed = new Discord.MessageEmbed()
 		.setColor('#0099ff')
-		.setAuthor(msg.author.tag)
+		.setAuthor(author.tag)
 		.setTimestamp()
+		.setThumbnail(author.displayAvatarURL({
+			format: 'png',
+			dynamic: true,
+			size: 512
+		}))
 		.addFields(
 			{
-				name: 'msg.author ID',
-				value: `${msg.author.id}`
+				name: 'User ID',
+				value: `${author.id}`
 			},
 			{
 				name: `Joined Discord`,
-				value: `${dateStr(msg.author.createdAt)} (${timeHandler(Date.now() - msg.author.createdAt)})`
+				value: `${dateStr(author.createdAt)} (${timeHandler(Date.now() - author.createdAt)})`
 			},
 			{
 				name: `Joined Server`,
-				value: `${dateStr(msg.author.joinedAt)} (${timeHandler(Date.now() - msg.author.joinedAt)})`
+				value: `${dateStr(member.joinedAt)} (${timeHandler(Date.now() - member.joinedAt)})`
+			},
+			{
+				name: `Roles`,
+				value: `${roles}`
 			}
 		)
-	return embed
+	return msg.channel.send(embed)
 }

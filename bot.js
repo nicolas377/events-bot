@@ -13,10 +13,10 @@
 // another IIFE to import the functions
 
 (function() {
-	toimport = ['avatar', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning', 'code', 'canvote']
+	toimport = ['avatar', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning', 'code', 'checkcanvote']
 	toimport.forEach((item) => {
 		module = require(`./modules/${item}`)
-		global[Object.keys(module)[0]] = module[Object.keys(module)[0]]
+		global[item] = module[Object.keys(module)[0]]
 	})
 	readJSON()
 })()
@@ -39,28 +39,35 @@ client.on('guildMemberAdd', member => {
 })
 
 client.on('message', async (msg) => {
-	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
-	if (msg.author.bot || await filter(msg) || botping(msg)) {
-		return
+	while (true) {
+		// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
+		if (msg.author.bot || await filter(msg) || botping(msg)) {
+			return
+		}
+		// Save performance by filtering out everything not starting with the prefix
+		if (!msg.content.startsWith('$')) {
+			return
+		}
+		canvote = checkcanvote(msg.member)
+		// support for any caps combo message
+		msg.content = msg.content.toLowerCase()
+		break
 	}
-
-	// Save performance by filtering out everything not starting with the prefix
-	if (!msg.content.startsWith('$')) {
-		return
-	}
-
-	// check if a user can vote
-	canvote = canvote(msg.member)
-
-	// support for any caps combo message
-	msg.content = msg.content.toLowerCase()
 
 	if (msg.content.startsWith('$electioninfo')) {
 		return electioninfo(msg)
 	}
 
-	if (msg.content.startsWith('$user')) {
-		return userinfo(msg)
+	if (msg.content.startsWith('$userinfo')) {
+		var author, member
+		if (msg.mentions.members.first() == undefined) {
+			author = msg.author
+			member = msg.member
+		} else {
+			member = msg.mentions.members.first()
+			author = client.users.cache.get(member.id)
+		}
+		return userinfo(msg, member, author)
 	}
 
 	if (msg.content.startsWith('$addimage')) {
