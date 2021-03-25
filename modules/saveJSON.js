@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const CryptoJS = require('crypto-js')
 const fs = require('fs')
 
@@ -21,5 +20,5 @@ exports.saveJSON = () => {
 		var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
 		saving.election.codes.push(encrypted.toString())
 	})
-	fs.writeFileSync('json/main.json', JSON.stringify(saving))
+	fs.writeFileSync('json/main.json', JSON.stringify(saving, null, "\t"))
 }
