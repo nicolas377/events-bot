@@ -5,11 +5,11 @@ exports.memberAdd = function(member) {
 	existed = timeHandler(existed)
 	member.roles.set(['752701923399958610', '553723645265182720'])
 	embed = new Discord.MessageEmbed()
-	embed.setColor('#0099ff')
-	embed.setAuthor('Member Joined')
-	embed.setDescription(`${member} ${member.user.tag}`)
-	embed.addField('**Account Age**', `${existed}`)
-	embed.setFooter(`ID: ${member.id}`)
-	embed.setTimestamp()
+		.setColor('#0099ff')
+		.setAuthor('Member Joined')
+		.setDescription(`${member} ${member.user.tag}`)
+		.addField('**Account Age**', `${existed}`)
+		.setFooter(`ID: ${member.id}`)
+		.setTimestamp()
 	return embed
 }
