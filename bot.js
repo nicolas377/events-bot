@@ -39,20 +39,16 @@ client.on('guildMemberAdd', member => {
 })
 
 client.on('message', async (msg) => {
-	while (true) {
-		// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
-		if (msg.author.bot || await filter(msg) || botping(msg)) {
-			return
-		}
-		// Save performance by filtering out everything not starting with the prefix
-		if (!msg.content.startsWith('$')) {
-			return
-		}
-		canvote = checkcanvote(msg.member)
-		// support for any caps combo message
-		msg.content = msg.content.toLowerCase()
-		break
+	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
+	if (msg.author.bot || await filter(msg) || botping(msg)) {
+		return
 	}
+	// Save performance by filtering out everything not starting with the prefix
+	if (!msg.content.startsWith('$')) {
+		return
+	}
+	// support for any caps combo message
+	msg.content = msg.content.toLowerCase()
 
 	if (msg.content.startsWith('$electioninfo')) {
 		return electioninfo(msg)
@@ -83,7 +79,7 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('$help')) {
-		return help(msg, canvote)
+		return help(msg, checkcanvote(msg.member))
 	}
 
 	if (msg.content.startsWith('$membercount')) {
@@ -91,7 +87,7 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('$code')) {
-		code = code(msg, canvote, users, codes)
+		code = code(msg, checkcanvote(msg.member), users, codes)
 		if (typeof code === "string") {
 			codes.push(code)
 			users.push(msg.author.id)

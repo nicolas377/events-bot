@@ -28,7 +28,6 @@ exports.filter = function(msg) {
 	if (del) {
 		msg.delete()
 		msg.channel.send(`${msg.author}, watch your language!`)
-		return true
 	}
-	return false
+	return del
 }

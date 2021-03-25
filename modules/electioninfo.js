@@ -9,7 +9,7 @@ exports.electioninfo = function(msg) {
 		name: 'Currently',
 		value: 'There are no running elections right now.'
 	}, {
-		name: 'Next',
+		name: 'Upcoming',
 		value: "We will elect 3 Event Managers on April 3rd and 4th. In order to run, you must have 2 flights and 20 flight points in March.\nThe election will be run using STV, with the code system from this bot."
 	}, {
 		name: 'Future',
