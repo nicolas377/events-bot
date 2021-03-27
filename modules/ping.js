@@ -1,6 +1,3 @@
-const Discord = require('discord.js')
-const client = new Discord.Client()
-
 exports.ping = async function(msg, ping) {
 	let sent = await msg.channel.send('Loading...')
 

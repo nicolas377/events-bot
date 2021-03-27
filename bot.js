@@ -13,7 +13,10 @@
 // another IIFE to import the functions
 
 (function() {
-	toimport = ['avatar', 'timeHandler', 'help', 'electioninfo', 'logger', 'addImage', 'randomString', 'ping', 'filter', 'readJSON', 'saveJSON', 'memberNumber', 'userinfo', 'botping', 'memberRemove', 'memberAdd', 'approve', 'questioning', 'code', 'checkcanvote']
+	toimport = []
+	fs.readdirSync('./modules').forEach(file => {
+  		toimport.push(file.slice(0, -3))
+	})
 	toimport.forEach((item) => {
 		module = require(`./modules/${item}`)
 		global[item] = module[Object.keys(module)[0]]

@@ -23,7 +23,7 @@ exports.code = function(msg, canvote, users, codes) {
 		.addFields(
 			{
 				name: 'Step 1',
-				value: 'Open the google form here: (link)'
+				value: 'Open the google form here: https://forms.gle/vsNgeh93SktsyV7w9'
 			},
 			{
 				name: 'Step 2',
