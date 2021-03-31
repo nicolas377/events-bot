@@ -1,3 +1,7 @@
+String.prototype.cleanup = function() {
+   return this.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "")
+}
+
 function checkdelete(msg) {
 
 	if (msg.channel.id == '760831152109649940') {
@@ -8,7 +12,7 @@ function checkdelete(msg) {
 
 	for (var i = 0; i < words.length; i++) {
 		word = words[i]
-		word = word.replace(/([^a-zA-z0-9]+)/g, '').toLowerCase()
+		word = word.cleanup()
 		words[i] = word
 	}
 

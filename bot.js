@@ -4,6 +4,7 @@
 	global.CryptoJS = require('crypto-js')
 	global.fs = require('fs')
 	global.client = new Discord.Client()
+	global.invites = {}
 	global.users = []
 	global.codes = []
 	global.pics = null
@@ -28,7 +29,14 @@ client.on('ready', () => {
 	// Set the status
 	client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
-	})
+	});
+	(function() {
+		client.guilds.cache.forEach(g => {
+  		g.fetchInvites().then(guildInvites => {
+   	 		invites[g.id] = guildInvites
+		})
+ 	})}
+	)()
 	logger('Ready to work!', true)
 })
 
@@ -37,8 +45,37 @@ client.on('guildMemberRemove', member => {
 })
 
 client.on('guildMemberAdd', member => {
-	client.channels.cache.get('753568398440398969').send(memberAdd(member))
-	client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	// get the invite link
+/*	(function(member) {
+		guild = client.guilds.cache.get("553718744233541656")
+		guild.fetchInvites().then(guildInvites => {
+   		// This is the *existing* invites for the guild.
+ 		const ei = invites[guild.id];
+		// Update the cached invites for the guild.
+    	invites[guild.id] = guildInvites;
+		// Look through the invites, find the one for which the uses went up.
+  	    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
+    	// This is just to simplify the message being sent below (inviter doesn't have a tag property)
+	    const inviter = client.users.get(invite.inviter.id);
+    	// A real basic message with the information we need.
+    	logger(`${member.user.tag} joined using invite code ${invite.code} from ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`, false);
+		});
+	})()*/
+	client.channels.fetch('753568398440398969').send(memberAdd(member))
+	client.channels.fetch('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	(function() {
+		client.guilds.cache.forEach(g => {
+  		g.fetchInvites().then(guildInvites => {
+   			invites[g.id] = guildInvites
+		})
+ 	})}
+	)()
+})
+
+client.on('messageUpdate', function(old, msg) {
+	if (msg.author.bot || filter(msg)) {
+		return
+	}
 })
 
 client.on('message', async (msg) => {
@@ -52,6 +89,10 @@ client.on('message', async (msg) => {
 	}
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
+
+	if (msg.content.startsWith('$restart')) {
+		return restart(msg)
+	}
 
 	if (msg.content.startsWith('$electioninfo')) {
 		return electioninfo(msg)
@@ -111,12 +152,9 @@ client.on('message', async (msg) => {
 })
 
 // handle all errors
-process.on("uncaughtException", async (e) => {c
-	client = new Discord.Client()
-	await client.channels.cache.get('815629216372621373').send(`The bot ran into an error and needs to restart. Please refrain from using the bot until <@550456900861427733> fixes it. ${e}`)
+process.on("uncaughtException", async (e) => {
 	await logger(`ERROR ${e}`, true)
 	process.exit(1)
-	client.login(process.env.TOKEN)
 })
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
 

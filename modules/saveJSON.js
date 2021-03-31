@@ -20,5 +20,5 @@ exports.saveJSON = () => {
 		var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
 		saving.election.codes.push(encrypted.toString())
 	})
-	fs.writeFileSync('json/main.json', JSON.stringify(saving, null, "\t"))
+	fs.writeFileSync('./main.json', JSON.stringify(saving, null, "\t"))
 }

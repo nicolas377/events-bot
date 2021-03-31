@@ -2,7 +2,7 @@ const CryptoJS = require('crypto-js')
 const fs = require('fs')
 
 exports.readJSON = function() {
-	var data = fs.readFileSync('json/main.json')
+	var data = fs.readFileSync('./main.json')
 	data = JSON.parse(data)
 	data.election.users.forEach(function(item) {
 		var decrypted = CryptoJS.AES.decrypt(item, process.env.ENCRYPTION_KEY)
