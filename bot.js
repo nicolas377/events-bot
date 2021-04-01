@@ -30,13 +30,6 @@ client.on('ready', () => {
 	client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
 	});
-	(function() {
-		client.guilds.cache.forEach(g => {
-  		g.fetchInvites().then(guildInvites => {
-   	 		invites[g.id] = guildInvites
-		})
- 	})}
-	)()
 	logger('Ready to work!', true)
 })
 
@@ -45,24 +38,8 @@ client.on('guildMemberRemove', member => {
 })
 
 client.on('guildMemberAdd', member => {
-	// get the invite link
-/*	(function(member) {
-		guild = client.guilds.cache.get("553718744233541656")
-		guild.fetchInvites().then(guildInvites => {
-   		// This is the *existing* invites for the guild.
- 		const ei = invites[guild.id];
-		// Update the cached invites for the guild.
-    	invites[guild.id] = guildInvites;
-		// Look through the invites, find the one for which the uses went up.
-  	    const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
-    	// This is just to simplify the message being sent below (inviter doesn't have a tag property)
-	    const inviter = client.users.get(invite.inviter.id);
-    	// A real basic message with the information we need.
-    	logger(`${member.user.tag} joined using invite code ${invite.code} from ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`, false);
-		});
-	})()*/
-	client.channels.fetch('753568398440398969').send(memberAdd(member))
-	client.channels.fetch('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	client.channels.cache.fetch('753568398440398969').send(memberAdd(member))
+	client.channels.cache.fetch('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 	(function() {
 		client.guilds.cache.forEach(g => {
   		g.fetchInvites().then(guildInvites => {
@@ -80,7 +57,7 @@ client.on('messageUpdate', function(old, msg) {
 
 client.on('message', async (msg) => {
 	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
-	if (msg.author.bot || await filter(msg) || botping(msg)) {
+	if (msg.author.bot || filter(msg) || botping(msg) || mentions(msg)) {
 		return
 	}
 	// Save performance by filtering out everything not starting with the prefix
