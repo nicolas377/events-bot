@@ -1,5 +1,9 @@
 exports.mentions = function(msg) {
 
+	if (msg.mentions.members.first() === undefined) {
+		return false
+	}
+
 	if (msg.mentions.members.array().length > 2) { // if its 3 or more mentions
 		msg.delete({timeout: 5000})
 		msg.channel.send(`${msg.author}, keep it below 3 mentions!`)

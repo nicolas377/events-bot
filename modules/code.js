@@ -11,9 +11,9 @@ exports.code = function(msg, canvote, users, codes) {
 	}
 
 	// the user can vote, so ~~let them eat cake~~ let them have the code
-	code = randomString(64)
-	while (codes.includes(code)) {
-		code = randomString(64)
+	usercode = randomString(64)
+	while (codes.includes(usercode)) {
+		usercode = randomString(64)
 	}
 	embed = new Discord.MessageEmbed()
 		.setColor('#0099ff')
@@ -27,7 +27,7 @@ exports.code = function(msg, canvote, users, codes) {
 			},
 			{
 				name: 'Step 2',
-				value: `Copy this to your clipboard: ${'```' + code + '```'}`
+				value: `Copy this to your clipboard: ${'```' + usercode + '```'}`
 			},
 			{
 				name: 'Step 3',
@@ -41,5 +41,5 @@ exports.code = function(msg, canvote, users, codes) {
 		.setTimestamp()
 	msg.author.send(embed)
 	msg.channel.send(`${msg.author}, check your dm's for instructions!`)
-	return code
+	return usercode
 }

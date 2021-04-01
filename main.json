@@ -1,7 +1,23 @@
 {
 	"election": {
-		"users": [],
-		"codes": []
+		"users": [
+			"U2FsdGVkX19lAPVig5+FeF3wKq91Ek99OeS7biywTiCl5ZXhdJBhfakeR2Hqpdl+",
+			"U2FsdGVkX1+0o1R04mkh9CkyNnOttPlsBuVLwVUsVZCGigV3UsJ/+Hg2/rGeHnRU",
+			"U2FsdGVkX19YxGpDpBHPwYdIefXmf14qVP9a/2hhUIIDLWaDkBsC5REfWT57bhKf",
+			"U2FsdGVkX18/Ba9ps/P7JBttm2z9s2YyeVhwLpbOGw4M/2xomQcPTcLxqb9ofpwU",
+			"U2FsdGVkX18NnOlqbOXuil/naztp6uMrEBANa/Ty9Z5Vc66Mso45S9tXURQg3ZoX",
+			"U2FsdGVkX18CD3wkHyq7bis2Gs6yd6mMrF06JP5pzSQqne1j57ABO/m2qH6EdNOn",
+			"U2FsdGVkX1+vxXTial6gP3lugF0sbVj23SuuoZzWklf3oBomzk/i0GlwTwqNP8km"
+		],
+		"codes": [
+			"U2FsdGVkX1+bZB0P75ZDwkCNKdywHwuxvrVdAkmyD+BMXgewao07RdUsgVraf/GzMi1T6NNs6A3KFrO/ltPhzOiCTZYM7i7S8444ENrezClANTZFg5tnw2M9GSUXQgZW",
+			"U2FsdGVkX1+liAqIab3If/5r7LlEUQm8Wc40Dd+UReVnEGuRimoLy9bRZ3toIFVJo9yInNoh0vOxqOB4oZym1v6zVvvX/O8G90t9Z/eZiOdyQK0oH1FUR3L1ikZz6fGR",
+			"U2FsdGVkX18EG1eKPoTFl+BsAB+cU0zQS62A/hrTkYCARE01o9LA1FwoW8DQA037OTdvnlxEFA5/A86vKBg/GXPuo2w/mUlyEcjf8OvM0VhshbTTkHPd5P5ERUMPzhWe",
+			"U2FsdGVkX19Q7pAx4UzM0POAtiIgl2iLxV3uOUOSuDucH9Mj/g6qPRrdiKt3OMDuBgJvddI/sjnyrPvgnJSVOh8FwjNV9l3efMxjtXNL66Y7XZjZCGxtqUodXJjn+EsA",
+			"U2FsdGVkX18cMo62EbsCatBLGwtn63av8G8Hxo2WTXPUKHpdNzWNLu9qW4512fD4Q8CncfhZA4OA+FC/JAS9pGrZahLZbcDkQ+1jvFAFzVyZCQ4+vK2QZVxNbssBMe5v",
+			"U2FsdGVkX1/BlrcE9KHVKxM+QhFFRiaktREiNd/EC4yhCWQlXOyTXpw+lSzvW6uz3a8NWfxqk5/hgXK8jdkjAqpfl0dOmly/T8Q/rkFYLBl4rl7WR6iXYW74V9CVlLIU",
+			"U2FsdGVkX18ueZgfvsn5mBHNGyJ1+T1kf+w3IIPN1xVhI7Ma67JBl8876cEy6CHp9Ukoa61kU248iNm9X5h4i6lRqY4HmLwRWHZWONahZJPaF7vYmeK9aibNBgTq0CRb"
+		]
 	},
 	"images": [
 		"https://cdn.discordapp.com/attachments/553718744657035274/815039884849840128/unknown.png",
@@ -23,7 +39,6 @@
 		"https://cdn.discordapp.com/attachments/553760187383808021/815405993595764746/unknown.png",
 		"https://cdn.discordapp.com/attachments/553760187383808021/815406262917136394/unknown.png",
 		"https://cdn.discordapp.com/attachments/760831152109649940/816324120798691408/unknown.png",
-		"https://cdn.discordapp.com/attachments/760831152109649940/816324233474605066/unknown.png",
 		"https://cdn.discordapp.com/attachments/760831152109649940/816324656675291136/unknown.png",
 		"https://cdn.discordapp.com/attachments/760831152109649940/816324758895460352/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/817610612740849674/unknown.png",
@@ -31,7 +46,6 @@
 		"https://cdn.discordapp.com/attachments/553718744657035274/817610843469512744/unknown.png",
 		"https://cdn.discordapp.com/attachments/553760187383808021/818152150777200640/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/818867716655677450/unknown.png",
-		"https://cdn.discordapp.com/attachments/553718744657035274/818867979441406023/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/818868188778987520/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/818869049182257252/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/818869550228439073/unknown.png"
