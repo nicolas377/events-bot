@@ -101,3 +101,46 @@
 		"porn"
 	]
 }
+
+	],
+	"timezones": {
+		"468560464968810496": "Africa/Cairo",
+		"760086351122137089": "Asia/Riyadh",
+		"721397321736257578": "America/New_York",
+		"545423117900578830": "America/Toronto",
+		"648932580334501909": "America/Chicago",
+		"819288929945518082": "America/New_York",
+		"342730028032720896": "America/New_York",
+		"716663011829612567": "Asia/Nicosia",
+		"553440883715080192": "America/Los_Angeles",
+		"775249147451408386": "Europe/London",
+		"654910958782775336": "Europe/Amsterdam",
+		"735852756715307090": "Europe/London",
+		"760987675611496459": "Asia/Irkutsk",
+		"753284296583938158": "Asia/Kolkata",
+		"778830387777765378": "Asia/Irkutsk",
+		"338699055943254030": "America/New_York",
+		"299589959789051904": "Europe/Skopje",
+		"751833777252073504": "Asia/Dubai",
+		"666723169129988126": "Europe/Amsterdam",
+		"623693895854850050": "America/Los_Angeles",
+		"192402547862929409": "America/Chicago",
+		"270968684497862657": "Pacific/Auckland",
+		"575980972437143552": "America/New_York",
+		"422115994463633409": "Europe/Riga",
+		"550456900861427733": "America/New_York",
+		"439136515218604032": "Europe/Amsterdam",
+		"473859714162360320": "Europe/Amsterdam",
+		"811191285863022612": "Asia/Jakarta",
+		"783715935118163984": "Europe/Prague",
+		"663765323501273108": "America/Los_Angeles",
+		"662392633615843345": "America/New_York",
+		"807875220630929459": "America/New_York",
+		"740188544504561664": "Asia/Singapore",
+		"733926659266183248": "Asia/Kolkata",
+		"627866350714617858": "Europe/London",
+		"736497723502493757": "Asia/Rangoon",
+		"630864594860244992": "America/Los_Angeles",
+		"599607979183964181": "Europe/Bucharest"
+	}
+}
