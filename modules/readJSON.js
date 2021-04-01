@@ -14,5 +14,6 @@ exports.readJSON = function() {
 	})
 	pics = data.images
 	removing = data.filterlist
+	timezones = data.timezones
 	return
 }
