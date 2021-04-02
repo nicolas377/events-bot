@@ -14,5 +14,15 @@ exports.readJSON = function() {
 	})
 	pics = data.images
 	removing = data.filterlist
+	// read in the key-value pairs
+	timezonesJSON = data.timezones
+	timezones = []
+	// put each pair into an object
+	for (const [key, value] of Object.entries(timezonesJSON)) {
+  	let i = {id: key, ianaTz: value}
+		// and push it to the new array
+		timezones.push(i)
+	}
+
 	return
 }
