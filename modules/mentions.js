@@ -1,6 +1,6 @@
 exports.mentions = function(msg) {
 
-	if (msg.mentions.members === undefined) {
+	if (typeof msg.mentions.members.first() == undefined) {
 		return false
 	}
 

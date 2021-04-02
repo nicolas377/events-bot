@@ -1,5 +1,5 @@
-const dotenv = require('dotenv');
-dotenv.config();
+/*const dotenv = require('dotenv');
+dotenv.config();*/
 
 
 // IIFE (Immediately Invoked Function Expression) to set up variables
@@ -60,9 +60,18 @@ client.on('message', async (msg) => {
 		return
 	}
 
-	if (filter(msg) || botping(msg) || mentions(msg)) {
+	if (filter(msg)) {
 		return
 	}
+
+	if (await botping(msg)) {
+		return
+	}
+
+	if (mentions(msg)) {
+		return
+	}
+
 	// Save performance by filtering out everything not starting with the prefix
 	if (!msg.content.startsWith('$')) {
 		return
@@ -78,7 +87,7 @@ client.on('message', async (msg) => {
 		return electioninfo(msg)
 	}
 
-	if (msg.content.startsWith('$notwar')) {
+	if (msg.content.startsWith('$war')) {
 		msg.delete()
 		if (Math.random() > .9) {
 			id = setInterval(() => {
