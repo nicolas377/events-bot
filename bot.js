@@ -101,7 +101,7 @@ client.on('message', async (msg) => {
 		userroles = msg.member.roles.cache
 		elite_crew_id = "760665499330936922"
 		bossman_id = "553723628957728820"
-		if (userroles.find(r => r.id === elite_crew_id) || userroles.find(r => r.id === bossman_id)) {
+		if (userroles.has(elite_crew_id) || userroles.has(bossman_id)) {
 			logger("generated timezone list")
 			return memberstzs(msg)
 		} else {
