@@ -41,6 +41,9 @@ client.on('guildMemberAdd', member => {
 })
 
 client.on('messageUpdate', function(old, msg) {
+	if (msg.author.bot) {
+		return
+	}
 	filter(msg)
 })
 
@@ -127,8 +130,8 @@ client.on('message', async (msg) => {
 })
 
 // handle all errors
-process.on("uncaughtException", async (e) => {
-	await logger(`ERROR ${e}`, true)
+process.on("uncaughtException", (e) => {
+	logger(`ERROR ${e}`, true)
 	process.exit(1)
 })
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
