@@ -1,7 +1,7 @@
-exports.botping = function(msg) {
-	if (msg.content == '<@780458120605990954>') {
-		var sendingmsg = 'Hello! My command prefix is `$`\nIf you want to get a list of my commands, run `$help`'
-		msg.channel.send(sendingmsg)
+exports.botping = async function(msg) {
+	if (msg.content.startsWith('<@!780458120605990954>')) {
+		msg.delete()
+		msg.channel.send(`urmom`)
 		return true
 	}
 	return false

@@ -78,7 +78,7 @@ client.on('message', async (msg) => {
 		return electioninfo(msg)
 	}
 
-	if (msg.content.startsWith('$war')) {
+	if (msg.content.startsWith('$notwar')) {
 		msg.delete()
 		if (Math.random() > .9) {
 			id = setInterval(() => {
