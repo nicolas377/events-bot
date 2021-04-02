@@ -36,7 +36,7 @@ client.on('ready', () => {
 	/*client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
 	});*/
-	client.user.setActivity('Declaring war on my maker | $help');
+	client.user.setActivity('In Soviet Russia, war declare you! | $help');
 	logger('Ready to work!', true)
 })
 
