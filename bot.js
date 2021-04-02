@@ -1,12 +1,21 @@
-// IIFE (Immediatly Invoked Function Expression) to set up variables
+const dotenv = require('dotenv');
+dotenv.config();
+
+
+// IIFE (Immediately Invoked Function Expression) to set up variables
 (function() {
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
-	global.client = new Discord.Client()
+	// bot intents
+	myintents = new Discord.Intents(Discord.Intents.NON_PRIVILEGED)
+	myintents.add('GUILD_MEMBERS')
+	global.client = new Discord.Client({ws: {intents: myintents}})
+	global.invites = {}
 	global.users = []
 	global.codes = []
 	global.pics = null
 	global.removing = null
+	global.timezones = []
 })(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
 // another IIFE to import the functions
@@ -88,6 +97,10 @@ client.on('message', async (msg) => {
 		return userinfo(msg, member, author)
 	}
 
+	if (msg.content.startsWith('$tzrefresh')) {
+		return memberstzs(msg)
+	}
+
 	if (msg.content.startsWith('$addimage')) {
 		return addImage(msg)
 	}
@@ -125,7 +138,7 @@ client.on('message', async (msg) => {
 	if (msg.content.startsWith('$questioning')) {
 		return questioning(msg)
 	}
-	
+
 	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
