@@ -33,9 +33,10 @@ dotenv.config();
 
 client.on('ready', () => {
 	// Set the status
-	client.user.setActivity('the GeoFS Events Server | $help', {
+	/*client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
-	});
+	});*/
+	client.user.setActivity('Declaring war on my maker | $help');
 	logger('Ready to work!', true)
 })
 
@@ -49,9 +50,6 @@ client.on('guildMemberAdd', member => {
 })
 
 client.on('messageUpdate', function(old, msg) {
-	if (msg.author.bot) {
-		return
-	}
 	filter(msg)
 })
 
@@ -78,6 +76,21 @@ client.on('message', async (msg) => {
 
 	if (msg.content.startsWith('$electioninfo')) {
 		return electioninfo(msg)
+	}
+
+	if (msg.content.startsWith('$war')) {
+		msg.delete()
+		if (Math.random() > .9) {
+			id = setInterval(() => {
+				client.channels.cache.get('553760187383808021').send(`${msg.author} WARRRRRRRRRRRRRRRRRRRRRRRRRRRR`)
+			}, 1000)
+			setTimeout(async function() {
+				client.channels.cache.get('553760187383808021').send(`War complete.`)
+				clearInterval(id)
+			}, 10000)
+			return
+		}
+		return
 	}
 
 	if (msg.content.startsWith('$picture')) {
