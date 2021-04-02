@@ -44,8 +44,8 @@ client.on('guildMemberRemove', member => {
 })
 
 client.on('guildMemberAdd', member => {
-	client.channels.cache.fetch('753568398440398969').send(memberAdd(member))
-	client.channels.cache.fetch('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	client.channels.cache.get('753568398440398969').send(memberAdd(member))
+	client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
 })
 
 client.on('messageUpdate', function(old, msg) {
@@ -96,16 +96,9 @@ client.on('message', async (msg) => {
 		return userinfo(msg, member, author)
 	}
 
-	if (msg.content.startsWith('$tzrefresh')) {
-		userroles = msg.member.roles.cache
-		elite_crew_id = "760665499330936922"
-		bossman_id = "553723628957728820"
-		if (userroles.has(elite_crew_id) || userroles.has(bossman_id)) {
-			logger("generated timezone list")
-			return memberstzs(msg)
-		} else {
-			return
-		}
+	if (msg.content.startsWith('$timezone')) {
+		return msg.channel.send(`${msg.author}, that command isn't ready yet!`)
+		// return timezone(msg)
 	}
 
 	if (msg.content.startsWith('$addimage')) {
