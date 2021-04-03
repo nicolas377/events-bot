@@ -38,6 +38,7 @@ client.on('ready', () => {
 	});*/
 	client.user.setActivity('In Soviet Russia, war declare you! | $help');
 	logger('Ready to work!', true)
+	saveJSON()
 })
 
 client.on('guildMemberRemove', member => {
@@ -46,7 +47,7 @@ client.on('guildMemberRemove', member => {
 
 client.on('guildMemberAdd', member => {
 	client.channels.cache.get('753568398440398969').send(memberAdd(member))
-	client.channels.cache.get('553733333234876426').send(`Welcome to GeoFS Events ${member}! Please read the <#553929583397961740> and <#553720929063141379>, and then ping an online Elite Crew member to let you in!`)
+	client.channels.cache.get('553733333234876426').send(`Welcome to the GeoFS Events Discord server ${member}, and thanks for joining!\n\nYou're in a waiting room, which is just an extra layer of security to prevent raiders and hackers from getting everything immediately.\n\nMake sure to read the <#553929583397961740> and the <#553720929063141379> channel for more information, then ping an online moderator to let you in!`)
 })
 
 client.on('messageUpdate', function(old, msg) {
@@ -79,6 +80,10 @@ client.on('message', async (msg) => {
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
 
+	if (msg.content.startsWith('$uptime')) {
+		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
+	}
+
 	if (msg.content.startsWith('$restart')) {
 		return restart(msg)
 	}
@@ -89,14 +94,14 @@ client.on('message', async (msg) => {
 
 	if (msg.content.startsWith('$war')) {
 		msg.delete()
-		if (Math.random() > .9) {
+		if (Math.random() > .5) {
 			id = setInterval(() => {
 				client.channels.cache.get('553760187383808021').send(`${msg.author} WARRRRRRRRRRRRRRRRRRRRRRRRRRRR`)
-			}, 1000)
+			}, 2000)
 			setTimeout(async function() {
 				client.channels.cache.get('553760187383808021').send(`War complete.`)
 				clearInterval(id)
-			}, 10000)
+			}, 30000)
 			return
 		}
 		return
@@ -175,12 +180,7 @@ client.login(process.env.TOKEN)
 
 // HTTP server
 
-const http = require('http')
-const server = http.createServer((request, response) => {
-	response.writeHead(200)
-	response.end('ok')
-})
-server.listen(3000)
+require('./server/server.js')
 
 // since you've made it this far, you've been distracted.
 // now go do whatever it is you were doing before

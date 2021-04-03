@@ -14,6 +14,9 @@ exports.help = function(msg, canvote) {
 		name: '$av',
 		value: "Gets the avatar of the mentioned user if they're in the server. Defaults to the person sending the msg."
 	}, {
+		name: '$picture',
+		value: "Sends a random picture from the bot's reserves."
+	}, {
 		name: '$membercount',
 		value: 'Replies with the number of members in the server.'
 	}, {
@@ -26,7 +29,7 @@ exports.help = function(msg, canvote) {
 	if (canvote) {
 		embed.addField('$code', "Election command. DM's the user the election code, along with the instructions for to vote.")
 	}
-	if (msg.member.roles.cache.some(role => role.name === 'Bot mod')) {
+	if (msg.member.roles.cache.has('766386531681435678')) {
 		embed.addField('$approve', 'Gives a user in the waiting room the Junior Pilot role and sends a welcome message.')
 		embed.addField('$questioning', "Logs all the roles of the user, then overwrites the user's roles with the questioning role.")
 		embed.addField('$addimage', "Adds a new image to the bot's reserves. Requires a file attachment.")

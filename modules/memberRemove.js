@@ -1,14 +1,14 @@
 const Discord = require('discord.js')
 
 function rolegetter(user, client) {
-	// gets a string that mentions every role a user has
+// gets a string that mentions every role a user has
 	guild = client.guilds.cache.get('553718744233541656')
 
 	rolelist = {}
 	str = ''
 	roles = user.roles.member._roles
 	roles.forEach(function(item) {
-		role = msg.guild.roles.cache.get(item)
+		role = client.roles.cache.get(item)
 		rolelist[role.position] = role
 	})
 	while (true) {

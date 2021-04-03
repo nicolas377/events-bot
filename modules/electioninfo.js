@@ -7,7 +7,7 @@ exports.electioninfo = function(msg) {
 	embed.setAuthor(msg.author.tag)
 	embed.addFields({
 		name: 'Currently',
-		value: "We will elect 3 Event Managers on April 3rd and 4th.\nThe election will be run using STV, with the code system from this bot."
+		value: "We are electing 3 Event Managers right now!\nFirst Officer and up, look in <#779519068897280020> for more details."
 	}/*, {
 		name: 'Upcoming',
 		value: "Elections will be here 4 weeks before polls open."
