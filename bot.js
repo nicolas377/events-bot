@@ -1,5 +1,5 @@
-/*const dotenv = require('dotenv');
-dotenv.config();*/
+/*const dotenv = require('dotenv')
+dotenv.config()*/
 
 
 // IIFE (Immediately Invoked Function Expression) to set up variables
@@ -35,10 +35,10 @@ client.on('ready', () => {
 	// Set the status
 	/*client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
-	});*/
-	client.user.setActivity('In Soviet Russia, war declare you! | $help');
-	logger('Ready to work!', true)
+	})*/
+	client.user.setActivity('In Soviet Russia, war declare you! | $help')
 	saveJSON()
+	logger(`Ready to work!`, true)
 })
 
 client.on('guildMemberRemove', member => {

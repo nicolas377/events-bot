@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap');
+nav ul {
+	text-align: center;
+	list-style-type: none;
+	background-color: #9ed6f0;
+	border-radius: 10px;
+	font-family: sans-serif;
+	font-weight: bold;
+	padding: 16px;
+}
+
+nav ul li {
+	display: inline;
+	border-right: 2px solid #111111;
+	padding-right: 40px;
+	padding-left: 30px;
+	font-size: 30px;
+}
+
+nav ul li:last-child {
+	border-right: none;
+}
+
+nav ul li a {
+	text-decoration: none;
+	color: #545454;
+}
+
+nav li.selected {
+	color: #606060;
+}
+
+nav ul li a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	font-family: Kiwi Maru;
+}
+
+p {
+	font-family: Kiwi Maru;
+}
