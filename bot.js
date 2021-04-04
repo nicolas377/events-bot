@@ -12,9 +12,9 @@ dotenv.config()*/
 	global.client = new Discord.Client({ws: {intents: myintents}})
 	global.users = []
 	global.codes = []
+	global.timezones = {}
 	global.pics = null
 	global.removing = null
-	global.timezones = []
 })(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
 // another IIFE to import the functions
@@ -37,7 +37,7 @@ client.on('ready', () => {
 		type: 'WATCHING'
 	})*/
 	client.user.setActivity('In Soviet Russia, war declare you! | $help')
-	saveJSON()
+	readJSON()
 	logger(`Ready to work!`, true)
 })
 
@@ -92,21 +92,6 @@ client.on('message', async (msg) => {
 		return electioninfo(msg)
 	}
 
-	if (msg.content.startsWith('$war')) {
-		msg.delete()
-		if (Math.random() > .5) {
-			id = setInterval(() => {
-				client.channels.cache.get('553760187383808021').send(`${msg.author} WARRRRRRRRRRRRRRRRRRRRRRRRRRRR`)
-			}, 2000)
-			setTimeout(async function() {
-				client.channels.cache.get('553760187383808021').send(`War complete.`)
-				clearInterval(id)
-			}, 30000)
-			return
-		}
-		return
-	}
-
 	if (msg.content.startsWith('$picture')) {
 		return msg.channel.send(pics[Math.floor(Math.random() * pics.length)])
 	}
@@ -123,9 +108,9 @@ client.on('message', async (msg) => {
 		return userinfo(msg, member, author)
 	}
 
-	if (msg.content.startsWith('$timezone')) {
-		return msg.channel.send(`${msg.author}, that command isn't ready yet!`)
-		// return timezone(msg)
+	if (msg.content.startsWith('$addtimezone') || msg.content.startsWith('$removetimezone') || msg.content.startsWith('$edittimezone')) {
+		return msg.channel.send("That command is still in development!")
+		return timezone(msg)
 	}
 
 	if (msg.content.startsWith('$addimage')) {

@@ -1,34 +1,9 @@
 {
 	"election": {
-		"users": [
-			"U2FsdGVkX1947sdFwUsyUdZ58qKJIwGu5z4Ql0UosWC50K+upDIVABKM0Txycb/V",
-			"U2FsdGVkX18B8xLRtRahbGCaQsJ6RDO5ykVy0sDmEBhzv7rpV+C8RMj/BQqyrexP",
-			"U2FsdGVkX1/EgUTu8qejA3d1310QeOdEakZNzwpSdcjnALEYlWxAMSk2VVTIJWih",
-			"U2FsdGVkX1/ICKRAbB7wqyptpsw4gemg/M0HT1OoHFBogi31t080lUpSLMBnQzUy",
-			"U2FsdGVkX18dXgvltZwfINSjSP5AYb7o2/3fLHYbwWWYDeuHpbLUflbb8MSb7374",
-			"U2FsdGVkX1/jY0wvRexj80+hh7zFOJoCtqF8Yehg5oNCu+q8WZc8/Wc+kqUph1wY",
-			"U2FsdGVkX18chaPwr7D3nRH1rGnLbjA74qxRNWmc8sp7RuYDGRD5svu5TYYMn85k",
-			"U2FsdGVkX18H/OxFOJegk+Av/LQtqb/thTG8F/T6+HeZq+S5CSBqoyOU8B1u3pw4",
-			"U2FsdGVkX1/0J8CikfbrnguUAET9Zcj0i7JNEDGh6UsHi5l7O67lMvsMK6r2SmZo",
-			"U2FsdGVkX198iaRPa/7Qh+AFrj7BKDhBCq5PeuLe3frOirrh4uKCAYYj6r/aznWf",
-			"U2FsdGVkX1/mCduhBFQ2dOKRE+sQm9CpGNw+UVyr3YkZ6B88UAH0SEgFyRZwWK5u",
-			"U2FsdGVkX1/wycrHCEQUCM2XqCY3SYFcX+2yTLLi8Ora7Q8E8Rcumx6Jt/J6mAXo"
-		],
-		"codes": [
-			"U2FsdGVkX18TxcwS1dRL379+YxsV6rWLH0a7YQCQuteGhh8xy9pn+MhbQdRu3SnHh8Xg8de9NvY8dLEwkbdMdXGEKJhlrnKrI1MHPJusEEakPMej0yO2ZKpa0ZA1RiRE",
-			"U2FsdGVkX18lLqZcADyMfWEQD8f+QEzodc2KDcP/79YWPI33pPvUUojCIYx0fg+hg6wMWLAK9gScNp0NkjV8mgnmW8kST9rWxu0jqI9BMbnigvQyBOvLSOElW53Fwd7Y",
-			"U2FsdGVkX1/wUSDhcWy12BhtlPNU1tCfMjJLiwyACcmoLGHuhfIoMoC4CyZqioUKRv5EfzRGC/jGTwDzyUbfzx3uNxYOSCnQ9uzVJ1LlLIkr5Y0SDjuxqPgSenPDx/Zi",
-			"U2FsdGVkX1/f714n3O5+xDiSFiT920O8rpeOTtg2WaxbYA8wvtAiuZ9jDWIGX9Zd59nkg524oFf2bU/bgkWzFit88Lw2A2WJM7efhYaSLI3fuZaSDCIbyv4gFYxpkrsk",
-			"U2FsdGVkX19tJ8ZP/XlbZixiP/4CvksCBJ2SgApShPIbQjw2+szCGQ8cpe3XtEbGE6lVOvrK0nB/ioDgvdGGZXKHMu3HyESzAhBTTK7OOTmAilsja8yq8+m6W+QHYgV1",
-			"U2FsdGVkX19lle78mQFCmMS3mekbjRLQvFEMNiSLxVMpKZJc+j7cA7frjFLmVQGOKc8cyCQ6CmDUtTbdyEsIWjLWcbOOTHqhbV5bPvygqqk4yzr7LtcPWWGlsJHhnCj0",
-			"U2FsdGVkX180NvunMResRUMTsyp51NLV3IyANqr84plPS/rbB8lb7fUpV1aAu1kigPHmSJGgpQUHzu6cBXNEgRubFbp848jgTfYOyztwHDw9YmkWoWZFtG3xaTnTOkbJ",
-			"U2FsdGVkX1+4xS3G8sX6+ygOMZZnGGRpyDCvwe1DPzlWdHmOgz6A2Mu6L1f7iOGInZLy+Z+bQdWPuKMpOusdq/iyinOoxV2k/nthHJVO0qLq+jnlLebrKbBLbyLtfoE8",
-			"U2FsdGVkX18Ex2PdaVOU2XkpKMWd6rRR8yFUJsaBGDEUmhsYdD1HPyO4hyT6yGa0ezphYBxQjPMp3RlmWoYHkJNQLWESlkdQUdXAO4XZPwvwgezdLI0Ss+pF17LfrUIW",
-			"U2FsdGVkX1/vTOncxQqnUVWoGeQocDuOm4zNy+JcQ7rLXSIKwPtqYzu2/Wex+lkR+SBsJPYOSmxvnkHT+lIeBl9K+UUclIcmKUSGM6z4GXchsfygYF/dC2y0MLn3OPEF",
-			"U2FsdGVkX19mnuoTFRTdR5PI9rodYwLHbZUJQKFR9XHcv61qPBgzlaVVyvErSC3pyG2zYL7I7NvJ9cJrQw31TEiDBVtJzfuHaA98eVnKy2e8GCfYoTlWRXfjwqJpQNpE",
-			"U2FsdGVkX1+FkjNBaYBaUTPce03LZn9+3z18PF4VQaQKrjNJSz1uP7AKzj8KGHRS4l2dojylw5BbMArp50Kp7bHQIjdK6tNQqP7aupwPMb3Z/fJsNs5oIMFnaBQW0deV"
-		]
+		"users": [],
+		"codes": []
 	},
+	"timezones": {},
 	"images": [
 		"https://cdn.discordapp.com/attachments/553718744657035274/815039884849840128/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/815040081282203668/unknown.png",
@@ -63,7 +38,8 @@
 		"https://cdn.discordapp.com/attachments/760831152109649940/816324758895460352/unknown.png",
 		"https://cdn.discordapp.com/attachments/760831152109649940/827588306090328094/unknown.png",
 		"https://media.discordapp.net/attachments/553760187383808021/827348780269174864/unknown.png",
-		"https://media.discordapp.net/attachments/553760187383808021/827349009290625024/Screenshot_2021-04-01_204408.png"
+		"https://media.discordapp.net/attachments/553760187383808021/827349009290625024/Screenshot_2021-04-01_204408.png",
+		"https://cdn.discordapp.com/attachments/553760187383808021/828045361830166548/unknown.png"
 	],
 	"filterlist": [
 		"fuck",

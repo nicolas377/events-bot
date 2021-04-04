@@ -7,11 +7,13 @@ exports.saveJSON = () => {
 			users: [],
 			codes: []
 		},
+		timezones: {},
 		images: [],
 		filterlist: []
 	}
 	saving.images = pics
 	saving.filterlist = removing
+	saving.timezones = timezones
 	users.forEach(function(item) {
 		var encrypted = CryptoJS.AES.encrypt(item, process.env.ENCRYPTION_KEY)
 		saving.election.users.push(encrypted.toString())
