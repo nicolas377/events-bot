@@ -3,7 +3,9 @@
 		"users": [],
 		"codes": []
 	},
-	"timezones": {},
+	"timezones": {
+		"550456900861427733": "-4:00"
+	},
 	"images": [
 		"https://cdn.discordapp.com/attachments/553718744657035274/815039884849840128/unknown.png",
 		"https://cdn.discordapp.com/attachments/553718744657035274/815040081282203668/unknown.png",

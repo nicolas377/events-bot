@@ -5,12 +5,15 @@ function jsonhandler(uid, timezone, remove = false) {
 	if (remove) {
 		if (timezones.hasOwnProperty(uid)) {
 			delete timezones[uid]
+			saveJSON()
 			return true
 		}
 		return false
 	}
 
 	timezones[uid] = timezone
+	saveJSON()
+	return true
 }
 
 function getOffset(msg) {
@@ -29,17 +32,37 @@ function getOffset(msg) {
 
 }
 
-function addTimezone(msg) {
+function getUsername(id) {
+	guild = client.guilds.cache.get("553718744233541656")
+	member = guild.members.cache.get(id)
+	return member.displayName
+}
+
+async function updateMessage(timezones) {
+	messageinchannel = await client.channels.cache.get('828626472512126986').messages.fetch("828626939803074620")
+	tosend = ""
+	for (const property in timezones) {
+		var uid = property
+		var offset = timezones[property]
+		if (tosend == "") {
+			tosend += `**${getUsername(uid)}**: ${offset}`
+		} else {
+			tosend += `\n**${getUsername(uid)}**: ${offset}`
+		}
+	}
+	messageinchannel.edit(tosend)
+}
+
+function addTimezone(msg, client, timezones) {
 	if (msg.content.match(/^[A-Za-z]+$/)) {
 		return msg.channel.send('You need to add an offset to that!')
 	}
 	var offset = getOffset(msg)
-	console.log(tc.zone(offset))
-	return msg.channel.send(offset)
-}
-
-function editTimezone(msg) {
-	return
+	if (jsonhandler(msg.author.id, offset)) {
+		updateMessage(timezones, client)
+		return msg.channel.send("Your offset has been added!\n**NOTE:** This system does not account for Daylight Savings Time changes. Run this command again to update your timezone.")
+	}
+	return msg.channel.send("Seems like something went wrong. Try again in a few minutes.")
 }
 
 function deleteTimezone(msg) {
@@ -51,13 +74,14 @@ function deleteTimezone(msg) {
 
 exports.timezone = async function(msg) {
 	global.timezones = timezones
-	if (msg.content.startsWith('$addtimezone')) {
-		return addTimezone(msg)
+	global.client = client
+	if (msg.content.startsWith('addtimezone')) {
+		return addTimezone(msg, client, timezones)
 	}
-	if (msg.content.startsWith('$edittimezone')) {
-		return editTimezone(msg)
-	}
-	if (msg.content.startsWith('$removetimezone')) {
+	if (msg.content.startsWith('removetimezone')) {
 		return deleteTimezone(msg)
+	}
+	if (msg.content.startsWith('updatemessage')) {
+		return updateMessage(timezones, client)
 	}
 }

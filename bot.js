@@ -57,19 +57,7 @@ client.on('messageUpdate', function(old, msg) {
 client.on('message', async (msg) => {
 	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
 
-	if (msg.author.bot) {
-		return
-	}
-
-	if (filter(msg)) {
-		return
-	}
-
-	if (await botping(msg)) {
-		return
-	}
-
-	if (mentions(msg)) {
+	if (msg.author.bot || filter(msg) || await botping(msg) || mentions(msg)) {
 		return
 	}
 
@@ -77,26 +65,27 @@ client.on('message', async (msg) => {
 	if (!msg.content.startsWith('$')) {
 		return
 	}
+	msg.content = msg.content.substring(1)
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
 
-	if (msg.content.startsWith('$uptime')) {
+	if (msg.content.startsWith('uptime')) {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
 	}
 
-	if (msg.content.startsWith('$restart')) {
+	if (msg.content.startsWith('restart')) {
 		return restart(msg)
 	}
 
-	if (msg.content.startsWith('$electioninfo')) {
+	if (msg.content.startsWith('electioninfo')) {
 		return electioninfo(msg)
 	}
 
-	if (msg.content.startsWith('$picture')) {
+	if (msg.content.startsWith('picture')) {
 		return msg.channel.send(pics[Math.floor(Math.random() * pics.length)])
 	}
 
-	if (msg.content.startsWith('$userinfo')) {
+	if (msg.content.startsWith('userinfo')) {
 		var author, member
 		if (msg.mentions.members.first() == undefined) {
 			author = msg.author
@@ -108,32 +97,31 @@ client.on('message', async (msg) => {
 		return userinfo(msg, member, author)
 	}
 
-	if (msg.content.startsWith('$addtimezone') || msg.content.startsWith('$removetimezone') || msg.content.startsWith('$edittimezone')) {
-		return msg.channel.send("That command is still in development!")
+	if (msg.content.startsWith('addtimezone') || msg.content.startsWith('removetimezone') || msg.content.startsWith('updatemessage')) {
 		return timezone(msg)
 	}
 
-	if (msg.content.startsWith('$addimage')) {
+	if (msg.content.startsWith('addimage')) {
 		return addImage(msg)
 	}
 
-	if (msg.content.startsWith('$ping')) {
+	if (msg.content.startsWith('ping')) {
 		return ping(msg, client.ws.ping)
 	}
 
-	if (msg.content.startsWith('$av')) {
+	if (msg.content.startsWith('av')) {
 		return avatar(msg)
 	}
 
-	if (msg.content.startsWith('$help')) {
+	if (msg.content.startsWith('help')) {
 		return help(msg, checkcanvote(msg.member))
 	}
 
-	if (msg.content.startsWith('$membercount')) {
+	if (msg.content.startsWith('membercount')) {
 		return msg.channel.send(`There are ${memberNumber(msg)} members in the server.`)
 	}
 
-	if (msg.content.startsWith('$code')) {
+	if (msg.content.startsWith('code')) {
 		usercode = code(msg, checkcanvote(msg.member), users, codes)
 		if (typeof usercode === "string") {
 			codes.push(usercode)
@@ -143,11 +131,11 @@ client.on('message', async (msg) => {
 		return
 	}
 
-	if (msg.content.startsWith('$approve')) {
+	if (msg.content.startsWith('approve')) {
 		return approve(msg)
 	}
 
-	if (msg.content.startsWith('$questioning')) {
+	if (msg.content.startsWith('questioning')) {
 		return questioning(msg)
 	}
 
@@ -155,10 +143,10 @@ client.on('message', async (msg) => {
 })
 
 // handle all errors
-process.on("uncaughtException", (e) => {
+/*process.on("uncaughtException", (e) => {
 	logger(`ERROR ${e}`, true)
 	process.exit(1)
-})
+})*/
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
 
 client.login(process.env.TOKEN)
