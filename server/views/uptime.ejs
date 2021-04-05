@@ -5,7 +5,6 @@
 		<meta charset="UTF-8">
 		<style>
 			@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap');
-			@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 			nav ul {
 			text-align: center;
 			list-style-type: none;
@@ -35,11 +34,11 @@
 			nav ul li a:hover {
 			text-decoration: underline;
 			}
-			h1, h2, h3 {
+			h1 {
 			font-family: Kiwi Maru;
 			}
-			p, h4 {
-			font-family: Roboto;
+			p {
+			font-family: Kiwi Maru;
 			}
 		</style>
 	</head>
@@ -52,13 +51,8 @@
 			</ul>
 		</nav>
 		<center>
-			<h1>Bot Help</h1>
+			<h1>Uptime</h1>
 		</center>
-		<h3>Prefix and Syntax</h3>
-		<p>Prefix: <code>$</code><br>Example: <code>$help</code></p>
-		<h4>Syntax</h4>
-		<p><code>&lt;&gt;</code> - required paramater<br><strong>REPLACE WITH VALUE IN ACTUAL COMMAND</strong></p>
-		<h3>Commands</h3>
-		<p>Command will arrive soon.</p>
+		<p class="uptime">I've been running for <%= min %> minutes! (That's <%= sec %> seconds)</p>
 	</body>
 </html>
