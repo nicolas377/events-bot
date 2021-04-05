@@ -45,3 +45,9 @@ p,
 h4 {
 	font-family: Roboto;
 }
+
+code {
+	background-color: #d4d4d4;
+	color: #000000;
+	border-radius: 5px;
+}

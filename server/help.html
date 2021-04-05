@@ -19,8 +19,24 @@
 		<h3>Prefix and Syntax</h3>
 		<p>Prefix: <code>$</code><br>Example: <code>$help</code></p>
 		<h4>Syntax</h4>
-		<p><code>&lt;&gt;</code> - required paramater<br><strong>REPLACE WITH VALUE IN ACTUAL COMMAND</strong></p>
+		<p><code>&lt;&gt;</code> - required paramater<br><code>[]</code> - optional paramater<br><br>Make sure to replace the names with values.</p>
+		<div class="commands">
 		<h3>Commands</h3>
-		<p>Commands will arrive soon.</p>
+		<p>
+			<code>$ping</code> - Sends the latency from message sending to message repsonse<br>
+			<code>$av [user mention]</code> - Gets the avatar of the mentioned user if they're in the server. Defaults to the person sending the message.<br>
+			<code>$picture</code> - Sends a pseudo-random picture from the bots reserves.<br>
+			<code>$membercount</code> - Replies with the number of members in the server.<br>
+			<code>$userinfo [user mention]</code> - Sends an embed with the critical infomation of the user.<br>
+			<code>$electioninfo</code> - Sends an embed with the infomation of all present and upcoming elections.<br>
+			<code>$settimezone &lt;decimal hours&gt;</code> - Adds (or updates) the user's timezone to the list of timezones.<br>
+			<strong>NOT READY</strong> <s><code>$removetimezone</code> - Removes the sending users entry from the timezone database.</s>
+		</p>
+		<h3>Mod-only commands</h3>
+		<p>
+			<code>$approve &lt;user mention&gt;</code> - Gives a mentioned user in the waiting room the Junior Pilot role and sends a welcome message.<br>
+			<code>$questioning &lt;user mention&gt;</code> - Sends the mentioned user to the questioning room and sends the list of former roles in mod chat.<br>
+			<code>$addimage &lt;image attachment&gt;</code> - Adds the attached image to the bots reserves. Event Managers can run this command.
+		</p>
 	</body>
 </html>
