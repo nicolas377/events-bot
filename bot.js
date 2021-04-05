@@ -31,7 +31,7 @@ dotenv.config()*/
 	readJSON()
 })()
 
-client.on('ready', () => {
+client.on('ready', async () => {
 	// Set the status
 	/*client.user.setActivity('the GeoFS Events Server | $help', {
 		type: 'WATCHING'
@@ -97,7 +97,7 @@ client.on('message', async (msg) => {
 		return userinfo(msg, member, author)
 	}
 
-	if (msg.content.startsWith('addtimezone') || msg.content.startsWith('removetimezone') || msg.content.startsWith('updatemessage')) {
+	if (msg.content.startsWith('settimezone') || msg.content.startsWith('removetimezone') || msg.content.startsWith('updatemessage')) {
 		return timezone(msg)
 	}
 
@@ -138,21 +138,18 @@ client.on('message', async (msg) => {
 	if (msg.content.startsWith('questioning')) {
 		return questioning(msg)
 	}
-
-	return msg.channel.send(`Seems like that isn't a command!`)
 })
 
 // handle all errors
-/*process.on("uncaughtException", (e) => {
+process.on("uncaughtException", (e) => {
 	logger(`ERROR ${e}`, true)
 	process.exit(1)
-})*/
+})
 client.on("warn", (e) => logger(`WARNING: ${e}`, true))
 
 client.login(process.env.TOKEN)
 
-// HTTP server
-
+// server
 require('./server/server.js')
 
 // since you've made it this far, you've been distracted.

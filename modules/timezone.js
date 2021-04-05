@@ -19,11 +19,14 @@ function jsonhandler(uid, timezone, remove = false) {
 function getOffset(msg) {
 	offset1 = parseFloat(msg.content.replace(/[^\d.-]/g, ''))
 	offset2 = tc.hours(offset1)
-	if (offset2.minute() == 0) {
+	if (offset2.minute() < 10) {
 		if (offset2 <= 0) {
-			return `-${offset2.wholeHours()}:${offset2.minute()}0`
+			return `-${offset2.wholeHours()}:0${offset2.minute()}`
 		}
-		return `+${offset2.wholeHours()}:${offset2.minute()}0`
+		return `+${offset2.wholeHours()}:0${offset2.minute()}`
+	}
+	if (offset2 == 0) {
+		return `${offset2.wholeHours()}:${offset2.minute()}`
 	}
 	if (offset2 <= 0) {
 		return `-${offset2.wholeHours()}:${offset2.minute()}`
@@ -32,22 +35,24 @@ function getOffset(msg) {
 
 }
 
-function getUsername(id) {
-	guild = client.guilds.cache.get("553718744233541656")
-	member = guild.members.cache.get(id)
+async function getUsername(id, client) {
+	guild = await client.guilds.cache.get("553718744233541656")
+	await guild.members.fetch()
+	member = await guild.members.cache.get(id)
 	return member.displayName
 }
 
-async function updateMessage(timezones) {
-	messageinchannel = await client.channels.cache.get('828626472512126986').messages.fetch("828626939803074620")
+async function updateMessage(timezones, client) {
+	channel = await client.channels.cache.get('828626472512126986')
+	messageinchannel = await channel.messages.fetch("828626939803074620")
 	tosend = ""
 	for (const property in timezones) {
 		var uid = property
 		var offset = timezones[property]
 		if (tosend == "") {
-			tosend += `**${getUsername(uid)}**: ${offset}`
+			tosend += `**${await getUsername(uid, client)}**: ${offset}`
 		} else {
-			tosend += `\n**${getUsername(uid)}**: ${offset}`
+			tosend += `\n**${await getUsername(uid, client)}**: ${offset}`
 		}
 	}
 	messageinchannel.edit(tosend)
@@ -67,6 +72,7 @@ function addTimezone(msg, client, timezones) {
 
 function deleteTimezone(msg) {
 	if (jsonhandler(msg.author.id, null, true)) {
+		updateMessage()
 		return msg.channel.send(`${msg.author}, your timezone has been removed!`)
 	}
 	return msg.channel.send(`${msg.author}, you don't have a timezone in the database!`)
@@ -75,7 +81,7 @@ function deleteTimezone(msg) {
 exports.timezone = async function(msg) {
 	global.timezones = timezones
 	global.client = client
-	if (msg.content.startsWith('addtimezone')) {
+	if (msg.content.startsWith('settimezone')) {
 		return addTimezone(msg, client, timezones)
 	}
 	if (msg.content.startsWith('removetimezone')) {
