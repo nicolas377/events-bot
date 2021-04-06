@@ -73,6 +73,10 @@ client.on('message', async (msg) => {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
 	}
 
+	if (msg.content.startsWith('urmom')) {
+		return msg.channel.send('has choncc belly')
+	}
+
 	if (msg.content.startsWith('restart')) {
 		return restart(msg)
 	}
@@ -97,7 +101,7 @@ client.on('message', async (msg) => {
 		return userinfo(msg, member, author)
 	}
 
-	if (msg.content.startsWith('settimezone') || msg.content.startsWith('removetimezone') || msg.content.startsWith('updatemessage')) {
+	if (msg.content.startsWith('settimezone') || msg.content.startsWith('addtimezone') || msg.content.startsWith('removetimezone') || msg.content.startsWith('updatemessage')) {
 		return timezone(msg)
 	}
 
@@ -105,7 +109,7 @@ client.on('message', async (msg) => {
 		return addImage(msg)
 	}
 
-	if (msg.content.startsWith('ping')) {
+	if (msg.content.startsWith('ping') || msg.content.startsWith('pong')) {
 		return ping(msg, client.ws.ping)
 	}
 
