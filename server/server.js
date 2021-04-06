@@ -5,7 +5,7 @@ const router = express.Router()
 const path = require('path') //Include the Path module
 
 app.set('view engine', 'ejs')
-app.set('views', path.join(__dirname, '/views'))
+app.set('views', __dirname)
 
 router.get('/', function(req, res) {
 	res.redirect('/index')
@@ -33,9 +33,12 @@ app.use('/index', router)
 app.use('/404', router)
 app.use('/static', express.static(path.join(__dirname, 'public')))
 //404 Redirect
-/*app.use(function(req, res) {
+app.use(function(req, res) {
+	if (req.url.startsWith('/static')) {
+		return
+	}
 	res.redirect('/404')
-})*/
+})
 
 
 

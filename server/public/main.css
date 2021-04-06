@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
 nav ul {
 	text-align: center;
 	list-style-type: none;
@@ -33,6 +35,12 @@ nav li.selected {
 
 nav ul li a:hover {
 	text-decoration: underline;
+}
+
+#sadface {
+	margin: 0px;
+	font-size: 200px;
+	font-family: Open Sans;
 }
 
 h1,
