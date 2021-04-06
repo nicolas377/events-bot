@@ -13,6 +13,9 @@ router.get('/', function(req, res) {
 router.get('/index', function(req, res) {
 	res.sendFile(path.join(__dirname, '/index.html'))
 })
+router.get('/about', function(req, res) {
+	res.sendFile(path.join(__dirname, '/about.html'))
+})
 router.get('/help', function(req, res) {
 	res.sendFile(path.join(__dirname, '/help.html'))
 })

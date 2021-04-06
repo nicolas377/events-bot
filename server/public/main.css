@@ -37,6 +37,24 @@ nav ul li a:hover {
 	text-decoration: underline;
 }
 
+a.replit {
+	text-decoration: none;
+	color: #454c52;
+}
+
+a.replit:hover {
+	text-decoration: underline;
+}
+
+a.nicolas {
+	text-decoration: none;
+	color: #000;
+}
+
+a.nicolas:hover {
+	text-decoration: underline;
+}
+
 #sadface {
 	margin: 0px;
 	font-size: 200px;
