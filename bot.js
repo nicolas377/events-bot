@@ -6,7 +6,6 @@ dotenv.config()*/
 (function() {
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
-	global.ytdl = require('ytdl-core');
 	// bot intents
 	myintents = new Discord.Intents(Discord.Intents.NON_PRIVILEGED)
 	myintents.add('GUILD_MEMBERS')
