@@ -6,6 +6,7 @@ dotenv.config()*/
 (function() {
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
+	global.ytdl = require('ytdl-core');
 	// bot intents
 	myintents = new Discord.Intents(Discord.Intents.NON_PRIVILEGED)
 	myintents.add('GUILD_MEMBERS')
@@ -77,7 +78,9 @@ client.on('message', async (msg) => {
 		return leave(msg)
 	}
 
-	if (msg.content.startsWith('join'))
+	if (msg.content.startsWith('play')) {
+		return play(msg)
+	}
 
 	if (msg.content.startsWith('uptime')) {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
