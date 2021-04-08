@@ -69,6 +69,16 @@ client.on('message', async (msg) => {
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
 
+	if (msg.content.startsWith('join')) {
+		return join(msg)
+	}
+
+	if (msg.content.startsWith('leave') || msg.content.startsWith('die')) {
+		return leave(msg)
+	}
+
+	if (msg.content.startsWith('join'))
+
 	if (msg.content.startsWith('uptime')) {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
 	}
