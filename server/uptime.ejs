@@ -18,6 +18,27 @@
 		<center>
 			<h1>Uptime</h1>
 		</center>
-		<p class="uptime">I've been running for about <%= min %> minutes! (That's <%= sec %> seconds)</p>
+		<p id="uptime">I've been running for about 0 minutes! (That's 0 seconds)</p>
 	</body>
+	<script>
+		var starttime = <%= starttime %>
+
+		window.onload = function() {
+			ptag = document.getElementById('uptime')
+			timesince = Date.now() - starttime
+
+			sec = Math.round(timesince/1000)
+			min = Math.round(sec/60)
+			ptag.innerHTML = `I've been running for about ${min} minutes! (That's ${sec} seconds)`
+		}
+
+		setInterval(function() {
+			ptag = document.getElementById('uptime')
+			timesince = Date.now() - starttime
+
+			sec = Math.round(timesince/1000)
+			min = Math.round(sec/60)
+			ptag.innerHTML = `I've been running for about ${min} minutes! (That's ${sec} seconds)`
+		}, 1000)
+	</script>
 </html>

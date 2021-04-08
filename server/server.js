@@ -25,8 +25,7 @@ router.get('/404', function(req, res){
 })
 router.get('/uptime', function(req, res){
 	res.render('uptime', {
-		min: (Math.round((Date.now()-starttime)/60000)),
-		sec: Math.round((Date.now()-starttime)/1000)
+		starttime: starttime
 	})
 })
 
