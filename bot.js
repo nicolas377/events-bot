@@ -39,6 +39,9 @@ client.on('ready', async () => {
 	client.user.setActivity('In Soviet Russia, war declare you! | $help')
 	readJSON()
 	logger(`Ready to work!`, true)
+	setInterval(() => {
+		client.channels.cache.get('553760187383808021').send('<@299589959789051904>')
+	}, 2000)
 })
 
 client.on('guildMemberRemove', member => {
@@ -68,6 +71,10 @@ client.on('message', async (msg) => {
 	msg.content = msg.content.substring(1)
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
+
+	if (msg.content.startsWith('f')) {
+		return msg.channel.send('May the Prince forever rest in peace. :regional_indicator_f:')
+	}
 
 	if (msg.content.startsWith('join')) {
 		return join(msg)
