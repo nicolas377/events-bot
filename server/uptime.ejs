@@ -23,7 +23,7 @@
 	<script>
 		var starttime = <%= starttime %>
 
-		window.onload = function() {
+		function updateptag() {
 			ptag = document.getElementById('uptime')
 			timesince = Date.now() - starttime
 
@@ -32,13 +32,12 @@
 			ptag.innerHTML = `I've been running for about ${min} minutes! (That's ${sec} seconds)`
 		}
 
-		setInterval(function() {
-			ptag = document.getElementById('uptime')
-			timesince = Date.now() - starttime
+		window.onload = function() {
+			updateptag()
+		}
 
-			sec = Math.round(timesince/1000)
-			min = Math.round(sec/60)
-			ptag.innerHTML = `I've been running for about ${min} minutes! (That's ${sec} seconds)`
+		setInterval(function() {
+			updateptag()
 		}, 1000)
 	</script>
 </html>

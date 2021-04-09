@@ -73,18 +73,6 @@ client.on('message', async (msg) => {
 		return msg.channel.send('May the Prince forever rest in peace. :regional_indicator_f:')
 	}
 
-	if (msg.content.startsWith('join')) {
-		return join(msg)
-	}
-
-	if (msg.content.startsWith('leave') || msg.content.startsWith('die')) {
-		return leave(msg)
-	}
-
-	if (msg.content.startsWith('play')) {
-		return play(msg)
-	}
-
 	if (msg.content.startsWith('uptime')) {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
 	}
@@ -165,7 +153,9 @@ process.on("uncaughtException", (e) => {
 	logger(`ERROR ${e}`, true)
 	process.exit(1)
 })
-client.on("warn", (e) => logger(`WARNING: ${e}`, true))
+client.on("warn", (e) => {
+	logger(`WARNING: ${e}`, true)
+})
 
 client.login(process.env.TOKEN)
 
