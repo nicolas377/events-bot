@@ -39,9 +39,6 @@ client.on('ready', async () => {
 	client.user.setActivity('In Soviet Russia, war declare you! | $help')
 	readJSON()
 	logger(`Ready to work!`, true)
-	setInterval(() => {
-		client.channels.cache.get('553760187383808021').send('<@299589959789051904>')
-	}, 2000)
 })
 
 client.on('guildMemberRemove', member => {
