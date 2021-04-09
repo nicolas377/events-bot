@@ -1,10 +1,10 @@
 exports.questioning = function(msg) {
-	if (msg.member.roles.cache.has("766386531681435678")) {
+	if (msg.member.roles.cache.has("830214074264059984")) {
 		if (msg.mentions.members.first() == undefined) {
 			return msg.channel.send(`<@${msg.author.id}>, you have to mention someone!`)
 		}
 		let member = msg.mentions.members.first()
-		if (member.roles.cache.has("766386531681435678")) {
+		if (member.roles.cache.has("830214074264059984")) {
 			return msg.channel.send("That user can't be sent to the questioning room!")
 		} else {
 			let rolenames = []

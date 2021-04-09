@@ -4,7 +4,7 @@ exports.mentions = function(msg) {
 		return false
 	}
 
-	if (msg.member.roles.cache.has('760665499330936922') || msg.member.roles.cache.has('553723628957728820')) { // Elite Crew and Bossman are exempt from all
+	if (msg.member.roles.cache.has('553723628957728820') || msg.member.roles.cache.has('830214074264059984')) { // Bossman and Staff Members are exempt from all
 		return false
 	}
 

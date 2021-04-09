@@ -1,5 +1,5 @@
 exports.approve = function(msg) {
-	if (msg.member.roles.cache.has("766386531681435678")) {
+	if (msg.member.roles.cache.has("830214074264059984")) {
 		if (msg.mentions.members.first() == undefined) {
 			return msg.channel.send(`<@${msg.author.id}>, you have to mention someone!`)
 		}

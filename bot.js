@@ -33,10 +33,7 @@ dotenv.config()*/
 
 client.on('ready', async () => {
 	// Set the status
-	/*client.user.setActivity('the GeoFS Events Server | $help', {
-		type: 'WATCHING'
-	})*/
-	client.user.setActivity('In Soviet Russia, war declare you! | $help')
+	client.user.setActivity('Doing barrel rolls | $help')
 	readJSON()
 	logger(`Ready to work!`, true)
 })
