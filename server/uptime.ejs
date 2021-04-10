@@ -18,7 +18,7 @@
 		<center>
 			<h1>Uptime</h1>
 		</center>
-		<p id="uptime">I've been running for about 0 minutes! (That's 0 seconds)</p>
+		<p id="uptime">I've been running for 0 seconds! (That's about 0 minutes)</p>
 	</body>
 	<script>
 		var starttime = <%= starttime %>
@@ -29,7 +29,7 @@
 
 			sec = Math.round(timesince/1000)
 			min = Math.round(sec/60)
-			ptag.innerHTML = `I've been running for about ${min} minutes! (That's ${sec} seconds)`
+			ptag.innerHTML = `I've been running for ${sec} seconds! (That's about ${min} minutes)`
 		}
 
 		window.onload = function() {

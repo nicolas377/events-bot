@@ -34,12 +34,14 @@
 			<code>$electioninfo</code> - Sends an embed with the infomation of all present and upcoming elections.<br>
 			<code>&lt;$settimezone/$addtimezone&gt; &lt;decimal hours&gt;</code> - Adds (or updates) the user's timezone to the list of timezones.<br>
 			<code>$removetimezone</code> - Removes the sending users entry from the timezone database.<br>
+			<code>$eventslist</code> - Sends an embed with all the upcoming events in order.<br>
 		</p>
-		<h3>Mod-only commands</h3>
+		<h3>Staff-only commands</h3>
 		<p>
 			<code>$approve &lt;user mention&gt;</code> - Gives a mentioned user in the waiting room the Junior Pilot role and sends a welcome message.<br>
 			<code>$questioning &lt;user mention&gt;</code> - Sends the mentioned user to the questioning room and sends the list of former roles in mod chat.<br>
-			<code>$addimage &lt;image attachment&gt;</code> - Adds the attached image to the bot's reserves. <strong>Do not delete the image or message.</strong> Event Managers can run this command.
+			<code>$addimage &lt;image attachment&gt;</code> - Adds the attached image to the bot's reserves. <strong>Do not delete the image or message.</strong> Event Managers can run this command.<br>
+			<code>$addevent &lt;date in ISO 8601 format&gt; &lt;title of event&gt; &lt;description of event&gt;</code> - Adds a event to the bots reserves, for other users to access. The events will be automatically deleted once the day associated with them is past.
 		</p>
 	</body>
 </html>
