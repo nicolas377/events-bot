@@ -4,7 +4,6 @@
   "description": "This project is probably one of the largest undertakings I've gone through. This is my first Discord bot, and I'm very proud of it. I'm hosting it [on replit.com](https://replit.com/@nrod06/events-bot?v=1). All the code on this repository is exactly what's being used on the repl. The only difference is that the encryption key and bot token are in a hidden file.",
   "main": "bot.js",
   "dependencies": {
-    "@discordjs/opus": "^0.5.0",
     "crypto-js": "^4.0.0",
     "discord.js": "^12.5.3",
     "ejs": "^3.1.6",
