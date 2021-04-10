@@ -2,7 +2,7 @@
 (function() {
 	// setup the .env file
 	require('dotenv').config()
-	
+
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
 	// bot intents
@@ -32,9 +32,15 @@
 	runatmidnight()
 })()
 
+function randomChoice(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
+const statusOptions = ['Doing barrel rolls', 'In Soviet Russia, war declare you!']
+
 client.on('ready', async () => {
 	// Set the status
-	client.user.setActivity('Doing barrel rolls | $help')
+	client.user.setActivity(`${randomChoice(statusOptions)} | $help`)
 	logger(`Ready to work!`, true)
 })
 
