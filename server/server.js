@@ -19,11 +19,11 @@ router.get('/about', function(req, res) {
 router.get('/help', function(req, res) {
 	res.sendFile(path.join(__dirname, '/help.html'))
 })
-router.get('/404', function(req, res){
+router.get('/404', function(req, res) {
 	res.status(404)
 	res.sendFile(__dirname + '/404.html')
 })
-router.get('/uptime', function(req, res){
+router.get('/uptime', function(req, res) {
 	res.render('uptime', {
 		starttime: starttime
 	})
