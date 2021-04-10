@@ -15,6 +15,7 @@ dotenv.config()*/
 	global.timezones = {}
 	global.pics = null
 	global.removing = null
+	global.events = []
 })(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
 // another IIFE to import the functions
@@ -34,6 +35,7 @@ dotenv.config()*/
 client.on('ready', async () => {
 	// Set the status
 	client.user.setActivity('Doing barrel rolls | $help')
+
 	readJSON()
 	logger(`Ready to work!`, true)
 })
@@ -66,16 +68,20 @@ client.on('message', async (msg) => {
 	// support for any caps combo message
 	msg.content = msg.content.toLowerCase()
 
-	if (msg.content.startsWith('f')) {
-		return msg.channel.send('May the Prince forever rest in peace. :regional_indicator_f:')
-	}
-
 	if (msg.content.startsWith('uptime')) {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
 	}
 
+	if (msg.content.startsWith('event')) {
+		return eventembed(msg)
+	}
+
 	if (msg.content.startsWith('urmom')) {
 		return msg.channel.send('has choncc belly')
+	}
+
+	if (msg.content.startsWith('addevent')) {
+		return addevent(msg)
 	}
 
 	if (msg.content.startsWith('restart')) {
