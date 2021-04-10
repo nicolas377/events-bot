@@ -3,7 +3,7 @@ function pruneeventslist(events) {
 	for (i = 0; i < events.length; i++) {
 		value = events[i]
 
-		if (value[0] >= Date.now()) {
+		if ((value[0] + 86400000) >= Date.now()) {
 			newlist.push(value)
 		}
 	}
@@ -23,13 +23,15 @@ function getDate(string) {
 }
 
 exports.addevent = function(msg) {
-	if (!(msg.member.roles.cache.has('717878253305724932') || msg.author.id == ('550456900861427733'))) {
+	if (!(msg.member.roles.cache.has('717878253305724932') || msg.member.roles.cache.has('830214074264059984'))) {
 		return msg.channel.send("You can't run that command!")
 	}
 
 	adding = []
 
 	args = msg.content.substring(9).split(', ')
+
+	args[2] = args.slice(2).join(', ')
 
 	date = getDate(args[0])
 

@@ -1,9 +1,8 @@
-/*const dotenv = require('dotenv')
-dotenv.config()*/
-
-
 // IIFE (Immediately Invoked Function Expression) to set up variables
 (function() {
+	// setup the .env file
+	require('dotenv').config()
+	
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
 	// bot intents
@@ -30,13 +29,12 @@ dotenv.config()*/
 		global[item] = module[Object.keys(module)[0]]
 	})
 	readJSON()
+	runatmidnight()
 })()
 
 client.on('ready', async () => {
 	// Set the status
 	client.user.setActivity('Doing barrel rolls | $help')
-
-	readJSON()
 	logger(`Ready to work!`, true)
 })
 

@@ -3,7 +3,13 @@
 		"users": [],
 		"codes": []
 	},
-	"events": [],
+	"events": [
+		[
+			1618012800000,
+			"vatsim event ",
+			"starting at 1:00pm edt / 5pm gmt, we will be doing a vatsim event. since many of you here play flight simulators and use vatsim, i thought this would be a good event to add variety to the things we do here. for this first event, we will be departing saba and arriving at st. barthelemy. \n\naircraft: any general aviation aircraft\n\nroute: vfr\n\nflight simulators: x plane 11, fsx, p3d, flightgear, and msfs 2020.\n\nvatsim website: https://www.vatsim.net/\n\nfyi: vatsim is for serious pilots only. if you are new, or want to start using vatsim, visit https://www.vatsim.net/pilots/getting-started for a full tutorial.\ni will also be streaming this for those who just want to watch."
+		]
+	],
 	"timezones": {
 		"473859714162360320": "+2:00",
 		"338699055943254030": "-4:00",
