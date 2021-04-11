@@ -98,7 +98,7 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('picture')) {
-		return msg.channel.send(pics[Math.floor(Math.random() * pics.length)])
+		return msg.channel.send(randomChoice(pics))
 	}
 
 	if (msg.content.startsWith('userinfo')) {
