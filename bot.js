@@ -15,6 +15,7 @@
 	global.pics = null
 	global.removing = null
 	global.events = []
+	global.botStatuses = []
 })(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
 // another IIFE to import the functions
@@ -36,11 +37,9 @@ function randomChoice(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-const statusOptions = ['Doing barrel rolls', 'In Soviet Russia, war declare you!']
-
 client.on('ready', async () => {
 	// Set the status
-	client.user.setActivity(`${randomChoice(statusOptions)} | $help`)
+	client.user.setActivity(`${randomChoice(botStatuses)} | $help`)
 	logger(`Ready to work!`, true)
 })
 
