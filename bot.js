@@ -5,10 +5,9 @@
 
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
-	// bot intents
-	myintents = new Discord.Intents(Discord.Intents.NON_PRIVILEGED)
-	myintents.add('GUILD_MEMBERS')
-	global.client = new Discord.Client({ws: {intents: myintents}})
+	global.client = new Discord.Client({
+		fetchAllMembers: true
+	})
 	global.users = []
 	global.codes = []
 	global.timezones = {}
