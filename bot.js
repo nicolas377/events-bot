@@ -32,16 +32,12 @@
 	runatmidnight()
 })()
 
-function randomChoice(arr) {
-	return arr[Math.floor(Math.random() * arr.length)];
-}
-
 client.on('ready', async () => {
 	// Set the status
-	client.user.setActivity(`${randomChoice(botStatuses)}... | $help`)
+	client.user.setActivity(`${randomchoice(botStatuses)}... | $help`)
 	logger(`Ready to work!`, true)
 	setInterval(() => {
-		client.user.setActivity(`${randomChoice(botStatuses)}... | $help`)
+		client.user.setActivity(`${randomchoice(botStatuses)}... | $help`)
 	}, 900000)
 })
 
@@ -98,7 +94,7 @@ client.on('message', async (msg) => {
 	}
 
 	if (msg.content.startsWith('picture')) {
-		return msg.channel.send(randomChoice(pics))
+		return msg.channel.send(randomchoice(pics))
 	}
 
 	if (msg.content.startsWith('userinfo')) {
