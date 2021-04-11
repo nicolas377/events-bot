@@ -41,6 +41,9 @@ client.on('ready', async () => {
 	// Set the status
 	client.user.setActivity(`${randomChoice(botStatuses)}... | $help`)
 	logger(`Ready to work!`, true)
+	setInterval(() => {
+		client.user.setActivity(`${randomChoice(botStatuses)}... | $help`)
+	}, 900000)
 })
 
 client.on('guildMemberRemove', member => {
