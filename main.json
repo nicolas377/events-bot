@@ -3,15 +3,9 @@
 		"users": [],
 		"codes": []
 	},
-	"events": [
-		[
-			1618012800000,
-			"hoverfest",
-			"hoverfest\n\nstarting at 2:30pm edt / 6:30pm gmt, we will be doing a short flight with only helicopters and vtols. there are many to choose from.\nwe will be flying by hand around ambouli (hdam).\n\nthere are no altitude or heading restrictions for this flight, however do your best to keep a tight formation. try to keep the speed around 70 knots. (i will most likely be flying the ec-135). if you are not experienced that much at flying helicopters and vtols, use the stipa-caproni\nthe vatsim event will take place next week."
-		],
-		[
+	"events": [[
 			1618617600000,
-			"vatsim event ",
+			"vatsim event",
 			"starting at 1:00pm edt / 5pm gmt, we will be doing a vatsim event. since many of you here play flight simulators and use vatsim, i thought this would be a good event to add variety to the things we do here. for this first event, we will be departing saba and arriving at st. barthelemy. \n\naircraft: any general aviation aircraft\n\nroute: vfr\n\nflight simulators: x plane 11, fsx, p3d, flightgear, and msfs 2020.\n\nvatsim website: https://www.vatsim.net/\n\nfyi: vatsim is for serious pilots only. if you are new, or want to start using vatsim, visit https://www.vatsim.net/pilots/getting-started for a full tutorial.\ni will also be streaming this for those who just want to watch."
 		]
 	],
@@ -124,7 +118,17 @@
 		"nahui"
 	],
 	"statuses": [
-		"Doing barrel rolls",
-		"In Soviet Russia, war declare you!"
+		"Doing Barrel Rolls",
+		"Overlaying Grid onto Bezier Curves",
+		"Landing on Jool",
+		"Counting Geigers",
+		"Never Visiting Dres",
+		"Counting Backwards",
+		"Motivating Kerbals",
+		"Adding K to Every Word",
+		"Rearranging Stars",
+		"Testing Springs",
+		"Repaving Runway",
+		"Preparing Rescue Mission"
 	]
 }

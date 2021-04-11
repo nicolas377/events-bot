@@ -39,7 +39,7 @@ function randomChoice(arr) {
 
 client.on('ready', async () => {
 	// Set the status
-	client.user.setActivity(`${randomChoice(botStatuses)} | $help`)
+	client.user.setActivity(`${randomChoice(botStatuses)}... | $help`)
 	logger(`Ready to work!`, true)
 })
 
