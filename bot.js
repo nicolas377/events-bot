@@ -2,7 +2,7 @@
 (function() {
 	// setup the .env file
 	require('dotenv').config()
-	
+
 	global.Discord = require('discord.js')
 	global.fs = require('fs')
 	// bot intents
@@ -15,6 +15,7 @@
 	global.pics = null
 	global.removing = null
 	global.events = []
+	global.botStatuses = []
 })(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
 // another IIFE to import the functions
@@ -32,9 +33,13 @@
 	runatmidnight()
 })()
 
+function randomChoice(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
+}
+
 client.on('ready', async () => {
 	// Set the status
-	client.user.setActivity('Doing barrel rolls | $help')
+	client.user.setActivity(`${randomChoice(botStatuses)} | $help`)
 	logger(`Ready to work!`, true)
 })
 

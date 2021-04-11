@@ -20,4 +20,5 @@ exports.readJSON = function() {
 	removing = data.filterlist
 	timezones = data.timezones
 	events = data.events
+	botStatuses = data.statuses
 }
