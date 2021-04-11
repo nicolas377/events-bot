@@ -20,6 +20,7 @@ exports.saveJSON = () => {
 	saving.filterlist = removing
 	saving.timezones = timezones
 	saving.events = events
+	saving.statuses = botStatuses
 	users.forEach(function(item) {
 		var encrypted = encrypt(item)
 		saving.election.users.push(encrypted.toString())
