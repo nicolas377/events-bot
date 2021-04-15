@@ -165,7 +165,7 @@ client.on("warn", (e) => {
 	logger(`WARNING: ${e}`, true)
 })
 
-client.login(process.env.TOKEN)
+client.login(process.env['TOKEN'])
 
 // server
 require('./server/server.js')
