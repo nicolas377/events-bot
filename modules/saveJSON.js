@@ -2,7 +2,7 @@ const CryptoJS = require('crypto-js')
 const fs = require('fs')
 
 function encrypt(item) {
-	return CryptoJS.AES.encrypt(item, process.env[ENCRYPTION_KEY])
+	return CryptoJS.AES.encrypt(item, process.env['ENCRYPTION_KEY'])
 }
 
 exports.saveJSON = () => {

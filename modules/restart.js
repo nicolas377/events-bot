@@ -4,5 +4,7 @@ exports.restart = async function(msg) {
 		await msg.channel.send('Restarting. See you soon!')
 		process.exit(0)
 	}
+
+	msg.channel.send("You can't restart me!")
 	return false
 }

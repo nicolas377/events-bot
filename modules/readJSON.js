@@ -2,7 +2,7 @@ const CryptoJS = require('crypto-js')
 const fs = require('fs')
 
 function decrypt(item) {
-	return CryptoJS.AES.decrypt(item, process.env[ENCRYPTION_KEY])
+	return CryptoJS.AES.decrypt(item, process.env['ENCRYPTION_KEY'])
 }
 
 exports.readJSON = function() {
