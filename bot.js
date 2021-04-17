@@ -56,6 +56,10 @@ client.on('messageUpdate', function(old, msg) {
 
 client.on('message', async (msg) => {
 	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
+	
+	if (await addtofilter(msg)) {
+		return
+	}
 
 	if (msg.author.bot || filter(msg) || await botping(msg) || mentions(msg)) {
 		return
