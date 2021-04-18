@@ -29,7 +29,7 @@
 		global[item] = module[Object.keys(module)[0]]
 	})
 	readJSON()
-	runatmidnight()
+	pruneeventslist()
 })()
 
 client.on('ready', async () => {

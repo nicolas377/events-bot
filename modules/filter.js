@@ -4,7 +4,7 @@ String.prototype.cleanup = function() {
 
 function checkdelete(msg) {
 
-	if (msg.channel.id == '760831152109649940' || msg.channel.id == '830219467140366376') {
+	if (msg.channel.id == '760831152109649940' || msg.channel.id == '830219467140366376'/* || msg.channel.id == '808038740517847121'*/) {
 		return false
 	}
 
