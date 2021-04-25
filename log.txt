@@ -108,8 +108,6 @@ client.channels.cache.get('760831152109649940').send(message)
 1619303702435: Events Bot: like i said before, i'll explain everything when i get back on my actual account and out of this stupid js console
 1619304221024: Featherway: Also imma make the rules in <#717781781981560892>  so that servers can only be posted by their owners. That will avoid all those scam servers and ||someone posting a GPC invite there||
 1619305185940: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
-1619361944668: App server is running.
-1619361945133: Ready to work!
 1619364623430: Featherway: Imma pass this idea around. Do you think we should get a new upcoming events channel that we post events in for the next day, but delete the events after they end. That might help with having multiple events per day.
 1619365052201: Featherway: But I also like what we have now...so yea
 1619366555592: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Sup
