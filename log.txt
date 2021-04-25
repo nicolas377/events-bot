@@ -1,207 +1,121 @@
-1618619983887: App server is running.
-1618619984555: Ready to work!
-1618627704315: App server is running.
-1618627704887: Ready to work!
-1618687055037: App server is running.
-1618687055563: Ready to work!
-1618688761432: App server is running.
-1618688762093: Ready to work!
-1618688906929: App server is running.
-1618688907438: Ready to work!
-1618692803298: App server is running.
-1618692803971: Ready to work!
-1618692871410: App server is running.
-1618692872053: Ready to work!
-1618692899228: Restarting.
-1618692900468: App server is running.
-1618692901036: Ready to work!
-1618692934210: App server is running.
-1618692934797: Ready to work!
-1618693057055: App server is running.
-1618693057673: Ready to work!
-1618693068722: App server is running.
-1618693069224: Ready to work!
-1618693418811: PING: API latency is 40 ms
-1618693419234: PING: API latency is 40 ms
-1618693419663: PING: API latency is 40 ms
-1618693420049: PING: API latency is 40 ms
-1618693420384: PING: API latency is 40 ms
-1618693425143: PING: API latency is 40 ms
-1618693452055: PING: API latency is 41 ms
-1618693452273: PING: API latency is 41 ms
-1618693453191: PING: API latency is 41 ms
-1618693456687: PING: API latency is 41 ms
-1618693457007: PING: API latency is 41 ms
-1618693457372: PING: API latency is 41 ms
-1618693457926: PING: API latency is 41 ms
-1618693510671: PING: API latency is 46 ms
-1618693510953: PING: API latency is 46 ms
-1618693511893: PING: API latency is 46 ms
-1618693512231: PING: API latency is 46 ms
-1618693512531: PING: API latency is 46 ms
-1618693517202: PING: API latency is 46 ms
-1618693517596: PING: API latency is 46 ms
-1618693533709: PING: API latency is 47 ms
-1618693534095: PING: API latency is 47 ms
-1618693534608: PING: API latency is 47 ms
-1618693534866: PING: API latency is 47 ms
-1618693535063: PING: API latency is 47 ms
-1618693539744: PING: API latency is 47 ms
-1618693539909: PING: API latency is 47 ms
-1618693540147: PING: API latency is 47 ms
-1618693540351: PING: API latency is 47 ms
-1618693540590: PING: API latency is 47 ms
-1618693546283: PING: API latency is 47 ms
-1618693546572: PING: API latency is 47 ms
-1618693546775: PING: API latency is 47 ms
-1618693546938: PING: API latency is 47 ms
-1618693547245: PING: API latency is 47 ms
-1618693552910: PING: API latency is 47 ms
-1618693553214: PING: API latency is 47 ms
-1618693553443: PING: API latency is 47 ms
-1618693553701: PING: API latency is 47 ms
-1618693553882: PING: API latency is 47 ms
-1618693559602: PING: API latency is 47 ms
-1618693559745: PING: API latency is 47 ms
-1618693559908: PING: API latency is 47 ms
-1618693560152: PING: API latency is 47 ms
-1618693560413: PING: API latency is 47 ms
-1618693566134: PING: API latency is 47 ms
-1618693566290: PING: API latency is 47 ms
-1618693566497: PING: API latency is 47 ms
-1618693566661: PING: API latency is 47 ms
-1618693566840: PING: API latency is 47 ms
-1618693572586: PING: API latency is 47 ms
-1618693572742: PING: API latency is 47 ms
-1618693572956: PING: API latency is 47 ms
-1618693573113: PING: API latency is 47 ms
-1618693573344: PING: API latency is 47 ms
-1618693579062: PING: API latency is 47 ms
-1618693579249: PING: API latency is 47 ms
-1618693579438: PING: API latency is 47 ms
-1618693579599: PING: API latency is 47 ms
-1618693579846: PING: API latency is 47 ms
-1618693585503: PING: API latency is 47 ms
-1618693585857: PING: API latency is 47 ms
-1618693586090: PING: API latency is 47 ms
-1618693586267: PING: API latency is 47 ms
-1618693592553: PING: API latency is 47 ms
-1618693592921: PING: API latency is 47 ms
-1618693593128: PING: API latency is 47 ms
-1618693593350: PING: API latency is 47 ms
-1618693599011: PING: API latency is 47 ms
-1618693599231: PING: API latency is 47 ms
-1618693599425: PING: API latency is 47 ms
-1618693599622: PING: API latency is 47 ms
-1618693599843: PING: API latency is 47 ms
-1618693605592: PING: API latency is 47 ms
-1618693605841: PING: API latency is 47 ms
-1618693606003: PING: API latency is 47 ms
-1618693606174: PING: API latency is 47 ms
-1618693606366: PING: API latency is 47 ms
-1618693612026: PING: API latency is 47 ms
-1618693612244: PING: API latency is 47 ms
-1618693612401: PING: API latency is 47 ms
-1618693612585: PING: API latency is 50 ms
-1618693612731: PING: API latency is 50 ms
-1618693618442: PING: API latency is 50 ms
-1618693619388: PING: API latency is 50 ms
-1618693619582: PING: API latency is 50 ms
-1618693619841: PING: API latency is 50 ms
-1618693620006: PING: API latency is 50 ms
-1618693625754: PING: API latency is 50 ms
-1618693625943: PING: API latency is 50 ms
-1618693626214: PING: API latency is 50 ms
-1618693626429: PING: API latency is 50 ms
-1618693626638: PING: API latency is 50 ms
-1618693632374: PING: API latency is 50 ms
-1618693632564: PING: API latency is 50 ms
-1618693632804: PING: API latency is 50 ms
-1618693633072: PING: API latency is 50 ms
-1618693633253: PING: API latency is 50 ms
-1618693638988: PING: API latency is 50 ms
-1618693639136: PING: API latency is 50 ms
-1618693639345: PING: API latency is 50 ms
-1618693639512: PING: API latency is 50 ms
-1618693639664: PING: API latency is 50 ms
-1618693645354: PING: API latency is 50 ms
-1618693645518: PING: API latency is 50 ms
-1618693645690: PING: API latency is 50 ms
-1618693645838: PING: API latency is 50 ms
-1618693646060: PING: API latency is 50 ms
-1618693652747: PING: API latency is 50 ms
-1618693652910: PING: API latency is 50 ms
-1618693653073: PING: API latency is 50 ms
-1618693653502: PING: API latency is 50 ms
-1618693653815: PING: API latency is 50 ms
-1618693658466: PING: API latency is 50 ms
-1618693658736: PING: API latency is 50 ms
-1618693659042: PING: API latency is 50 ms
-1618693659254: PING: API latency is 50 ms
-1618693659464: PING: API latency is 50 ms
-1618693692732: App server is running.
-1618693693206: Ready to work!
-1618693710828: PING: API latency is 46 ms
-1618693711327: PING: API latency is 46 ms
-1618693711772: PING: API latency is 46 ms
-1618693712003: PING: API latency is 46 ms
-1618693882273: App server is running.
-1618693882995: Ready to work!
-1618694249436: App server is running.
-1618694250013: Ready to work!
-1618694271707: App server is running.
-1618694272224: Ready to work!
-1618695888450: App server is running.
-1618695889191: Ready to work!
-1618696590214: App server is running.
-1618696590860: Ready to work!
-1618696651709: App server is running.
-1618696652209: Ready to work!
-1618761659843: App server is running.
-1618761660449: Ready to work!
-1618769623556: App server is running.
-1618769624251: Ready to work!
-1618769648114: App server is running.
-1618769648835: Ready to work!
-1618769652359: App server is running.
-1618769658893: Ready to work!
-1618769660565: App server is running.
-1618769669028: Ready to work!
-1618769671551: App server is running.
-1618769679179: Ready to work!
-1618769680341: App server is running.
-1618769689288: Ready to work!
-1618769697330: App server is running.
-1618769697821: Ready to work!
-1618769705942: App server is running.
-1618769706540: Ready to work!
-1618769711290: App server is running.
-1618769712037: Ready to work!
-1618769733429: App server is running.
-1618769733958: Ready to work!
-1618769745368: App server is running.
-1618769746010: Ready to work!
-1618769757431: App server is running.
-1618769757990: Ready to work!
-1618769762435: App server is running.
-1618769763243: Ready to work!
-1618769767115: App server is running.
-1618769773297: Ready to work!
-1618769775536: App server is running.
-1618769783402: Ready to work!
-1618769941369: Restarting.
-1618769942750: App server is running.
-1618769943451: Ready to work!
-1618770833480: App server is running.
-1618770833973: Ready to work!
-1618770845847: App server is running.
-1618770846385: Ready to work!
-1618771100808: App server is running.
-1618771101404: Ready to work!
-1618793132438: App server is running.
-1618793133100: Ready to work!
-1618793179235: Restarting.
-1618793180472: App server is running.
-1618793181055: Ready to work!
-1618793433092: App server is running.
-1618793433736: Ready to work!
+1619295857415: Events Bot: 1. This must look weird to have a bot talking to you
+2. How's the server been while I was (i guess still am) gone?
+1619296175687: Featherway: 2. Its been going pretty good. We've been getting a lot more members lately and much more people each event. So yea.
+1619296214792: Events Bot: How many members do we have now?
+1619296313581: Featherway: 215 people...221 including bots
+1619296342955: App server is running.
+1619296343582: Ready to work!
+1619296343716: Events Bot: noice
+1619297851836: ThePickle: Do in other words, Nicolas can still view <#760831152109649940> despite being staff
+1619297864231: ThePickle: ...
+1619297878601: ThePickle: Well anyways glad to hear you’re doing fine
+1619298250449: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <@!780458120605990954> yooooooooooooooooooooooooooooooooo
+1619298255567: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: *i need help n le code*
+1619299138377: Events Bot: i cant, but the bot can, since it has admin perms
+1619300630332: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: ok
+1619300632609: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: plz return
+1619300655665: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <@!338699055943254030> when is the rushipocket guy joining
+1619300766838: ThePickle: .......
+1619300771901: ThePickle: “Rushipocket”
+1619300821506: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: bruh
+1619300827834: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: idk how he made that name
+1619301452875: Events Bot: *when you say Rushipocket*
+1619302085425: ThePickle: ^^^
+1619302150119: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
+1619302201245: Featherway: We might be getting reviewd for something soon. Depends. This might be bigm
+1619302267119: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <@338699055943254030> .
+1619302275379: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: How can this be big and what are we reviewed for
+1619302319508: Events Bot: ^
+1619302370052: Featherway: Big like ur p---s
+1619302370441: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: *gae*
+1619302372395: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
+1619302374576: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: SIR
+1619302375953: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: HOW
+1619302379212: Featherway: LOL
+1619302379966: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: ANSWER QUESTION
+1619302381914: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: ...
+1619302401970: Events Bot: im watching this in a js console, so this is fucking hilarious
+1619302409908: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
+1619302412104: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
+1619302415975: Featherway: .
+1619302416427: Featherway: .
+1619302416830: Featherway: .
+1619302417154: Featherway: .
+1619302417985: Featherway: .
+1619302430958: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Imagine waking up and viewing ur bot only to see "penis" in the console
+1619302436780: Featherway: <:omglul:734920842445717575> <:omglul:734920842445717575> 😂 😂
+1619302452032: Events Bot: that's me rn
+1619302468440: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: ...
+1619302475073: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: WAIT
+1619302478769: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: CAN U SEE EMOJIS
+1619302483244: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <:Indonesian_Rickroll:796526042192936961>
+1619302489908: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: 🇵 😩 🇳
+1619302499104: Events Bot: i can see their names
+1619302503322: Featherway: O
+1619302511358: Featherway: And their penises
+1619302541129: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: https://tenor.com/view/proverbs-rayya-gif-18955553
+1619302546638: Events Bot: i cant delete messages, and deleted messages dont disappear either
+1619302551704: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: ..
+1619302561166: Featherway: AAAAAAAAA
+1619302562720: Featherway: A
+1619302563185: Featherway: A
+1619302567526: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: OK then
+1619302592284: Events Bot: this must look so weird
+1619302596874: ThePickle: ....
+1619302613859: Featherway: Can u still do ur mom?
+1619302625985: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Hopefully u return soon
+1619302629265: Events Bot: i can do yours
+1619302632360: Featherway: .
+1619302632959: Featherway: .
+1619302633433: Featherway: .
+1619302633945: Featherway: .
+1619302634436: Featherway: .
+1619302637293: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: ...
+1619302688638: ThePickle: Also I get bad vibes from TheFlyingSim guy
+1619302699749: Events Bot: gotta love how the bot is talking to you
+1619302700226: Featherway: That's just him lol
+1619302708496: Featherway: Apparently
+1619302714182: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <@780458120605990954> how do u talk tho
+1619302717438: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Using bot
+1619302719190: ThePickle: Sounds like GPC in a person
+1619302724193: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
+1619302725508: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Yes
+1619302747804: ThePickle: Ima get off discord and clear me mind
+1619302756002: Featherway: Roget
+1619302758418: Featherway: Roger
+1619302762561: ThePickle: Also Featherway, can u join arrival for Moscow to LA
+1619302765469: ThePickle: Or no.
+1619302767890: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Ye
+1619302769496: Featherway: I'm in a car
+1619302773549: Featherway: Still
+1619302773607: ThePickle: 10pm your time
+1619302776050: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Because I probably won't be there,,,,
+1619302776457: Featherway: O
+1619302778875: Featherway: Yea
+1619302779565: ThePickle: AAAA alr
+1619302785490: App server is running.
+1619302786040: Ready to work!
+1619302786128: Events Bot: ```js
+client.channels.cache.get('760831152109649940').send(message)
+```
+1619302788262: ThePickle: Wait no 8:45 your time
+1619302792224: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <@780458120605990954> o
+1619302795872: Featherway: That's gud
+1619302797587: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Is there a easier way tho
+1619302833965: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: https://tenor.com/view/roblox-gif-21277679
+1619302856761: Events Bot: you have to get the channel, then call the send() method to send a message
+1619303360778: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: O
+1619303702435: Events Bot: like i said before, i'll explain everything when i get back on my actual account and out of this stupid js console
+1619304221024: Featherway: Also imma make the rules in <#717781781981560892>  so that servers can only be posted by their owners. That will avoid all those scam servers and ||someone posting a GPC invite there||
+1619305185940: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: .
+1619361944668: App server is running.
+1619361945133: Ready to work!
+1619364623430: Featherway: Imma pass this idea around. Do you think we should get a new upcoming events channel that we post events in for the next day, but delete the events after they end. That might help with having multiple events per day.
+1619365052201: Featherway: But I also like what we have now...so yea
+1619366555592: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Sup
+1619366563756: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: YESSS
+1619366586318: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Penis
+1619366617861: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: <@338699055943254030> how are applications going
+1619366623066: ᴛʜʏ ᴘᴏɢɢᴜꜱ ɴᴀᴠɪɢᴀᴛᴏʀ: Km gonna read some of them
+1619367033428: Featherway: ...
+1619367046277: Featherway: So much better

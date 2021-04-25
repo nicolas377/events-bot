@@ -3,6 +3,7 @@ starttime = Date.now()
 const app = express()
 const router = express.Router()
 const path = require('path') //Include the Path module
+require('ejs')
 
 app.set('view engine', 'ejs')
 app.set('views', __dirname)

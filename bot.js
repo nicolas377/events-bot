@@ -56,6 +56,10 @@ client.on('messageUpdate', function(old, msg) {
 
 client.on('message', async (msg) => {
 	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
+
+	if (msg.channel.id == 760831152109649940) {
+		logger(`${msg.member.user.username}: ${msg.content}`, true)
+	}
 	
 	if (await addtofilter(msg)) {
 		return
