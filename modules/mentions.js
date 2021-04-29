@@ -4,13 +4,8 @@ exports.mentions = function(msg) {
 		return false
 	}
 
-	if (msg.member.roles.cache.has('553723628957728820') || msg.member.roles.cache.has('830214074264059984')) { // Bossman and Staff Members are exempt from all
+	if (msg.member.roles.cache.has('830214074264059984')) { // Staff Members are exempt from all
 		return false
-	}
-
-	if (msg.mentions.members.array().length > 2) { // if its 3 or more mentions
-		msg.channel.send(`${msg.author}, keep it below 3 mentions!`)
-		return true
 	}
 
 	nummentioned = msg.mentions.members.array().length

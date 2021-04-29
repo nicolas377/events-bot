@@ -29,7 +29,6 @@
 		global[item] = module[Object.keys(module)[0]]
 	})
 	readJSON()
-	pruneeventslist()
 })()
 
 client.on('ready', async () => {
@@ -50,22 +49,10 @@ client.on('guildMemberAdd', member => {
 	client.channels.cache.get('553733333234876426').send(`Welcome to the GeoFS Events Discord server ${member}, and thanks for joining!\n\nYou're in a waiting room, which is just an extra layer of security to prevent raiders and hackers from getting everything immediately.\n\nMake sure to read the <#553929583397961740> and the <#553720929063141379> channel for more information, then ping an online moderator to let you in!`)
 })
 
-client.on('messageUpdate', function(old, msg) {
-	filter(msg)
-})
-
 client.on('message', async (msg) => {
-	// If the message gets filtered out, the message sender is a bot, or the botping got triggered, then return
+	// If the message sender is a bot or the botping got triggered, then return
 
-	if (msg.channel.id == 760831152109649940) {
-		logger(`${msg.member.user.username}: ${msg.content}`, true)
-	}
-	
-	if (await addtofilter(msg)) {
-		return
-	}
-
-	if (msg.author.bot || filter(msg) || await botping(msg) || mentions(msg)) {
+	if (msg.author.bot || await botping(msg) || mentions(msg)) {
 		return
 	}
 
@@ -85,16 +72,9 @@ client.on('message', async (msg) => {
 		return msg.channel.send('That can be found here:\n<https://events-bot.nrod06.repl.co/uptime>')
 	}
 
-	if (msg.content.startsWith('event')) {
-		return eventembed(msg)
-	}
-
 	if (msg.content.startsWith('urmom')) {
-		return msg.channel.send('has choncc belly')
-	}
-
-	if (msg.content.startsWith('addevent')) {
-		return addevent(msg)
+		msg.delete()
+		return msg.channel.send('your mom has choncc belly')
 	}
 
 	if (msg.content.startsWith('restart')) {
