@@ -1,7 +1,11 @@
 {
 	"election": {
-		"users": [],
-		"codes": []
+		"users": [
+			"U2FsdGVkX1+mipQoMND1SMW0W+UTiNZ1+dnqEgUnJnAEns/+zXSwVQfF0GqbY0lG"
+		],
+		"codes": [
+			"U2FsdGVkX18r+keeKvFBW+DHapV100jD0HOkrYviGun9WiTuy9faPyvwb97fWk4E6TNBIn/V7F8WbBrz4L6VIrNTtJSS5VlrLUobZsYSaRPanSXx9eWYCBUu8GrbfmSz"
+		]
 	},
 	"events": [
 		[

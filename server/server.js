@@ -24,6 +24,9 @@ router.get('/404', function(req, res) {
 	res.status(404)
 	res.sendFile(__dirname + '/404.html')
 })
+router.get('/election', function(req, res) {
+	res.sendFile(__dirname + '/election.html')
+})
 router.get('/uptime', function(req, res) {
 	res.render('uptime', {
 		starttime: starttime
@@ -33,6 +36,7 @@ router.get('/uptime', function(req, res) {
 app.use('/', router)
 app.use('/uptime', router)
 app.use('/index', router)
+app.use('/election', router)
 app.use('/404', router)
 app.use('/static', express.static(path.join(__dirname, 'public')))
 //404 Redirect
