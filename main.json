@@ -1,24 +1,26 @@
 {
 	"election": {
 		"users": [
-			"U2FsdGVkX1+mipQoMND1SMW0W+UTiNZ1+dnqEgUnJnAEns/+zXSwVQfF0GqbY0lG"
+			"U2FsdGVkX1+0tnnqcl/Esghr3k2pr42TxHHquvK+AEG8U1HZ8YmPq0Orptr3sjwX",
+			"U2FsdGVkX1+q+il/tSTfyz/wqedOsozwxWJ/9oE1gE71wt2K4JCY0e2u5no7dl3S",
+			"U2FsdGVkX18/eW2zd1D7uCmvJ1rlX/1bBFBrB5tRE7UqP9UtRO9EXqJapf79xLbz",
+			"U2FsdGVkX1/FFhs6kls/wTmDciwy+Pi8R66/HAWUZv+zzr3kS3bE3OJy804BbTia",
+			"U2FsdGVkX1+msrA0F9FQGZqk5qtS5EIQK9L6Xp2dGOXygoJdTV6y3mFCBNBuNAh6",
+			"U2FsdGVkX19E1FR6QQsI/0njCt04JxE9Fskli8rOcoA0K9hydMXPuW3GZlQDcbzZ",
+			"U2FsdGVkX19noYuGcqvG91oLor7huEcnJsV5FnvBFCkOTMRJHUrvbb3Rrbw7Ecuz",
+			"U2FsdGVkX19uGN9FE+zUQ3OOeSZ1rsc2tBbthW3fdjv6/+7VJqeeZhPC14LUw8V0"
 		],
 		"codes": [
-			"U2FsdGVkX18r+keeKvFBW+DHapV100jD0HOkrYviGun9WiTuy9faPyvwb97fWk4E6TNBIn/V7F8WbBrz4L6VIrNTtJSS5VlrLUobZsYSaRPanSXx9eWYCBUu8GrbfmSz"
+			"U2FsdGVkX1/KwOasWRV9QoF4Whd1eh8QPLcEQtEkbwKk7gnagU7JQl54CrOiVkXA4K5jRoCdlp8U2iB/r87TtYoCouC96YRhpAZ/Gx+kQ4mQiuQF9GP4aZDGPbJOCrZu",
+			"U2FsdGVkX1/1KDyd6pBbll643IYUPbpffIbqFJ7h+wZ0CKJwCJVIf1nRg1LtwhNQbBVDNPCznwFc3c8Zv5nYm5bKJoHWppl4YKM/FKijOD1HS8ku8RfmYLpmHaiJayEO",
+			"U2FsdGVkX1+KH/hhER1n9Ubvl2glvuaVeKx1gBqZB56GcHfmeCyoGwh6dvz3NMcf0LDN5GRzJ6lEhmNvosYl9ar4rNDqwlCwUE8Sn1lSqEnzGd55WdBqn8ODUSbqMLM9",
+			"U2FsdGVkX19Y5XmEmylNYQW+RugaSfw2LZc6u/aWJWwcH36HkNpYQsVcGAFOUBScy0pSS+Xle05bl0xwtzm9HSXRsqcCSJvIPqWn3AVFAvtphKVTU0nVmCrJQvLozOTN",
+			"U2FsdGVkX19ykHed0B+5HWOiyP5mzRp7OUAQPfKDpjiDcPu3fn5R1dmO8cdcG9LFNXyPlMGu5nYRtMJ/WgEOdwg4wpVMmahDDxHHiNx42CupAFe2qFUKd9IJId3qJL7y",
+			"U2FsdGVkX19UPL3d6Vm36vgSI6PEG9CJ2zzL+V4vvP17K06V4IL12ujEVF1snQG/X0jnk0p3pG7f4cECLSqB1cAuByzUgK3J6v9hdOj+jhfpilDGwo5pGsixKfh3SovU",
+			"U2FsdGVkX19vVWTC0L1dVG07+bZaNo1p3zXsfZbAQ1L2F5BtOph/nwTeMNeviBVopfrgcOg72TmUEKUGK5r/n+0l4ZrhF8USy4zx4Kl8yWaiTzWN4bECOgCoQ3xNcK7b",
+			"U2FsdGVkX1+UfYIAa+H3Xx9T93X9Ze/umeQ8Bz29ntNxNxmTFJYYWh15jOiAK3IDQDWOpVAsi9qV+NbSnmqFu807wmz3p2rZ2zNQe18iDbjX+mtH3S0G+2+gMZo8yQGc"
 		]
 	},
-	"events": [
-		[
-			1618099200000,
-			"hoverfest 2.0",
-			"starting at 2:15pm edt / 6:15pm gmt, we will be doing a short flight with only helicopters and vtols. there are many to choose from.\nwe will be flying by hand around pompeii. the airport we wull be departing from is naples (lirn).\n\nthere are no altitude or heading restrictions for this flight, however do your best to keep a tight formation. i will be leading the pack."
-		],
-		[
-			1618617600000,
-			"vatsim event",
-			"starting at 1:00pm edt / 5pm gmt, we will be doing a vatsim event. since many of you here play flight simulators and use vatsim, i thought this would be a good event to add variety to the things we do here. for this first event, we will be departing saba and arriving at st. barthelemy. \n\naircraft: any general aviation aircraft\n\nroute: vfr\n\nflight simulators: x plane 11, fsx, p3d, flightgear, and msfs 2020.\n\nvatsim website: https://www.vatsim.net/\n\nfyi: vatsim is for serious pilots only. if you are new, or want to start using vatsim, visit https://www.vatsim.net/pilots/getting-started for a full tutorial.\ni will also be streaming this for those who just want to watch."
-		]
-	],
 	"timezones": {
 		"473859714162360320": "+2:00",
 		"338699055943254030": "-4:00",
@@ -49,7 +51,8 @@
 		"809496498932940841": "+800:00",
 		"768933070057242675": "-5:00",
 		"832145496003837973": "+530:00",
-		"771302604810485770": "+10:00"
+		"771302604810485770": "+10:00",
+		"545423117900578830": "-4:00"
 	},
 	"images": [
 		"https://cdn.discordapp.com/attachments/553718744657035274/815039884849840128/unknown.png",

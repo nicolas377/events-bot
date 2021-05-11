@@ -4,4 +4,8 @@ This project is probably one of the largest undertakings I've gone through. This
 
 ---
 
-I am extremely proud of how this project has gone so far, and I'm excited for its future. According to the Github API, I've written [over 39000 lines of code](https://api.github.com/repos/nicolas377/events-bot/languages) in 48 days.
+The project ended after I left the GeoFS Events server and the bot was kicked from the server. See [here](https://events-bot.nrod06.repl.co/about) for more details.
+
+---
+
+I'm extremely proud of how this project went. According to the Github API, I wrote [over 38000 lines of code](https://api.github.com/repos/nicolas377/events-bot/languages) in 67 days.

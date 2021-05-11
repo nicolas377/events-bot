@@ -19,6 +19,5 @@ exports.readJSON = function() {
 	pics = data.images
 	removing = data.filterlist
 	timezones = data.timezones
-	events = data.events
 	botStatuses = data.statuses
 }

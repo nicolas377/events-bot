@@ -11,7 +11,6 @@ exports.saveJSON = () => {
 			users: [],
 			codes: []
 		},
-		events: [],
 		timezones: {},
 		images: [],
 		filterlist: []
@@ -19,7 +18,6 @@ exports.saveJSON = () => {
 	saving.images = pics
 	saving.filterlist = removing
 	saving.timezones = timezones
-	saving.events = events
 	saving.statuses = botStatuses
 	users.forEach(function(item) {
 		var encrypted = encrypt(item)

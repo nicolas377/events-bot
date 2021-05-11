@@ -37,14 +37,15 @@ app.use('/', router)
 app.use('/uptime', router)
 app.use('/index', router)
 app.use('/election', router)
-app.use('/404', router)
 app.use('/static', express.static(path.join(__dirname, 'public')))
 //404 Redirect
 app.use(function(req, res) {
 	if (req.url.startsWith('/static')) {
 		return
 	}
-	res.redirect('/404')
+	res.render('404', {
+		url: req.url
+	})
 })
 
 

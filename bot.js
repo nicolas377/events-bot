@@ -13,7 +13,6 @@
 	global.timezones = {}
 	global.pics = null
 	global.removing = null
-	global.events = []
 	global.botStatuses = []
 })(); // had to use a semicolon so the interpreter doesn't see (function)()(function)() and throw an error
 
@@ -153,7 +152,7 @@ client.on("warn", (e) => {
 	logger(`WARNING: ${e}`, true)
 })
 
-client.login(process.env['TOKEN'])
+// client.login(process.env['TOKEN'])
 
 // server
 require('./server/server.js')
